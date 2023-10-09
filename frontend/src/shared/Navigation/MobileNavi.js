@@ -9,7 +9,7 @@ const MobileNavi = () => {
       <NavLink to="/main">
         <img src="/img/navbar/menu1-2.png" className="menu1" />
       </NavLink>
-      <NavLink to="/main">
+      <NavLink to="/main/rating">
         <img src="/img/navbar/menu2-2.png" className="menu2" />
       </NavLink>
       <NavLink to="/main">
