@@ -1,0 +1,16 @@
+.filterimg {
+  margin-left: 28.25rem;
+  margin-right: 0.5rem;
+  width: 1.875rem;
+  height: 1.875rem;
+}
+.filter {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #4f80ff;
+  cursor: pointer;
+}
+.filter-modal {
+  width: 18.25rem;
+  height: 26.125rem;
+}
