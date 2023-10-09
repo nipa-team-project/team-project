@@ -1,0 +1,44 @@
+.rating {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.rating_title {
+  margin-top: 3.4375rem;
+  width: 11.25rem;
+  height: 2.1875rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333333;
+}
+.rating_guide {
+  margin-top: 0.5rem;
+  width: 12.25rem;
+  height: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #808080;
+}
+.rating_sort {
+  margin-top: 3.4375rem;
+  height: 1.875rem;
+  display: flex;
+  align-items: center;
+}
+.rating_sort_menu {
+  height: 1.5625rem;
+  margin-right: 0.6875rem;
+  padding: 0 1rem;
+  border: solid 1px #cccccc;
+  border-radius: 99px;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.rating_sort_menu_active {
+  color: #759cff;
+  border-color: #759cff;
+}
