@@ -11,8 +11,8 @@ function App() {
       <MainNavigation />
       <main>
         <Suspense>
-          <Navigate exact from="/" to="/main" />
           <Routes>
+            <Route path="/" element={<Navigate to="/main" />} />
             <Route path="/main" exact element={<Main />} />
           </Routes>
         </Suspense>
