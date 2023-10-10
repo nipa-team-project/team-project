@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import "./Filter.css";
@@ -7,11 +7,12 @@ import Modal from "./Modal";
 const Filter = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchparamshandler = (sort, value) => {
+    //쿼리 생성
     searchParams.set(`${sort}`, `${value}`);
     setSearchParams(searchParams);
   };
 
-  const [showFilter, setShowFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState(false); //필터 활성화,비활성화
   const closefilter = () => {
     setShowFilter(false);
   };
@@ -19,11 +20,80 @@ const Filter = (props) => {
     setShowFilter(true);
   };
 
-  const [dateIndex, setDateIndex] = useState(0);
+  const datearray = ["all", "ascending", "descending"]; //쿼리에 따라 date 메뉴 체크
+  const [dateIndex, setDateIndex] = useState(
+    searchParams.get("date") === null
+      ? 0
+      : parseInt(datearray.indexOf(searchParams.get("date")))
+  );
 
-  const [nameIndex, setNameIndex] = useState(0);
+  const namearray = ["all", "ascending", "descending"]; //쿼리에 따라 name 메뉴 체크
+  const [nameIndex, setNameIndex] = useState(
+    searchParams.get("name") === null
+      ? 0
+      : parseInt(namearray.indexOf(searchParams.get("name")))
+  );
 
-  const [ratingIndex, setRatingIndex] = useState(0);
+  const ratingarray = ["all", "ss", "s", "a", "b", "c"]; //쿼리에 따라 name 메뉴 체크
+  const [ratingIndex, setRatingIndex] = useState(
+    searchParams.get("rating") === null
+      ? 0
+      : parseInt(ratingarray.indexOf(searchParams.get("rating")))
+  );
+
+  const [filter, setFilter] = useState({
+    //filter 내용 초기값 지정
+    date: `${
+      searchParams.get("date") === null
+        ? "all"
+        : datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
+    }`,
+    name: `${
+      searchParams.get("name") === null
+        ? "all"
+        : namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
+    }`,
+    rating: `${
+      searchParams.get("rating") === null
+        ? "all"
+        : ratingarray[parseInt(ratingarray.indexOf(searchParams.get("rating")))]
+    }`,
+  });
+  const filtersave = () => {
+    //저장하기 클릭 시 filter에 따른 쿼리 생성
+    for (const key in filter) {
+      searchparamshandler(`${key}`, `${filter[key]}`);
+    }
+  };
+  const filtercancle = () => {
+    //취소하기 선택 시 선택 된 버튼과 filter값 초기화
+    setDateIndex(
+      searchParams.get("date") === null
+        ? 0
+        : parseInt(datearray.indexOf(searchParams.get("date")))
+    );
+    setNameIndex(
+      searchParams.get("date") === null
+        ? 0
+        : parseInt(datearray.indexOf(searchParams.get("date")))
+    );
+    setRatingIndex(
+      searchParams.get("rating") === null
+        ? 0
+        : parseInt(ratingarray.indexOf(searchParams.get("rating")))
+    );
+    setFilter({
+      date: `${
+        datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
+      }`,
+      name: `${
+        namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
+      }`,
+      rating: `${
+        ratingarray[parseInt(ratingarray.indexOf(searchParams.get("rating")))]
+      }`,
+    });
+  };
 
   return (
     <React.Fragment>
@@ -47,11 +117,11 @@ const Filter = (props) => {
             <div
               key={index}
               className={`filter-modal_menu center ${
-                dateIndex === index ? " filter-modal_menu_active" : ""
+                dateIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
               }`}
               onClick={() => {
                 setDateIndex(index);
-                searchparamshandler("date", menu[1]);
+                setFilter((prev) => ({ ...prev, date: `${menu[1]}` }));
               }}
             >
               {menu[0]}
@@ -68,11 +138,11 @@ const Filter = (props) => {
             <div
               key={index}
               className={`filter-modal_menu center ${
-                nameIndex === index ? " filter-modal_menu_active" : ""
+                nameIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
               }`}
               onClick={() => {
                 setNameIndex(index);
-                searchparamshandler("name", menu[1]);
+                setFilter((prev) => ({ ...prev, name: `${menu[1]}` }));
               }}
             >
               {menu[0]}
@@ -92,11 +162,11 @@ const Filter = (props) => {
             <div
               key={index}
               className={`filter-modal_menu center ${
-                ratingIndex === index ? " filter-modal_menu_active" : ""
+                ratingIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
               }`}
               onClick={() => {
                 setRatingIndex(index);
-                searchparamshandler("rating", menu[1]);
+                setFilter((prev) => ({ ...prev, rating: `${menu[1]}` }));
               }}
             >
               {menu[0]}
@@ -104,10 +174,22 @@ const Filter = (props) => {
           ))}
         </div>
         <div style={{ display: "flex" }}>
-          <div className="filter-modal_savebtn center" onClick={closefilter}>
+          <div
+            className="filter-modal_savebtn center"
+            onClick={() => {
+              closefilter();
+              filtersave();
+            }}
+          >
             저장하기
           </div>
-          <div className="filter-modal_canclebtn center" onClick={closefilter}>
+          <div
+            className="filter-modal_canclebtn center"
+            onClick={() => {
+              filtercancle();
+              closefilter();
+            }}
+          >
             취소
           </div>
         </div>

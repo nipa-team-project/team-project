@@ -93,46 +93,58 @@ const Rating = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchparamshandler = (sort, value) => {
+    //쿼리 생성 및 변경
     searchParams.set(`${sort}`, `${value}`);
     setSearchParams(searchParams);
   };
 
+  const menuarray = ["recent", "soldout", "interior"]; //쿼리에 따라 menu 체크
   const [menuindex, setMenuIndex] = useState(
     searchParams.get("situation") === null
       ? 0
-      : parseInt(searchParams.get("situation"))
+      : parseInt(menuarray.indexOf(searchParams.get("situation")))
   );
-  const [pageindex, setPageIndex] = useState(0);
-  const [pagecut, setPagecut] = useState(0);
+
+  const page = Math.ceil(itemlen / 9); //데이터 총 개수에 따라 페이지 계산
+  const pagearray = [];
+  for (let i = 1; i < page + 1; i++) {
+    pagearray.push(i);
+  }
+  const [pageindex, setPageIndex] = useState(
+    searchParams.get("page") === null
+      ? 0
+      : parseInt(pagearray.indexOf(parseInt(searchParams.get("page")))) //쿼리에 따라 페이지 체크
+  );
 
   const pageplus = () => {
+    //페이지 증가
     if (pageindex === page - 1) {
       setPageIndex(pageindex);
     } else {
       setPageIndex(pageindex + 1);
+      searchParams.set("page", `${pageindex + 2}`);
+      setSearchParams(searchParams);
     }
   };
   const pageminus = () => {
+    //페이지 감소
     if (pageindex === 0) {
       setPageIndex(0);
     } else {
       setPageIndex(pageindex - 1);
+      searchParams.set("page", `${pageindex}`);
+      setSearchParams(searchParams);
     }
   };
 
+  const [pagecut, setPagecut] = useState(0); //페이지를 5단위로 체크하고 변경
   useEffect(() => {
     if (pageindex > pagecut + 4) {
       setPagecut(pagecut + 5);
     } else if (pageindex < pagecut) {
       setPagecut(pagecut - 5);
     }
-  }, [pageindex]);
-
-  const page = Math.ceil(itemlen / 9);
-  const array = [];
-  for (let i = 1; i < page + 1; i++) {
-    array.push(i);
-  }
+  }, [pageindex, pagecut]);
 
   return (
     <React.Fragment>
@@ -150,17 +162,18 @@ const Rating = () => {
             <div
               key={index}
               className={`rating_sort_menu center ${
-                menuindex === index ? " rating_sort_menu_active" : ""
+                menuindex === index ? " rating_sort_menu_active" : "" //선택된 메뉴 css 변경(기본은 첫번째 메뉴 활성화)
               }`}
               onClick={() => {
                 setMenuIndex(index);
-                searchparamshandler("situation", menu[1]);
+                searchparamshandler("situation", menu[1]); //메뉴 선택시 쿼리도 생성
               }}
             >
               {menu[0]}
             </div>
           ))}
           <Filter title="날짜순"></Filter>
+          {/*클릭 시 필터 표시*/}
         </div>
         <div className="rating_notebook_contain">
           {dummydata.map((notebook, index) => (
@@ -202,8 +215,9 @@ const Rating = () => {
             onClick={pageminus}
           />
           <div className="rating_page_num_contain center">
+            {/*페이지 표시*/}
             {page < 5
-              ? array.map((page, index) => (
+              ? pagearray.map((page, index) => (
                   <div
                     key={index}
                     className={`rating_page_num center ${
@@ -217,7 +231,7 @@ const Rating = () => {
                     {page}
                   </div>
                 ))
-              : array.map((page, index) => {
+              : pagearray.map((page, index) => {
                   return (
                     index >= pagecut &&
                     index <= 4 + pagecut && (
