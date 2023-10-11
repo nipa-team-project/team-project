@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 
 import "./rating.css";
 import Filter from "../../shared/UIElements/Filter";
+import Pagetitle from "../../shared/Pagetitle/Pagetitle";
 
 const dummydata = [
   {
@@ -149,10 +150,9 @@ const Rating = () => {
   return (
     <React.Fragment>
       <div className="rating">
-        <div className="rating_title center">노트북 등급</div>
-        <div className="rating_guide center">
+        <Pagetitle title="노트북 등급">
           나의 노트북을 모아볼 수 있습니다.
-        </div>
+        </Pagetitle>
         <div className="rating_sort">
           <div className="rating_sort_menucontain">
             {[
