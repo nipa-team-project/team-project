@@ -2,9 +2,10 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
-import Loading from "./main/pages/Loading";
+
 import MainNavigation from "./shared/Navigation/MainNavigation";
 const Main = React.lazy(() => import("./main/pages/Main"));
+const Loading = React.lazy(() => import("./main/pages/Loading"));
 
 function App() {
   return (
