@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 7.625rem;
 }
 
 .content2 {
@@ -19,6 +18,7 @@
     width: 75rem;
     height: auto;
     margin-left: 3.125rem;
+    margin-top: 7.625rem;
 }
 
 .link-style {
@@ -46,7 +46,7 @@
     display: none;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
     .desktop {
         display: none;
     }
@@ -65,7 +65,7 @@
         height: auto;
         margin-left: 0.625rem;
         margin-right: 0.625rem;
-        margin-top: 3.125rem;
+        margin-top: 8.125rem;
     }
 
 }
