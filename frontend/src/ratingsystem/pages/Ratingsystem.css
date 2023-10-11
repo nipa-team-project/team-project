@@ -6,7 +6,6 @@
 }
 .ratingsystem_ratingcontain {
   width: 65rem;
-  height: 20.6875rem;
   margin-top: 3.4375rem;
   display: flex;
   justify-content: space-between;
@@ -19,8 +18,7 @@
 @media (max-width: 768px) {
   .ratingsystem_ratingcontain {
     width: 25.1225rem;
-    height: 25.6025rem;
-    margin-top: 1.6875rem;
+    margin-top: 0.9375rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

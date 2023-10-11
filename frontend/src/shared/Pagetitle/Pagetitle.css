@@ -14,8 +14,7 @@
 }
 @media (max-width: 768px) {
   .pagetitle_title {
-    margin-top: 2.5rem;
-
+    margin-top: 4.749vh;
     height: 1.4375rem;
     font-size: 1rem;
     font-weight: 700;
@@ -23,7 +22,6 @@
   }
   .pagetitle_guide {
     margin-top: 0rem;
-
     height: 1.0625rem;
     font-size: 0.75rem;
     font-weight: 400;
