@@ -40,7 +40,8 @@
     height: 12.42625rem;
     background-color: #ffffff;
     border-radius: 3px;
-    margin-right: 0.75rem;
+    margin-right: 0.325rem;
+    margin-left: 0.325rem;
   }
   .ratingsystem_rating_title {
     width: 100%;

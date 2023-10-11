@@ -30,4 +30,9 @@
     width: 21.9375rem;
     height: 11.50625rem;
   }
+  .mobile-contain {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
