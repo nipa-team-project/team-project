@@ -5,7 +5,7 @@ import "./App.css";
 import MainNavigation from "./shared/Navigation/MainNavigation";
 
 const Main = React.lazy(() => import("./main/pages/Main"));
-const Rating = React.lazy(() => import("./rating/pages/rating"));
+const Rating = React.lazy(() => import("./rating/pages/Rating"));
 
 function App() {
   return (

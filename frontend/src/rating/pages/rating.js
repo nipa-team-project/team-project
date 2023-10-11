@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
-import "./rating.css";
+import "./Rating.css";
 import Filter from "../../shared/UIElements/Filter";
 import Pagetitle from "../../shared/Pagetitle/Pagetitle";
 
