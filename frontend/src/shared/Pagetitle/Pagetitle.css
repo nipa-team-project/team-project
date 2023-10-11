@@ -1,0 +1,32 @@
+.pagetitle_title {
+  margin-top: 3.4375rem;
+  height: 2.1875rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333333;
+}
+.pagetitle_guide {
+  margin-top: 0.5rem;
+  height: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #808080;
+}
+@media (max-width: 768px) {
+  .pagetitle_title {
+    margin-top: 2.5rem;
+
+    height: 1.4375rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #333333;
+  }
+  .pagetitle_guide {
+    margin-top: 0rem;
+
+    height: 1.0625rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #808080;
+  }
+}

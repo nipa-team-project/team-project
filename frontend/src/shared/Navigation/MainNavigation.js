@@ -18,7 +18,7 @@ const MainNavigation = () => {
     <React.Fragment>
       <header className="center header">
         <NavLink to="/main">
-          <img src="/img/navbar/logo.png" className="header_logo" />
+          <img src="/img/navbar/logo.png" className="header_logo" alt="logo" />
         </NavLink>
         <nav className="header_menu">
           <ul className="header_menu_links">{!login ? null : <MenuLinks />}</ul>

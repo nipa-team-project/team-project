@@ -13,10 +13,10 @@ const MenuLinks = () => {
         <NavLink to="/">매입신청서</NavLink>
       </li>
       <li className="header_links_menu_list">
-        <NavLink to="/">노트북 등급</NavLink>
+        <NavLink to="/main/rating">노트북 등급</NavLink>
       </li>
       <li className="header_links_menu_list">
-        <NavLink to="/">등급제</NavLink>
+        <NavLink to="/main/ratingsystem">등급제</NavLink>
       </li>
     </React.Fragment>
   );
