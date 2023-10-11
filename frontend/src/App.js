@@ -13,8 +13,9 @@ function App() {
       <MainNavigation />
       <main>
         <Suspense>
-          {/* <Navigate exact from="/" to="/main" /> */}
+          <Navigate exact from="/" to="/main" />
           <Routes>
+            <Route path="/" exact element={<Navigate to="/main" />} />
             <Route path="/main" exact element={<Main />} />
             <Route path="/loading" element={<Loading />} />
           </Routes>
