@@ -18,6 +18,7 @@ const Filter = (props) => {
   };
   const openfilter = () => {
     setShowFilter(true);
+    filtercancle();
   };
 
   const datearray = ["all", "ascending", "descending"]; //쿼리에 따라 date 메뉴 체크
@@ -84,13 +85,21 @@ const Filter = (props) => {
     );
     setFilter({
       date: `${
-        datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
+        searchParams.get("date") === null
+          ? "all"
+          : datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
       }`,
       name: `${
-        namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
+        searchParams.get("name") === null
+          ? "all"
+          : namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
       }`,
       rating: `${
-        ratingarray[parseInt(ratingarray.indexOf(searchParams.get("rating")))]
+        searchParams.get("rating") === null
+          ? "all"
+          : ratingarray[
+              parseInt(ratingarray.indexOf(searchParams.get("rating")))
+            ]
       }`,
     });
   };

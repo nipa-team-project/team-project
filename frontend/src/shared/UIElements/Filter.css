@@ -1,17 +1,16 @@
 .filterimg {
-  margin-left: 28.25rem;
-  margin-right: 0.5rem;
-  width: 1.875rem;
-  height: 1.875rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 .filter {
   font-weight: 500;
   font-size: 0.875rem;
   color: #4f80ff;
   cursor: pointer;
+  white-space: nowrap;
 }
 .filter-modal {
-  width: 15.375rem;
+  width: 15.25rem;
   height: 23.25rem;
   padding: 1.625rem 1.4375rem;
 }

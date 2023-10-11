@@ -154,57 +154,58 @@ const Rating = () => {
           나의 노트북을 모아볼 수 있습니다.
         </div>
         <div className="rating_sort">
-          {[
-            ["최근 등급 측정 노트북", "recent"],
-            ["판매한 노트북", "soldout"],
-            ["내부 등급 측정 노트북", "interior"],
-          ].map((menu, index) => (
-            <div
-              key={index}
-              className={`rating_sort_menu center ${
-                menuindex === index ? " rating_sort_menu_active" : "" //선택된 메뉴 css 변경(기본은 첫번째 메뉴 활성화)
-              }`}
-              onClick={() => {
-                setMenuIndex(index);
-                searchparamshandler("situation", menu[1]); //메뉴 선택시 쿼리도 생성
-              }}
-            >
-              {menu[0]}
-            </div>
-          ))}
-          <Filter title="날짜순"></Filter>
-          {/*클릭 시 필터 표시*/}
+          <div className="rating_sort_menucontain">
+            {[
+              ["최근 등급 측정 노트북", "recent"],
+              ["판매한 노트북", "soldout"],
+              ["내부 등급 측정 노트북", "interior"],
+            ].map((menu, index) => (
+              <div
+                key={index}
+                className={`rating_sort_menu center ${
+                  menuindex === index ? " rating_sort_menu_active" : "" //선택된 메뉴 css 변경(기본은 첫번째 메뉴 활성화)
+                }`}
+                onClick={() => {
+                  setMenuIndex(index);
+                  searchparamshandler("situation", menu[1]); //메뉴 선택시 쿼리도 생성
+                }}
+              >
+                {menu[0]}
+              </div>
+            ))}
+          </div>
+          <div className="rating-sort_filter center">
+            <Filter title="날짜순"></Filter>
+            {/*클릭 시 필터 표시*/}
+          </div>
         </div>
         <div className="rating_notebook_contain">
           {dummydata.map((notebook, index) => (
             <div className="rating_notebook " key={index}>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <div className="rating_notebook_imgbox center">
-                  <img
-                    className="rating_notebook_img"
-                    src={`${notebook.img}`}
-                    alt="notebookimage"
-                  ></img>
+              <div className="rating_notebook_imgbox center">
+                <img
+                  className="rating_notebook_img"
+                  src={`${notebook.img}`}
+                  alt="notebookimage"
+                ></img>
+              </div>
+
+              <div>
+                <div className="rating_notebook_name ">{notebook.name}</div>
+                <div className="rating_notebook_model">
+                  모델명: {notebook.model}
+                  <br />
+                  등록일: {notebook.date}
                 </div>
+                <div className="rating_notebook_des">
+                  {notebook.description}
+                </div>
+                <img
+                  className="rating_notebook_rank"
+                  src={`/img/rating/${notebook.rank}.png`}
+                  alt="rankimage"
+                ></img>
               </div>
-              <div className="rating_notebook_name">{notebook.name}</div>
-              <div className="rating_notebook_model">
-                모델명: {notebook.model}
-                <br />
-                등록일: {notebook.date}
-              </div>
-              <div className="rating_notebook_des">{notebook.description}</div>
-              <img
-                className="rating_notebook_rank"
-                src={`/img/rating/${notebook.rank}.png`}
-                alt="rankimage"
-              ></img>
             </div>
           ))}
         </div>
