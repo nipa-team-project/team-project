@@ -52,6 +52,7 @@ const Page = (props) => {
         className="page_arrow"
         src="/img/rating/leftarrow.png"
         onClick={pageminus}
+        alt="pagearrow"
       />
       <div className="page_num_contain center">
         {/*페이지 표시*/}
@@ -94,6 +95,7 @@ const Page = (props) => {
         className="page_arrow"
         src="/img/rating/rightarrow.png"
         onClick={pageplus}
+        alt="pagearrow"
       />
     </div>
   );
