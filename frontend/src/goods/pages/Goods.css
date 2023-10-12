@@ -1,0 +1,13 @@
+.goods {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.goods_sortcontain {
+  margin-top: 1.125rem;
+  width: 58.375rem;
+  height: 1.25rem;
+  display: flex;
+  justify-content: right;
+}

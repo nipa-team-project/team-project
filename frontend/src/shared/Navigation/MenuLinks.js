@@ -7,7 +7,7 @@ const MenuLinks = () => {
   return (
     <React.Fragment>
       <li className="header_links_menu_list">
-        <NavLink to="/">구매하기</NavLink>
+        <NavLink to="/main/goods">구매하기</NavLink>
       </li>
       <li className="header_links_menu_list">
         <NavLink to="/">매입신청서</NavLink>
