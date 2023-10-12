@@ -3,16 +3,16 @@ import "./Signup.css";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    userid: "",
     password: "",
     confirmPassword: "",
-    fullName: "",
+    name: "",
     email: "",
     phoneNumber: "",
   });
 
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-  const [isUsernameAvailable, setIsUsernameAvailable] = useState(null);
+  const [isUseridAvailable, setIsUseridAvailable] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,14 +44,14 @@ const SignUp = () => {
       setPasswordMismatch(formData.password !== value);
     }
 
-    if (name === "username") {
-      setIsUsernameAvailable(null);
+    if (name === "userid") {
+      setIsUseridAvailable(null);
     }
   };
 
   const handleCheckAvailability = () => {
-    const isAvailable = !formData.username.includes("admin");
-    setIsUsernameAvailable(isAvailable);
+    const isAvailable = !formData.userid.includes("admin");
+    setIsUseridAvailable(isAvailable);
   };
 
   const handleSubmit = () => {};
@@ -64,8 +64,8 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            name="username"
-            value={formData.username}
+            name="userid"
+            value={formData.userid}
             onChange={handleChange}
             className="input_id"
           />
@@ -76,9 +76,9 @@ const SignUp = () => {
           >
             중복확인
           </button>
-          {isUsernameAvailable !== null && (
-            <p style={{ color: isUsernameAvailable ? "green" : "red" }}>
-              {isUsernameAvailable
+          {isUseridAvailable !== null && (
+            <p style={{ color: isUseridAvailable ? "green" : "red" }}>
+              {isUseridAvailable
                 ? "사용 가능한 아이디입니다."
                 : "이미 사용 중인 아이디입니다."}
             </p>
@@ -110,8 +110,8 @@ const SignUp = () => {
         <label>이름</label>
         <input
           type="text"
-          name="fullName"
-          value={formData.fullName}
+          name="name"
+          value={formData.name}
           onChange={handleChange}
         />
 
