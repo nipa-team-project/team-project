@@ -47,20 +47,20 @@ const Page = (props) => {
   }, [pageindex, pagecut]);
 
   return (
-    <div className="rating_page center">
+    <div className="page center">
       <img
-        className="rating_page_arrow"
+        className="page_arrow"
         src="/img/rating/leftarrow.png"
         onClick={pageminus}
       />
-      <div className="rating_page_num_contain center">
+      <div className="page_num_contain center">
         {/*페이지 표시*/}
         {page < 5
           ? pagearray.map((page, index) => (
               <div
                 key={index}
-                className={`rating_page_num center ${
-                  pageindex === index ? " rating_page_num_active" : ""
+                className={`page_num center ${
+                  pageindex === index ? " page_num_active" : ""
                 }`}
                 onClick={() => {
                   setPageIndex(index);
@@ -76,8 +76,8 @@ const Page = (props) => {
                 index <= 4 + pagecut && (
                   <div
                     key={index}
-                    className={`rating_page_num center ${
-                      pageindex === index ? " rating_page_num_active" : ""
+                    className={`page_num center ${
+                      pageindex === index ? " page_num_active" : ""
                     }`}
                     onClick={() => {
                       setPageIndex(index);
@@ -91,7 +91,7 @@ const Page = (props) => {
             })}
       </div>
       <img
-        className="rating_page_arrow"
+        className="page_arrow"
         src="/img/rating/rightarrow.png"
         onClick={pageplus}
       />
