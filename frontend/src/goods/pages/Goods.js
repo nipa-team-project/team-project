@@ -120,82 +120,88 @@ const Goods = () => {
       <div className="goods_notebookcontain">
         {dummydata.map((notebook, index) => (
           <div className="goods_notebook" key={index}>
-            <div className="goods_notebook_imgbox center">
-              <img
-                className="goods_notebook_img"
-                src={`${notebook.img}`}
-                alt="notebookimage"
-              ></img>
-            </div>
-            <div className="goods_notebook_name">
-              {notebook.tag && <>[{notebook.tag}]</>}
-              {notebook.name}
-            </div>
-            <div className="goods_notebook_pricecontain">
-              <div className="goods_notebook_price">{notebook.price}</div>
-              <div className="goods_notebook_discount">
-                {notebook.discountprice}
+            <div>
+              {/*-- */}
+              <div className="goods_notebook_imgbox center">
+                <img
+                  className="goods_notebook_img"
+                  src={`${notebook.img}`}
+                  alt="notebookimage"
+                ></img>
               </div>
-            </div>
-            <div className="goods_notebook_des">
-              <div className="goods_descontain">
-                <div className="goods_des_title">OS</div>
-                <div className="goods_des_value">
-                  <img
-                    className="goods_dev_osimg"
-                    src={`/img/goods/${notebook.OS}.png`}
-                  />
-                  {notebook.OS}
+              <div className="goods_notebook_name">
+                {notebook.tag && <>[{notebook.tag}]</>}
+                {notebook.name}
+              </div>
+              <div className="goods_notebook_pricecontain">
+                <div className="goods_notebook_price">{notebook.price}</div>
+                <div className="goods_notebook_discount">
+                  {notebook.discountprice}
                 </div>
               </div>
-
-              <div className="goods_descontain">
-                <div className="goods_des_title">화면크기</div>
-                <div className="goods_des_value">
-                  <img
-                    className="goods_dev_scaleimg"
-                    src={`/img/goods/scale.png`}
-                  />
-                  {notebook.scale}
-                </div>
-              </div>
-
-              <div className="goods_descontain">
-                <div className="goods_des_title">업무용</div>
-                <div className="goods_des_value">
-                  {notebook.businessuse.map((img, index) => (
+            </div>
+            {/*-- */}
+            <div>
+              <div className="goods_notebook_des">
+                <div className="goods_descontain">
+                  <div className="goods_des_title">OS</div>
+                  <div className="goods_des_value">
                     <img
-                      key={index}
-                      className="goods_dev_useimg"
-                      src={`/img/goods/${img}.png`}
+                      className="goods_dev_osimg"
+                      src={`/img/goods/${notebook.OS}.png`}
                     />
-                  ))}
+                    {notebook.OS}
+                  </div>
                 </div>
-              </div>
 
-              <div className="goods_descontain">
-                <div className="goods_des_title">인강용</div>
-                <div className="goods_des_value">{notebook.learning}</div>
-              </div>
-
-              <div className="goods_descontain">
-                <div className="goods_des_title">게임용</div>
-                <div className="goods_des_value">{notebook.game}</div>
-              </div>
-
-              <div style={{ display: "flex" }}>
-                <div className="goods_des_title">하드웨어</div>
-                <div className="goods_des_value_hardware">
-                  {notebook.hardware.map((props, index) => (
-                    <a key={index}>{props}</a>
-                  ))}
+                <div className="goods_descontain">
+                  <div className="goods_des_title">화면크기</div>
+                  <div className="goods_des_value">
+                    <img
+                      className="goods_dev_scaleimg"
+                      src={`/img/goods/scale.png`}
+                    />
+                    {notebook.scale}
+                  </div>
                 </div>
+
+                <div className="goods_descontain">
+                  <div className="goods_des_title">업무용</div>
+                  <div className="goods_des_value">
+                    {notebook.businessuse.map((img, index) => (
+                      <img
+                        key={index}
+                        className="goods_dev_useimg"
+                        src={`/img/goods/${img}.png`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="goods_descontain">
+                  <div className="goods_des_title">인강용</div>
+                  <div className="goods_des_value">{notebook.learning}</div>
+                </div>
+
+                <div className="goods_descontain">
+                  <div className="goods_des_title">게임용</div>
+                  <div className="goods_des_value">{notebook.game}</div>
+                </div>
+
+                <div className="goods_descontain_hardware">
+                  <div className="goods_des_title">하드웨어</div>
+                  <div className="goods_des_value_hardware">
+                    {notebook.hardware.map((props, index) => (
+                      <a key={index}>{props}</a>
+                    ))}
+                  </div>
+                </div>
+                <img
+                  className="goods_notebook_rank"
+                  src={`/img/rating/${notebook.rank}.png`}
+                  alt="rankimage"
+                ></img>
               </div>
-              <img
-                className="goods_notebook_rank"
-                src={`/img/rating/${notebook.rank}.png`}
-                alt="rankimage"
-              ></img>
             </div>
           </div>
         ))}

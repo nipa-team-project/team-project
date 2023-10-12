@@ -115,6 +115,10 @@
   height: 1.25rem;
   margin-right: 0.5625rem;
 }
+.goods_descontain_hardware {
+  display: flex;
+  margin-bottom: 0.613125rem;
+}
 .goods_des_value_hardware {
   font-weight: 400;
   font-size: 0.75rem;
@@ -123,6 +127,7 @@
   align-items: center;
   width: 5.5rem;
   height: 3.1875rem;
+  color: #333333;
 }
 .goods_notebook_rank {
   width: 3.5rem;
@@ -130,4 +135,80 @@
   position: absolute;
   top: 30.9859%;
   right: 2.5%;
+}
+@media (max-width: 768px) {
+  .goods_sortcontain {
+    margin-top: 1.5rem;
+    width: 23.0625rem;
+  }
+  .goods_notebookcontain {
+    margin-top: 0.25rem;
+    width: 100vw;
+  }
+  .goods_notebook {
+    width: 20.375rem;
+    height: 13.3125rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    margin-bottom: 0.5rem;
+    padding-top: 1.1875rem;
+    padding-bottom: 1.125rem;
+    padding-left: 0.8125rem;
+    padding-right: 1.875rem;
+    position: relative;
+    display: flex;
+  }
+  .goods_notebook_imgbox {
+    width: 9.340625rem;
+    height: 7.14rem;
+    border-radius: 3.91px;
+  }
+  .goods_notebook_img {
+    width: 9.291875rem;
+    height: 5.575rem;
+  }
+  .goods_notebook_name {
+    margin-top: 1.2975rem;
+    width: 9.25rem;
+    height: auto;
+  }
+  .goods_notebook_pricecontain {
+    margin-top: 0rem;
+  }
+  .goods_notebook_discount {
+    margin-left: 0.9rem;
+  }
+  .goods_notebook_des {
+    margin-top: 0rem;
+    margin-left: 1.659375rem;
+  }
+  .goods_descontain {
+    display: flex;
+    align-items: center;
+    height: 1.375rem;
+    margin-bottom: 0.78125rem;
+  }
+  .goods_des_title {
+    width: 2.5rem;
+    font-weight: 400;
+    font-size: 0.5rem;
+  }
+  .goods_des_value {
+    font-weight: 500;
+    font-size: 0.5rem;
+  }
+  .goods_des_value_hardware {
+    font-weight: 500;
+    font-size: 0.5rem;
+    width: 3.5rem;
+    height: 2.25rem;
+    margin-top: 0.3125rem;
+  }
+  .goods_notebook_rank {
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    top: 45.2%;
+    left: 39%;
+  }
 }
