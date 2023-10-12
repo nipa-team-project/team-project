@@ -5,6 +5,11 @@ import "./Filter.css";
 import Modal from "./Modal";
 
 const Filter = (props) => {
+  let pricecheck = false;
+  if (props.title === "낮은가격순") {
+    pricecheck = true;
+  }
+
   const [searchParams, setSearchParams] = useSearchParams();
   const searchparamshandler = (sort, value) => {
     //쿼리 생성
@@ -20,6 +25,13 @@ const Filter = (props) => {
     setShowFilter(true);
     filtercancle();
   };
+
+  const pricearray = ["all", "ascending", "descending"]; //쿼리에 따라 name 메뉴 체크
+  const [priceIndex, setPriceIndex] = useState(
+    searchParams.get("price") === null
+      ? 0
+      : parseInt(pricearray.indexOf(searchParams.get("price")))
+  );
 
   const datearray = ["all", "ascending", "descending"]; //쿼리에 따라 date 메뉴 체크
   const [dateIndex, setDateIndex] = useState(
@@ -59,6 +71,17 @@ const Filter = (props) => {
         ? "all"
         : ratingarray[parseInt(ratingarray.indexOf(searchParams.get("rating")))]
     }`,
+    ...(pricecheck
+      ? {
+          price: `${
+            searchParams.get("price") === null
+              ? "all"
+              : datearray[
+                  parseInt(datearray.indexOf(searchParams.get("price")))
+                ]
+          }`,
+        }
+      : {}),
   });
   const filtersave = () => {
     //저장하기 클릭 시 filter에 따른 쿼리 생성
@@ -83,6 +106,15 @@ const Filter = (props) => {
         ? 0
         : parseInt(ratingarray.indexOf(searchParams.get("rating")))
     );
+
+    if (pricecheck) {
+      setPriceIndex(
+        searchParams.get("price") === null
+          ? 0
+          : parseInt(pricearray.indexOf(searchParams.get("price")))
+      );
+    }
+
     setFilter({
       date: `${
         searchParams.get("date") === null
@@ -101,6 +133,17 @@ const Filter = (props) => {
               parseInt(ratingarray.indexOf(searchParams.get("rating")))
             ]
       }`,
+      ...(pricecheck
+        ? {
+            price: `${
+              searchParams.get("price") === null
+                ? "all"
+                : datearray[
+                    parseInt(datearray.indexOf(searchParams.get("price")))
+                  ]
+            }`,
+          }
+        : {}),
     });
   };
 
@@ -116,7 +159,34 @@ const Filter = (props) => {
             onClick={closefilter}
           />
         </div>
-        <div className="filter-modal_date">날짜</div>
+        {pricecheck && (
+          <>
+            <div className="filter-modal_date">가격</div>
+            <div style={{ display: "flex" }}>
+              {[
+                ["전체", "all"],
+                ["오름차순", "ascending"],
+                ["내림차순", "descending"],
+              ].map((menu, index) => (
+                <div
+                  key={index}
+                  className={`filter-modal_menu center ${
+                    priceIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
+                  }`}
+                  onClick={() => {
+                    setPriceIndex(index);
+                    setFilter((prev) => ({ ...prev, price: `${menu[1]}` }));
+                  }}
+                >
+                  {menu[0]}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        <div className={pricecheck ? "filter-modal_name" : "filter-modal_date"}>
+          날짜
+        </div>
         <div style={{ display: "flex" }}>
           {[
             ["전체", "all"],
