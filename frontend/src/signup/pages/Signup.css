@@ -1,0 +1,86 @@
+div {
+    text-align: center;
+    font-family: "Pretendard-Regular";
+}
+
+h1 {
+    margin-top: 151px;
+}
+
+form {
+    margin-top: 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input_id {
+    width: 527px;
+    margin-right: 8px;
+}
+
+.double_check {
+    width: 187px;
+    height: 50px;
+    border-radius: 5px;
+    color: white;
+    background-color: #4F80FF;
+    border: 0.0625rem solid #4F80FF;
+}
+
+input {
+    width: 722px;
+    height: 46px;
+    border-radius: 5px;
+    border: 1px solid #4F80FF;
+    padding-left: 1rem;
+    font-family: "Pretendard-Regular";
+    margin-bottom: 35px;
+    margin-top: 4px;
+}
+
+.input_password {}
+
+.buttons {
+    margin-top: px;
+}
+
+label {
+    width: 100px;
+    font-size: 16px;
+    text-align: left;
+    display: inline-block;
+    margin-right: 640px;
+    font-family: "Pretendard-Regular";
+
+}
+
+.reset_button {
+    width: 160px;
+    height: 40px;
+    margin-right: 4px;
+    border-radius: 5px;
+    color: #4F80FF;
+    background-color: white;
+    border: 0.0625rem solid #4F80FF;
+
+}
+
+.signup_button {
+    width: 160px;
+    height: 40px;
+    margin-left: 4px;
+    border-radius: 5px;
+    color: white;
+    background-color: #4F80FF;
+    border: 0.0625rem solid #4F80FF;
+
+}
+
+.password_mismatch {
+    color: red;
+    margin-top: -25px;
+    /* 위쪽으로 8px 여백 주기 */
+    margin-right: 505px;
+    font-size: 12px;
+}

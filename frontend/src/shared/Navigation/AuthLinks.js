@@ -10,7 +10,7 @@ const AuthLinks = (props) => {
       {!login ? (
         <>
           <li className="header_links_auth_list">
-            <NavLink to="/">회원가입</NavLink>
+            <NavLink to="/signup">회원가입</NavLink>
           </li>
           <span className="auth_vector"></span>
           <li className="header_links_auth_list">
