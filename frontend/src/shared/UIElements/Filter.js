@@ -9,7 +9,7 @@ const Filter = (props) => {
   if (props.title === "낮은가격순") {
     pricecheck = true;
   }
-  console.log(pricecheck);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const searchparamshandler = (sort, value) => {
     //쿼리 생성
@@ -184,7 +184,9 @@ const Filter = (props) => {
             </div>
           </>
         )}
-        <div className="filter-modal_date">날짜</div>
+        <div className={pricecheck ? "filter-modal_name" : "filter-modal_date"}>
+          날짜
+        </div>
         <div style={{ display: "flex" }}>
           {[
             ["전체", "all"],
