@@ -2,20 +2,29 @@ import React, { useState } from "react";
 import "./Signup.css";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     userid: "",
     password: "",
     confirmPassword: "",
     name: "",
     email: "",
     phoneNumber: "",
-  });
+  };
 
-  const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
   const [isUseridAvailable, setIsUseridAvailable] = useState(null);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "email") {
+      // 이메일 형식이 올바른지 확인
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const isValidEmail = emailRegex.test(value);
+      setInvalidEmail(!isValidEmail);
+    }
 
     if (name === "phoneNumber") {
       const cleanedValue = value.replace(/[^0-9]/g, "");
@@ -56,6 +65,12 @@ const SignUp = () => {
 
   const handleSubmit = () => {};
 
+  const handleReset = () => {
+    setFormData(initialFormData);
+    setPasswordMismatch(false);
+    setIsUseridAvailable(null);
+  };
+
   return (
     <div>
       <h1>회원가입</h1>
@@ -77,7 +92,7 @@ const SignUp = () => {
             중복확인
           </button>
           {isUseridAvailable !== null && (
-            <p style={{ color: isUseridAvailable ? "green" : "red" }}>
+            <p className="isuserid_available">
               {isUseridAvailable
                 ? "사용 가능한 아이디입니다."
                 : "이미 사용 중인 아이디입니다."}
@@ -122,6 +137,11 @@ const SignUp = () => {
           value={formData.email}
           onChange={handleChange}
         />
+        {invalidEmail && formData.email && (
+          <p className="invalid_email">
+            잘못된 형식의 이메일입니다. 다시 입력해주세요.
+          </p>
+        )}
 
         <label>휴대전화</label>
         <input
@@ -133,7 +153,7 @@ const SignUp = () => {
       </form>
 
       <div className="buttons">
-        <button type="button" className="reset_button">
+        <button type="button" className="reset_button" onClick={handleReset}>
           초기화
         </button>
         <button type="button" className="signup_button" onClick={handleSubmit}>
