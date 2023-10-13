@@ -1,0 +1,102 @@
+div {
+    text-align: center;
+    font-family: "Pretendard-Regular";
+}
+
+.container {
+    position: relative;
+}
+
+.rectangle {
+    width: 100%;
+    /* 또는 원하는 이미지 크기로 설정 */
+    height: 348px;
+}
+
+.overlay {
+    position: absolute;
+    top: 160px;
+    left: 32%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    /* 텍스트 색상 설정 */
+}
+
+.text-section {
+    font-size: 40px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.text-section2 {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 90px;
+    margin-bottom: 10px;
+    width: 448px;
+
+    text-align: left;
+    font-family: "Pretendard-Regular";
+    font-weight: 400;
+    /* 또는 다른 값을 사용하세요 */
+
+
+
+}
+
+.button-section button {
+    background-color: white;
+    color: #759CFF;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin-top: 38px;
+    margin-right: 200px;
+
+
+}
+
+.button-section button a {
+    text-decoration: none;
+}
+
+.main_text {
+    margin-top: 51px;
+
+}
+
+.main_text2 {}
+
+
+
+input {
+    width: 722px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #4F80FF;
+    padding-left: 1rem;
+    font-family: "Pretendard-Regular";
+    margin-bottom: 35px;
+    margin-top: 4px;
+}
+
+form {
+
+    /* 폼의 최대 너비 설정 (적절한 값으로 조절) */
+    /* 화면 가로 중앙 정렬 */
+    margin-top: 74px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+    margin-left: auto;
+    /* 왼쪽 여백을 최대한 활용 */
+    margin-right: auto;
+    /* 오른쪽 여백을 최대한 활용 */
+    max-width: 740px;
+    /* 최대 폭을 설정 (폼의 폭과 같게) */
+}
