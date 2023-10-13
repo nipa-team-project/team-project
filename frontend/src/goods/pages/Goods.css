@@ -54,6 +54,7 @@
   align-items: center;
   flex-wrap: wrap;
   width: 9.25rem;
+  color: #333333;
 }
 .goods_notebook_pricecontain {
   margin-top: 1rem;

@@ -1,0 +1,18 @@
+.imgslide {
+  width: 30.5rem;
+  height: 3.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5.270625rem;
+}
+.imgslide_arrow {
+  width: 1rem;
+  height: 1rem;
+}
+.imgslide_img {
+  width: 6.5rem;
+  height: 3.875rem;
+  /* border: solid 1px #759cff;
+  border-radius: 5px; */
+}
