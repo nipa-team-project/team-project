@@ -9,7 +9,6 @@ div {
 
 .rectangle {
     width: 100%;
-    /* 또는 원하는 이미지 크기로 설정 */
     height: 348px;
 }
 
@@ -20,7 +19,6 @@ div {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    /* 텍스트 색상 설정 */
 }
 
 .text-section {
@@ -39,10 +37,6 @@ div {
     text-align: left;
     font-family: "Pretendard-Regular";
     font-weight: 400;
-    /* 또는 다른 값을 사용하세요 */
-
-
-
 }
 
 .button-section button {
@@ -54,8 +48,6 @@ div {
     cursor: pointer;
     margin-top: 38px;
     margin-right: 200px;
-
-
 }
 
 .button-section button a {
@@ -69,8 +61,6 @@ div {
 
 .main_text2 {}
 
-
-
 input {
     width: 722px;
     height: 50px;
@@ -83,9 +73,6 @@ input {
 }
 
 form {
-
-    /* 폼의 최대 너비 설정 (적절한 값으로 조절) */
-    /* 화면 가로 중앙 정렬 */
     margin-top: 74px;
 }
 
@@ -94,9 +81,6 @@ label {
     margin-bottom: 8px;
     text-align: left;
     margin-left: auto;
-    /* 왼쪽 여백을 최대한 활용 */
     margin-right: auto;
-    /* 오른쪽 여백을 최대한 활용 */
     max-width: 740px;
-    /* 최대 폭을 설정 (폼의 폭과 같게) */
 }
