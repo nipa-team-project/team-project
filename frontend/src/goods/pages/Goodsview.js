@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./Goodsview.css";
 import Pagetitle from "../../shared/Pagetitle/Pagetitle";
@@ -65,11 +65,34 @@ const Goodsview = () => {
             className="goodsview_rank"
             alt="goodsviewrank"
           ></img>
+
           <Imgslide statusimg={dummydata.statusimg} />
         </div>
         <div className="goodsview_descontain">
           <div className="goodsview_des_name">
             [{dummydata.tag}]{dummydata.name}
+            <div className="goodsview_mobile_price">
+              <a
+                style={{
+                  fontWeight: "700",
+                  fontSize: "0.875rem",
+                  color: "#4f80ff",
+                }}
+              >
+                {dummydata.discountprice}원
+              </a>
+              <a
+                style={{
+                  marginLeft: "0.3125rem",
+                  fontWeight: "400",
+                  fontSize: "0.75rem",
+                  color: "#999999",
+                  textDecoration: "line-through",
+                }}
+              >
+                {dummydata.price}원
+              </a>
+            </div>
           </div>
 
           <div className="goodsview_des_text">

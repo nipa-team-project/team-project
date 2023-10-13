@@ -120,6 +120,7 @@ const Goods = () => {
       <div className="goods_notebookcontain">
         {dummydata.map((notebook, index) => (
           <NavLink
+            key={index}
             to={`/main/goods/${notebook.id}`}
             style={{ textDecoration: "none" }}
           >
@@ -196,7 +197,7 @@ const Goods = () => {
                     <div className="goods_des_title">하드웨어</div>
                     <div className="goods_des_value_hardware">
                       {notebook.hardware.map((props, index) => (
-                        <a key={index}>{props}</a>
+                        <span key={index}>{props}</span>
                       ))}
                     </div>
                   </div>
