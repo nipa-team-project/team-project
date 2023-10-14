@@ -10,9 +10,16 @@ const blink = keyframes`
 
 const Center = styled.div`
   position: relative;
-  width: 1440px;
 
   .ai_robot {
+    @media screen and (max-width: 768px) {
+      position: relative;
+      width: 263.8px;
+      height: 202.72px;
+      top: 252px;
+      left: 107px;
+      right: 19.1px;
+    }
     position: absolute;
     width: 377px;
     height: 289.61px;
@@ -21,6 +28,17 @@ const Center = styled.div`
   }
 
   .description {
+    @media screen and (max-width: 768px) {
+      position: absolute;
+
+      left: 87px;
+
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 144%;
+      text-align: center;
+    }
     position: absolute;
     top: 638px;
     left: 586px;
@@ -37,11 +55,17 @@ const Center = styled.div`
   }
 
   .loading_dots {
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      left: 200px;
+
+      height: 12px;
+    }
     position: absolute;
     display: flex;
+    justify-content: space-between;
     top: 600px;
-    left: 700.67px;
-    color: ${theme.primary_100};
+    left: 694px;
     text-align: center;
   }
 
@@ -50,10 +74,9 @@ const Center = styled.div`
     text-align: center;
     width: 12px;
     height: 12px;
-    margin-left: 2px;
     background-color: ${theme.primary_100};
     border-radius: 50%;
-    margin-right: 6px;
+    margin: 0 5px;
   }
 
   .loader__dot:nth-child(2) {
@@ -69,6 +92,13 @@ const Div = styled.div`
   position: relative;
 
   .b_star1 {
+    @media screen and (max-width: 768px) {
+      position: relative;
+      width: 48.54px;
+      height: 48.54px;
+      top: 248px;
+      left: 72.12px;
+    }
     position: absolute;
     left: 402px;
     top: 174px;
@@ -77,6 +107,13 @@ const Div = styled.div`
   }
 
   .p_star {
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      width: 65.58px;
+      height: 65.58px;
+      top: 280.34px;
+      left: 29px;
+    }
     position: absolute;
     top: 240px;
     left: 314px;
@@ -85,6 +122,14 @@ const Div = styled.div`
   }
 
   .ai {
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      width: 85.81px;
+      height: 40.25px;
+      top: 401.25px;
+      left: 0;
+      transform: rotate(-23.53deg);
+    }
     position: absolute;
     top: 462px;
     left: 327px;
@@ -94,6 +139,9 @@ const Div = styled.div`
   }
 
   .b_star2 {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
     position: absolute;
     left: 995px;
     top: 590px;
@@ -102,6 +150,14 @@ const Div = styled.div`
   }
 
   .bad {
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      width: 96.644px;
+      height: 29.47px;
+      top: 156.93px;
+      left: 222.28px;
+      transform: rotate(-19.72deg);
+    }
     position: absolute;
     top: 200px;
     left: 808.58px;
@@ -111,6 +167,14 @@ const Div = styled.div`
   }
 
   .great {
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      width: 94.764px;
+      height: 76.052px;
+      top: 207px;
+      left: 339px;
+      transform: rotate(30.254deg);
+    }
     width: 193.4px;
     height: 155.21px;
     position: absolute;

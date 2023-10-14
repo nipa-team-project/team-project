@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+
+.container {
+    margin-top: 141px;
+}
+
+
+.title {
+    margin-top: 8px;
+}
+
+.rankcard {
+    margin-top: 58px;
+    left: calc(50% - 411.65px / 2);
+
+}
+
+.result_description {
+    font-family: 'Pretendard-Regular';
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 105.33px;
+
+}
+
+.rank {
+    color: var(--rankColor);
+}
+
+.progress {
+    margin-top: 2px;
+}
+
+.button_group {
+    display: flex;
+    justify-content: center;
+    margin-top: 177px;
+}
