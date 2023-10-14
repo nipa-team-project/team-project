@@ -21,9 +21,13 @@ const Mypageauth = (props) => {
     number: false,
     auth: false,
   });
-  useEffect(() => {
-    console.log(authlist);
-  }, [authlist]);
+  const [inputlist, setInputList] = useState({
+    name: "",
+    date: "",
+    number: "",
+    phone: "",
+  });
+
   const check = (e, validator, setstate) => {
     const value = e.target.value;
     const isValid = validate(value, [validator]);
@@ -37,10 +41,16 @@ const Mypageauth = (props) => {
       date: errdate,
       number: errnumber,
     });
-    if (Object.values(authlist).every((value) => value === true)) {
+  };
+  useEffect(() => {
+    if (
+      Object.values(authlist).every((value) => value === true) &&
+      Object.values(inputlist).every((value) => value !== "")
+    ) {
       props.setAuthCheck(true);
     }
-  };
+  }, [authlist, props.setAuthCheck]);
+
   return (
     <React.Fragment>
       <span className="mypage-auth_title">본인 인증하기</span>
@@ -51,6 +61,7 @@ const Mypageauth = (props) => {
             className="mypage-auth_content_input"
             onChange={(e) => {
               check(e, VALIDATOR_REQUIRE(), setErrName);
+              setInputList({ ...inputlist, name: e.target.value });
             }}
             style={{ borderColor: !errname ? "#FF4848" : "" }}
           ></input>
@@ -68,6 +79,7 @@ const Mypageauth = (props) => {
             className="mypage-auth_content_input"
             onChange={(e) => {
               check(e, VALIDATOR_BIRTHDATE(), setErrDate);
+              setInputList({ ...inputlist, date: e.target.value });
             }}
             style={{ borderColor: !errdate ? "#FF4848" : "" }}
           ></input>
@@ -75,7 +87,7 @@ const Mypageauth = (props) => {
             className="mypage-auth_content_err"
             style={{ color: !errdate ? "#FF4848" : "" }}
           >
-            {"0000.00.00형식으로 입력해주세요."}
+            {!errdate && "0000.00.00형식으로 입력해주세요."}
           </span>
         </div>
 
@@ -86,6 +98,7 @@ const Mypageauth = (props) => {
               className="mypage-auth_content_input2"
               onChange={(e) => {
                 check(e, VALIDATOR_PHONE(), setErrPhone);
+                setInputList({ ...inputlist, phone: e.target.value });
               }}
               style={{
                 borderColor: !errphone ? "#FF4848" : "",
@@ -108,6 +121,7 @@ const Mypageauth = (props) => {
               className="mypage-auth_content_input2"
               onChange={(e) => {
                 check(e, VALIDATOR_MINLENGTH(6), setErrNumber);
+                setInputList({ ...inputlist, number: e.target.value });
               }}
               style={{
                 borderColor: !errnumber ? "#FF4848" : "",
