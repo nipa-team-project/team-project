@@ -22,7 +22,7 @@ const AuthLinks = (props) => {
       ) : (
         <>
           <li className="header_links_auth_list">
-            <NavLink to="/">내 정보 수정</NavLink>
+            <NavLink to="/mypage">내 정보 수정</NavLink>
           </li>
           <span className="auth_vector"></span>
           <li className="header_links_auth_list">
