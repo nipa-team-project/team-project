@@ -48,6 +48,71 @@ const Goodsview = () => {
 
   return (
     <div className="goodsview">
+      <Modal
+        show={showbasket}
+        onCancel={closebasket}
+        className="goodsview_modal"
+      >
+        <div className="good_modal_box">
+          <img
+            className="goodsview_modal_cancle"
+            src="/img/modal/Cancle.png"
+            alt="modalcancle"
+            onClick={closebasket}
+          />
+          <img
+            className="goodsview_modal_img"
+            src="/img/goodsview/Default.png"
+            alt="modaldefault"
+          />
+          <a className="goodsview_modal_text">구매가 완료되었습니다!</a>
+          <button className="goodsview_modal_button" onClick={closebasket}>
+            확인
+          </button>
+        </div>
+      </Modal>
+      <Modal
+        show={showpurchase}
+        onCancel={closepurchase}
+        className="goodsview_modal"
+      >
+        <div className="good_modal_box">
+          <img
+            className="goodsview_modal_cancle"
+            src="/img/modal/Cancle.png"
+            alt="modalcancle"
+            onClick={closepurchase}
+          />
+          <img
+            className="goodsview_modal_img"
+            src="/img/goodsview/Smile.png"
+            alt="modalsmile"
+          />
+          <a className="goodsview_modal_text" style={{ marginTop: "0.5rem" }}>
+            장바구니에 상품이 담겼습니다!
+          </a>
+          <div className="center">
+            <button
+              className="goodsview_modal_button"
+              onClick={closepurchase}
+              style={{
+                color: "#759CFF",
+                background: "#FAFBFF",
+                border: "solid 0.5px #759cff",
+              }}
+            >
+              장바구니로 가기
+            </button>
+            <button
+              className="goodsview_modal_button"
+              onClick={closepurchase}
+              style={{ marginLeft: "0.5rem" }}
+            >
+              쇼핑 계속하기
+            </button>
+          </div>
+        </div>
+      </Modal>
       <Pagetitle title="구매하기">
         판매자들의 노트북을 구매할 수 있습니다
       </Pagetitle>
@@ -181,67 +246,6 @@ const Goodsview = () => {
           </button>
         </div>
       </div>
-      <Modal
-        show={showbasket}
-        onCancel={closebasket}
-        className="goodsview_modal"
-      >
-        <img
-          className="goodsview_modal_cancle"
-          src="/img/modal/Cancle.png"
-          alt="modalcancle"
-          onClick={closebasket}
-        />
-        <img
-          className="goodsview_modal_img"
-          src="/img/goodsview/Default.png"
-          alt="modaldefault"
-        />
-        <a className="goodsview_modal_text">구매가 완료되었습니다!</a>
-        <button className="goodsview_modal_button" onClick={closebasket}>
-          확인
-        </button>
-      </Modal>
-      <Modal
-        show={showpurchase}
-        onCancel={closepurchase}
-        className="goodsview_modal"
-      >
-        <img
-          className="goodsview_modal_cancle"
-          src="/img/modal/Cancle.png"
-          alt="modalcancle"
-          onClick={closepurchase}
-        />
-        <img
-          className="goodsview_modal_img"
-          src="/img/goodsview/Smile.png"
-          alt="modalsmile"
-        />
-        <a className="goodsview_modal_text" style={{ marginTop: "0.5rem" }}>
-          장바구니에 상품이 담겼습니다!
-        </a>
-        <div className="center">
-          <button
-            className="goodsview_modal_button"
-            onClick={closepurchase}
-            style={{
-              color: "#759CFF",
-              background: "#FAFBFF",
-              border: "solid 0.5px #759cff",
-            }}
-          >
-            장바구니로 가기
-          </button>
-          <button
-            className="goodsview_modal_button"
-            onClick={closepurchase}
-            style={{ marginLeft: "0.5rem" }}
-          >
-            쇼핑 계속하기
-          </button>
-        </div>
-      </Modal>
     </div>
   );
 };
