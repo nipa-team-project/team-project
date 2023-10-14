@@ -2,12 +2,12 @@
   width: 0.0625rem;
   height: 0.9375rem;
   background-color: #cccccc;
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
+  margin-left: 1.0625rem;
+  margin-right: 1.0625rem;
 }
 .header_links_auth_list a {
   display: block;
-  width: 4.25rem;
+  width: 4.3rem;
   text-decoration: none;
   font-size: 0.875rem;
   color: #808080;
