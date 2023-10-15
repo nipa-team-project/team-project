@@ -7,6 +7,7 @@ import MainNavigation from "./shared/Navigation/MainNavigation";
 const Main = React.lazy(() => import("./main/pages/Main"));
 const Loading = React.lazy(() => import("./main/pages/Loading"));
 const Result = React.lazy(() => import("./main/pages/Result"));
+const Process = React.lazy(() => import("./main/pages/Process"));
 
 function App() {
   return (
@@ -14,12 +15,13 @@ function App() {
       <MainNavigation />
       <main>
         <Suspense>
-          <Navigate exact from="/" to="/result" />
+          {/* <Navigate exact from="/" to="/result" /> */}
           <Routes>
             <Route path="/" exact element={<Navigate to="/main" />} />
             <Route path="/main" exact element={<Main />} />
             <Route path="/loading" element={<Loading />} />
             <Route path="/result" element={<Result />} />
+            <Route path="/process" element={<Process />} />
           </Routes>
         </Suspense>
       </main>

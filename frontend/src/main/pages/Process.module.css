@@ -1,0 +1,39 @@
+.container {
+    margin-top: 141px;
+
+}
+
+
+.title {
+    margin-top: 8px;
+}
+
+.rankcard {
+    width: 292px;
+    height: 223px;
+}
+
+.modelContainer {
+    width: 335px;
+    height: 313px;
+    margin-top: 44px;
+    margin-left: calc(50% - 292px / 2);
+}
+
+.model_title {
+
+    margin: 26.67px 0 0 3px;
+    font-family: "Pretendard-Regular";
+    font-weight: 700;
+    line-height: 23px;
+    font-size: 16px;
+}
+
+.model_description {
+    margin: 8px 0 0 3px;
+    font-family: "Pretendard-Regular";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17.28px;
+    color: #808080
+}
