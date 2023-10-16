@@ -1,9 +1,42 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// PurchaseForm.js
 
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Card from "./Card";
+import Modal from "./Modal";
 import "./PurchaseForm.css";
 
 const PurchaseForm = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleImageUpload = (image) => {
+    setSelectedImage(image);
+  };
+  const handleImageReset = () => {
+    setSelectedImage(null);
+  };
+
+  const handleImageSubmit = () => {
+    // 이미지 업로드 처리 로직을 추가하세요.
+    console.log("이미지가 업로드되었습니다:", selectedImage);
+  };
+
+  const cardsData = [
+    { imageUrl: "/img/purchaseimg/front.png" },
+    { imageUrl: "/img/purchaseimg/back.png" },
+    { imageUrl: "/img/purchaseimg/keyboard.png" },
+    { imageUrl: "/img/purchaseimg/monitor.png" },
+  ];
+
   return (
     <div className="container">
       <img className="rectangle" src="/img/purchaseimg/rectangle.png" />
@@ -20,10 +53,7 @@ const PurchaseForm = () => {
           </button>
         </div>
       </div>
-
-      <div className="main_text">
-        <h1>매입신청서 작성</h1>
-      </div>
+      <div className="main_text">매입신청서 작성</div>
       <div className="main_text2">좋은 가격에 편하게 팔아요!</div>
       <form>
         <label htmlFor="deviceName">기기명</label>
@@ -47,25 +77,23 @@ const PurchaseForm = () => {
           placeholder="제품 특이사항을 입력해주세요."
         />
       </form>
-
-      <div>
-        <label>정면 사진</label>
-        <input type="file" accept="image/*" />
+      <div className="card-container">
+        {cardsData.map((card, index) => (
+          <Card key={index} {...card} openModal={openModal} />
+        ))}
       </div>
-
-      <div>
-        <label>뒷면 사진</label>
-        <input type="file" accept="image/*" />
-      </div>
-
-      <div>
-        <label>키보드 사진</label>
-        <input type="file" accept="image/*" />
-      </div>
-
-      <div>
-        <label>모니터 사진</label>
-        <input type="file" accept="image/*" />
+      <Modal
+        visible={isModalOpen}
+        onClose={closeModal}
+        onImageUpload={handleImageUpload}
+        onImageReset={handleImageReset}
+      >
+        {selectedImage && <img src={selectedImage} alt="Uploaded" />}
+      </Modal>
+      {/* 이미지 업로드 버튼 */}
+      <div className="btns">
+        <button className="reset_btn">초기화</button>
+        <button className="rank_btn">AI 등급 측정하기</button>
       </div>
     </div>
   );

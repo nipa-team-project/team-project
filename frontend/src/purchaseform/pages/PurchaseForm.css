@@ -30,10 +30,9 @@ div {
 .text-section2 {
     font-size: 16px;
     margin-top: 10px;
-    margin-left: 90px;
+    margin-left: 110px;
     margin-bottom: 10px;
     width: 448px;
-
     text-align: left;
     font-family: "Pretendard-Regular";
     font-weight: 400;
@@ -41,28 +40,41 @@ div {
 
 .button-section button {
     background-color: white;
-    color: #759CFF;
     padding: 10px 20px;
     font-size: 14px;
     border: none;
     cursor: pointer;
     margin-top: 38px;
-    margin-right: 200px;
+    margin-right: 175px;
+    width: 160px;
+    height: 40px;
+    border-radius: 4px;
+    border: 0.5px solid #759CFF;
+
 }
 
 .button-section button a {
     text-decoration: none;
+    color: #759CFF;
+    font-family: "Pretendard-Regular"
+
 }
 
 .main_text {
     margin-top: 51px;
-
+    font-size: 24px;
+    font-family: "Pretendard-Regular";
+    font-weight: 700;
 }
 
-.main_text2 {}
+.main_text2 {
+    color: #808080;
+    font-size: 14px;
+    margin-top: 8px;
+}
 
 input {
-    width: 722px;
+    width: 702px;
     height: 50px;
     border-radius: 5px;
     border: 1px solid #4F80FF;
@@ -70,6 +82,7 @@ input {
     font-family: "Pretendard-Regular";
     margin-bottom: 35px;
     margin-top: 4px;
+
 }
 
 form {
@@ -82,5 +95,43 @@ label {
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-    max-width: 740px;
+    max-width: 720px;
+
+}
+
+/* PurchaseForm.css */
+/* Add any additional styles as needed */
+.clickable-image {
+    cursor: pointer;
+}
+
+.btns {
+    margin-top: 34.5px;
+    margin-left: 390px;
+}
+
+.reset_btn {
+    width: 160px;
+    height: 40px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: 0.5px solid #759CFF;
+    background-color: #FAFBFF;
+    color: #759CFF;
+    font-family: "Pretendard-Regular"
+}
+
+.rank_btn {
+    width: 160px;
+    height: 40px;
+    border-radius: 4px;
+    border: 0.5px solid;
+    background-color: #4F80FF;
+    color: #FAFBFF;
+    font-family: "Pretendard-Regular"
+}
+
+.reset_btn,
+.rank_btn:hover {
+    cursor: pointer;
 }

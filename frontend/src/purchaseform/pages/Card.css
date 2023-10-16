@@ -1,0 +1,51 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 0.5px;
+    grid-row-gap: 5px;
+    justify-content: center;
+    align-items: center;
+
+    /* 또는 원하는 크기로 조절 */
+    max-width: 13px;
+    /* 최대 크기 설정 */
+    margin: 0 auto;
+    /* 페이지 가운데 정렬을 위해 추가 */
+    margin-top: 16px;
+    gap: 0;
+
+}
+
+.card {
+    border: 1px solid #759CFF;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: 1000px;
+    width: 355px;
+    height: 210px;
+    box-sizing: border-box;
+    margin: 5.5px;
+    justify-self: center;
+    background-color: #F0F4FF;
+
+
+    /* 중앙 정렬 */
+}
+
+.card-content {
+    padding: 20px;
+    margin-left: 85px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    color: #666;
+}
+
+.card:hover {
+    cursor: pointer;
+}
