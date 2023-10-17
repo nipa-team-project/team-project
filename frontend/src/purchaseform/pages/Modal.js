@@ -1,7 +1,5 @@
-// Modal.js
-
 import React from "react";
-import "./Modal.css"; // Modal에 관련된 CSS 파일을 import하세요.
+import "./Modal.css";
 
 const Modal = ({ visible, onClose, children }) => {
   if (!visible) return null;

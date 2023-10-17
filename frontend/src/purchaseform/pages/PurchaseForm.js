@@ -1,40 +1,37 @@
-// PurchaseForm.js
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
-import Modal from "./Modal";
+import ImageUploadModal from "./ImageUploadModal";
+
 import "./PurchaseForm.css";
 
 const PurchaseForm = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [target, setTarget] = useState("");
 
   const openModal = () => {
     setModalOpen(true);
+    setTarget(target);
   };
 
   const closeModal = () => {
     setModalOpen(false);
+    setTarget("");
   };
 
-  const handleImageUpload = (image) => {
+  const handleImageUpload = (image, target) => {
     setSelectedImage(image);
   };
   const handleImageReset = () => {
     setSelectedImage(null);
   };
 
-  const handleImageSubmit = () => {
-    // 이미지 업로드 처리 로직을 추가하세요.
-    console.log("이미지가 업로드되었습니다:", selectedImage);
-  };
-
   const cardsData = [
-    { imageUrl: "/img/purchaseimg/front.png" },
-    { imageUrl: "/img/purchaseimg/back.png" },
-    { imageUrl: "/img/purchaseimg/keyboard.png" },
-    { imageUrl: "/img/purchaseimg/monitor.png" },
+    { imageUrl: "/img/purchaseimg/front.png", target: "정면" },
+    { imageUrl: "/img/purchaseimg/back.png", target: "뒷면" },
+    { imageUrl: "/img/purchaseimg/keyboard.png", target: "키보드" },
+    { imageUrl: "/img/purchaseimg/monitor.png", target: "모니터" },
   ];
 
   return (
@@ -79,17 +76,20 @@ const PurchaseForm = () => {
       </form>
       <div className="card-container">
         {cardsData.map((card, index) => (
-          <Card key={index} {...card} openModal={openModal} />
+          <Card
+            key={index}
+            {...card}
+            openModal={() => openModal(card.target)}
+          />
         ))}
       </div>
-      <Modal
-        visible={isModalOpen}
+      <ImageUploadModal
+        showModal={isModalOpen}
         onClose={closeModal}
         onImageUpload={handleImageUpload}
-        onImageReset={handleImageReset}
-      >
-        {selectedImage && <img src={selectedImage} alt="Uploaded" />}
-      </Modal>
+        target={target}
+      />
+      {selectedImage && <img src={selectedImage} alt="Uploaded" />}
       {/* 이미지 업로드 버튼 */}
       <div className="btns">
         <button className="reset_btn">초기화</button>
