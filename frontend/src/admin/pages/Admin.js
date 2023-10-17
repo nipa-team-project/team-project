@@ -4,15 +4,23 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import "./Admin.css";
 import Adminnav from "../components/Adminnav";
 import Userlist from "./Userlist";
+import Paflist from "./Paflist";
 
 const Admin = () => {
   return (
-    <>
-      <Adminnav />
-      <Routes>
-        <Route path="/userlist" exact element={<Userlist />} />
-      </Routes>
-    </>
+    <React.Fragment>
+      <div className="admin">
+        <Adminnav />
+        <div style={{ marginLeft: "2.0625rem" }}>
+          <Routes>
+            <Route path="/" exact element={<Navigate to="admin/userlist" />} />
+            <Route path="/userlist" exact element={<Userlist />} />
+            <Route path="/paflist" exact element={<Paflist />} />
+            <Route path="/notebooklist" exact />
+          </Routes>
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 
