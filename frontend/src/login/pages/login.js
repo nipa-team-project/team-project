@@ -3,6 +3,27 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./login.css";
 
+const Rest_api_key = "3a8a581619662b5a126943e55dfda42f"; // REST API KEY
+const redirect_uri = "http://localhost:3000/auth"; // Redirect URI
+// OAuth 요청 URL
+const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${`3a8a581619662b5a126943e55dfda42f`}&redirect_uri=${`https://localhost:3000/auth`}&response_type=code`;
+
+const kakaoHandleLogin = () => {
+  window.location.href = kakaoURL;
+};
+
+const code = new URL(window.location.href).searchParams.get("code");
+console.log(code);
+
+const NAVER_CLIENT_ID = "VVPjzaZLMHYFfBStGKMf"; // 발급받은 클라이언트 아이디
+const REDIRECT_URI = "http://localhost:3000/auth"; // Callback URL
+const STATE = "False";
+const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${`VVPjzaZLMHYFfBStGKMf`}&state=${`False`}&redirect_uri=${`https://localhost:3000/auth`}`;
+
+const naverHandleLogin = () => {
+  window.location.href = NAVER_AUTH_URL;
+};
+
 const Login = () => {
   const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
@@ -26,14 +47,10 @@ const Login = () => {
     }
   };
 
-  const kakaoHandleLogin = () => {
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_`;
-  };
-
   return (
     <div>
       <img className="welcome" src="/img/loginimg/Welcome.png" alt="Welcome" />
-      <h1 className="text_welcome">환영합니다!</h1>
+      <p className="text_welcome">환영합니다!</p>
       <form>
         <input
           type="text"
@@ -62,16 +79,16 @@ const Login = () => {
       </form>
       <div className="icon_content">
         <div className="icon_wrapper">
-          <img className="icons" src="/img/loginimg/Kakao.png" alt="kakao" />
-          <Link to="" className="icon_text" onClick={kakaoHandleLogin}>
-            카카오톡으로 시작
+          <Link className="icon_text" onClick={kakaoHandleLogin}>
+            <img className="icons" src="/img/loginimg/Kakao.png" alt="kakao" />
+            <p>카카오톡으로 시작</p>
           </Link>
         </div>
 
         <div className="icon_wrapper">
-          <img className="icons" src="/img/loginimg/Naver.png" alt="naver" />
-          <Link to="" className="icon_text">
-            네이버로 시작
+          <Link className="icon_text" onClick={naverHandleLogin}>
+            <img className="icons" src="/img/loginimg/Naver.png" alt="naver" />
+            <p>네이버로 시작</p>
           </Link>
         </div>
       </div>
