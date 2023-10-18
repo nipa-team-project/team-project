@@ -15,6 +15,12 @@ const GraphContainer = styled.div`
   }
 
   .bar_wrapper {
+    @media screen and (max-width: 768px) {
+      width: 258px;
+      height: 14px;
+      margin-left: 20.5px;
+      margin-right: 2.93px;
+    }
     width: 669px;
     height: 17px;
     margin-left: 26px;
@@ -22,12 +28,26 @@ const GraphContainer = styled.div`
   }
 
   .damaged_percent {
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+      line-height: 17.28px;
+      width: 34px;
+      text-align: end;
+    }
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;
     line-height: 34.56px;
     align: right;
     color: ${theme.primary_100};
+  }
+
+  .damaged_img {
+    @media screen and (max-width: 768px) {
+      width: 41px;
+      height: 40px;
+      margin-left: 10px;
+    }
   }
 `;
 
@@ -36,7 +56,7 @@ const ProgressBar = (props) => {
     <GraphContainer>
       <div>
         {/* 파손도 아이콘이미지(앞면/옆면/키보드/액정 props에 따라 이미지 설정하기) */}
-        <img src={`/img/result/${props.category}_WithText.png`} alt="damage_cate"></img>
+        <img src={`/img/result/${props.category}_WithText.png`} alt="damage_cate" className="damaged_img"></img>
       </div>
       <div>
         <GraphBar

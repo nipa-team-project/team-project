@@ -9,6 +9,10 @@ const Container = styled.div`
   position: relative;
 
   .laptop_img {
+    @media screen and (max-width: 768px) {
+      width: 242px;
+      height: 145px;
+    }
     position: absolute;
     top: 50%;
     left: 50%;
@@ -16,6 +20,10 @@ const Container = styled.div`
   }
 
   .rank_img {
+    @media screen and (max-width: 768px) {
+      width: 56px;
+      height: 56px;
+    }
     position: absolute;
     bottom: 0;
     right: 0;
