@@ -13,7 +13,7 @@ const Admin = () => {
         <Adminnav />
         <div style={{ marginLeft: "2.0625rem" }}>
           <Routes>
-            <Route path="/" exact element={<Navigate to="admin/userlist" />} />
+            <Route path="/" exact element={<Navigate to="userlist" />} />
             <Route path="/userlist" exact element={<Userlist />} />
             <Route path="/paflist" exact element={<Paflist />} />
             <Route path="/notebooklist" exact />
