@@ -54,6 +54,9 @@ button {
     font-family: "Pretendard-Regular";
 }
 
+button:hover {
+    cursor: pointer;
+}
 
 .nosignup {
     display: flex;
