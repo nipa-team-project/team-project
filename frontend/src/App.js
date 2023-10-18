@@ -10,6 +10,9 @@ const Admin = React.lazy(() => import("./admin/pages/Admin"));
 const Goods = React.lazy(() => import("./goods/pages/Goods"));
 const Goodsview = React.lazy(() => import("./goods/pages/Goodsview"));
 const Rating = React.lazy(() => import("./rating/pages/Rating"));
+const Ratingsystem = React.lazy(() =>
+  import("./ratingsystem/pages/Ratingsystem")
+);
 
 function App() {
   return (
@@ -25,6 +28,7 @@ function App() {
             <Route path="/main/goods/:goodsNo" exact element={<Goodsview />} />
             <Route path="/admin/*" exact element={<Admin />} />
             <Route path="/mypage" exact element={<Mypage />} />
+            <Route path="/main/ratingsystem" exact element={<Ratingsystem />} />
           </Routes>
         </Suspense>
       </main>
