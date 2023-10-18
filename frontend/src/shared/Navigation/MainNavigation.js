@@ -32,7 +32,7 @@ const MainNavigation = () => {
             />
           </ul>
         </nav>
-      </header>
+      </header> 
       {login && <MobileNavi />}
     </React.Fragment>
   );
