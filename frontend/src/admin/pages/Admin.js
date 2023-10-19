@@ -5,6 +5,7 @@ import "./Admin.css";
 import Adminnav from "../components/Adminnav";
 import Userlist from "./Userlist";
 import Paflist from "./Paflist";
+import NotebookList from "./NotebookList";
 
 const Admin = () => {
   return (
@@ -16,7 +17,7 @@ const Admin = () => {
             <Route path="/" exact element={<Navigate to="userlist" />} />
             <Route path="/userlist" exact element={<Userlist />} />
             <Route path="/paflist" exact element={<Paflist />} />
-            <Route path="/notebooklist" exact />
+            <Route path="/notebooklist" exact element={<NotebookList />} />
           </Routes>
         </div>
       </div>
