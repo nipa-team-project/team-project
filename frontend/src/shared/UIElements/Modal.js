@@ -8,7 +8,9 @@ import Card from "./Card";
 const Modal = (props) => {
   return (
     <React.Fragment>
-      {props.show && <Backdrop onClick={props.onCancel} />}
+      {props.show && (
+        <Backdrop onClick={props.onCancel} className={props.Backdropclass} />
+      )}
       <CSSTransition
         in={props.show}
         mountOnEnter

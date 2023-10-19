@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import "./Paflist.css";
 import Page from "../../shared/UIElements/Page";
 import Modal from "../../shared/UIElements/Modal";
+import Card from "../../shared/UIElements/Card";
+import Enlargemodal from "../components/Enlargemodal";
 
 const dummydata = [
   {
@@ -112,13 +114,23 @@ const Paflist = () => {
     setListNum(index);
   };
 
-  const [showModal, setShowModal] = useState(false); //필터 활성화,비활성화
+  const [showModal, setShowModal] = useState(false);
   const closeModal = () => {
     setShowModal(false);
   };
   const openModal = () => {
     setShowModal(true);
   };
+
+  const [imgenlarge, setImageenlarge] = useState(false);
+  const closeEnlarge = () => {
+    setImageenlarge(false);
+  };
+  const openEnlarge = () => {
+    setImageenlarge(true);
+  };
+
+  const [imgurl, setImgurl] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
   const searchparamshandler = (sort, value) => {
@@ -129,8 +141,19 @@ const Paflist = () => {
 
   return (
     <React.Fragment>
-      <Modal show={showModal} onCancel={closeModal} className="paflist-modal">
+      <Modal
+        show={showModal}
+        onCancel={closeModal}
+        className="paflist-modal"
+        Backdropclass={imgenlarge && "backdropclose"}
+      >
         <span className="paflist-modal_title">매입신청서 상세 정보</span>
+        <img
+          className="paflist_modal_cancle"
+          src="/img/modal/Cancle.png"
+          alt="modalcancle"
+          onClick={closeModal}
+        />
         <div className="paflist-modal_name">기기명</div>
         <div className="paflist-modal_des">{dummydata[listnum].name}</div>
         <div className="paflist-modal_name">모델명</div>
@@ -140,13 +163,25 @@ const Paflist = () => {
         <div className="paflist-modal_name">노트북 사진</div>
         <div className="paflist-modal_imgcontain">
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div className="paflist-modal_imgbox">
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[0]);
+                openEnlarge();
+              }}
+            >
               <img
                 className="paflist-modal_img"
                 src={dummydata[listnum].img[0]}
               />
             </div>
-            <div className="paflist-modal_imgbox">
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[1]);
+                openEnlarge();
+              }}
+            >
               <img
                 className="paflist-modal_img"
                 src={dummydata[listnum].img[1]}
@@ -159,13 +194,25 @@ const Paflist = () => {
               justifyContent: "space-between",
             }}
           >
-            <div className="paflist-modal_imgbox">
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[2]);
+                openEnlarge();
+              }}
+            >
               <img
                 className="paflist-modal_img"
                 src={dummydata[listnum].img[2]}
               />
             </div>
-            <div className="paflist-modal_imgbox">
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[3]);
+                openEnlarge();
+              }}
+            >
               <img
                 className="paflist-modal_img"
                 src={dummydata[listnum].img[3]}
@@ -174,6 +221,19 @@ const Paflist = () => {
           </div>
         </div>
       </Modal>
+
+      <Enlargemodal
+        show={imgenlarge}
+        onCancel={closeEnlarge}
+        className="paflist-modal_img_enlarge"
+      >
+        <img
+          className="paflist-modal_img_enlarge_img"
+          src={imgurl}
+          alt="imgenlarge"
+        ></img>
+      </Enlargemodal>
+
       <input className="paflist_search" placeholder="내용 검색하기"></input>
       <div className="paflist_title">매입신청서 리스트</div>
       <div className="pafilist_main">
