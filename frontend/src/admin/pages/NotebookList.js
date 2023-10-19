@@ -7,8 +7,120 @@ import "./NotebookList.css";
 
 const dummydata = [
   {
-    index: 1,
-    img: "/img/admin/notebook.png",
+    id: 1,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 2,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 3,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 4,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 5,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 6,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 7,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 8,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
+  },
+
+  {
+    id: 9,
+    notebook_img: "/img/admin/dummyimg/dummy2.png",
+    front: "/img/admin/dummyimg/dummy1.png",
+    back: "/img/admin/dummyimg/dummy2.png",
+    keyboard: "/img/admin/dummyimg/dummy3.png",
+    monitor: "/img/admin/dummyimg/dummy4.png",
+    name: "맥북 에어",
+    model: " NT950XBE-X716A",
+    register: "2023. 09. 08",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 \n 기스 없이 깔끔한 편.",
   },
 ];
 
@@ -42,56 +154,17 @@ const Userlist = () => {
     <React.Fragment>
       <input className="paflist_search" placeholder="내용 검색하기"></input>
       <div className="paflist_title">노트북 리스트</div>
-      <div className="pafilist_main">
+      <div className="notebooklist_main">
         {dummydata.map((list, index) => (
-          <div className="pafilist_main_list" key={index}>
-            <input type="checkbox"></input>
-            <span style={{ marginLeft: "1rem", width: "13.1875rem" }}>
-              <span style={{ fontWeight: "bold" }}>{index + 1}</span> {list.nickname}
-            </span>
-            <span style={{ marginLeft: "1rem", width: "16.125rem" }}>{list.email}</span>
-            <span style={{ width: "79px" }}>{list.time}</span>
-            <span
-              style={{
-                fontSize: "0.75rem",
-                width: "2.875rem",
-                marginLeft: "12.3125rem",
-                cursor: "pointer",
-              }}
-              onClick={() => openModal(list)}>
-              더보기
-            </span>
-            <img className="paflist_main_moreimg" src="/img/admin/more.png" alt="morepng"></img>
+          <div className="notebook_container" key={index} onClick={() => openModal(list)}>
+            <img src={list.notebook_img} alt="notebook_img" className="notebook_img" />
           </div>
         ))}
       </div>
       {selectedItem && (
         <div id="backdrop-hook">
           <Modal show={isModalOpen} onCancel={closeModal} className="userlist_modal">
-            <div className="modal_context">
-              <div style={{ display: "flex", flexDirection: "space-between" }}>
-                <h1 className="userlist_modalTitle">유저 상세정보</h1>
-                <img src="/img/admin/Cancel.png" alt="cancel" className="modal_cancel" onClick={closeModal} />
-              </div>
-              <div style={{ marginTop: "16px" }}>
-                <div className="userlist_inputContainer">
-                  <span className="userlist_label">아이디</span>
-                  <input type="text" className="userlist_input" value={selectedItem.id}></input>
-                </div>
-                <div className="userlist_inputContainer">
-                  <span className="userlist_label">이름</span>
-                  <input type="text" className="userlist_input" value={selectedItem.nickname}></input>
-                </div>
-                <div className="userlist_inputContainer">
-                  <span className="userlist_label">이메일</span>
-                  <input type="text" className="userlist_input" value={selectedItem.email}></input>
-                </div>
-                <div className="userlist_inputContainer">
-                  <span className="userlist_label">휴대전화</span>
-                  <input type="text" className="userlist_input" value={selectedItem.phoneNumer}></input>
-                </div>
-              </div>
-            </div>
+            <div className="modal_context"></div>
           </Modal>
         </div>
       )}

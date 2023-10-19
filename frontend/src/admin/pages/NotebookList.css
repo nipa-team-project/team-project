@@ -1,0 +1,23 @@
+.notebooklist_main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3개의 열을 생성 */
+    gap: 16px 15.79px;
+    margin-top: 16px;
+
+}
+
+.notebook_container {
+    width: 272.14px;
+    height: 160.98px;
+    border: 1px solid rgba(117, 156, 255, 1);
+    border-radius: 5px;
+    background-color: rgba(240, 244, 255, 1);
+    cursor: pointer;
+}
+
+.notebook_img {
+    width: 248px;
+    height: 160px;
+
+}
