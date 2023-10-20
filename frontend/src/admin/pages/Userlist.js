@@ -172,19 +172,19 @@ const Userlist = () => {
               <div style={{ marginTop: "16px" }}>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">아이디</span>
-                  <input type="text" className="userlist_input" value={selectedItem.id}></input>
+                  <input type="text" className="userlist_input" defaultValue={selectedItem.id}></input>
                 </div>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">이름</span>
-                  <input type="text" className="userlist_input" value={selectedItem.nickname}></input>
+                  <input type="text" className="userlist_input" defaultValue={selectedItem.nickname}></input>
                 </div>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">이메일</span>
-                  <input type="text" className="userlist_input" value={selectedItem.email}></input>
+                  <input type="text" className="userlist_input" defaultValue={selectedItem.email}></input>
                 </div>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">휴대전화</span>
-                  <input type="text" className="userlist_input" value={selectedItem.phoneNumer}></input>
+                  <input type="text" className="userlist_input" defaultValue={selectedItem.phoneNumer}></input>
                 </div>
               </div>
             </div>
