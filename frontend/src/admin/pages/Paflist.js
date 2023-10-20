@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import "./Paflist.css";
 import Page from "../../shared/UIElements/Page";
+import Modal from "../../shared/UIElements/Modal";
+import Card from "../../shared/UIElements/Card";
+import Enlargemodal from "../components/Enlargemodal";
 
 const dummydata = [
   {
@@ -95,7 +98,7 @@ const dummydata = [
     time: "2023. 09. 12",
     name: "맥북 에어",
     model: "NT950XBE-X716A",
-    des: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편.",
+    des: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편.모서리 부분 파손이 살짝 있음.",
     img: [
       "/img/admin/dummyimg/dummy1.png",
       "/img/admin/dummyimg/dummy2.png",
@@ -106,6 +109,29 @@ const dummydata = [
 ];
 const itemlen = 100;
 const Paflist = () => {
+  const [listnum, setListNum] = useState(0);
+  const Listnumhandler = (index) => {
+    setListNum(index);
+  };
+
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => {
+    setShowModal(false);
+  };
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const [imgenlarge, setImageenlarge] = useState(false);
+  const closeEnlarge = () => {
+    setImageenlarge(false);
+  };
+  const openEnlarge = () => {
+    setImageenlarge(true);
+  };
+
+  const [imgurl, setImgurl] = useState("");
+
   const [searchParams, setSearchParams] = useSearchParams();
   const searchparamshandler = (sort, value) => {
     //쿼리 생성 및 변경
@@ -115,6 +141,99 @@ const Paflist = () => {
 
   return (
     <React.Fragment>
+      <Modal
+        show={showModal}
+        onCancel={closeModal}
+        className="paflist-modal"
+        Backdropclass={imgenlarge && "backdropclose"}
+      >
+        <span className="paflist-modal_title">매입신청서 상세 정보</span>
+        <img
+          className="paflist_modal_cancle"
+          src="/img/modal/Cancle.png"
+          alt="modalcancle"
+          onClick={closeModal}
+        />
+        <div className="paflist-modal_name">기기명</div>
+        <div className="paflist-modal_des">{dummydata[listnum].name}</div>
+        <div className="paflist-modal_name">모델명</div>
+        <div className="paflist-modal_des">{dummydata[listnum].model}</div>
+        <div className="paflist-modal_name">제품 특이사항</div>
+        <div className="paflist-modal_des">{dummydata[listnum].des}</div>
+        <div className="paflist-modal_name">노트북 사진</div>
+        <div className="paflist-modal_imgcontain">
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[0]);
+                openEnlarge();
+              }}
+            >
+              <img
+                className="paflist-modal_img"
+                src={dummydata[listnum].img[0]}
+              />
+            </div>
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[1]);
+                openEnlarge();
+              }}
+            >
+              <img
+                className="paflist-modal_img"
+                src={dummydata[listnum].img[1]}
+              />
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[2]);
+                openEnlarge();
+              }}
+            >
+              <img
+                className="paflist-modal_img"
+                src={dummydata[listnum].img[2]}
+              />
+            </div>
+            <div
+              className="paflist-modal_imgbox"
+              onClick={(e) => {
+                setImgurl(dummydata[listnum].img[3]);
+                openEnlarge();
+              }}
+            >
+              <img
+                className="paflist-modal_img"
+                src={dummydata[listnum].img[3]}
+              />
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Enlargemodal
+        show={imgenlarge}
+        onCancel={closeEnlarge}
+        className="paflist-modal_img_enlarge"
+      >
+        <img
+          className="paflist-modal_img_enlarge_img"
+          src={imgurl}
+          alt="imgenlarge"
+        ></img>
+      </Enlargemodal>
+
       <input className="paflist_search" placeholder="내용 검색하기"></input>
       <div className="paflist_title">매입신청서 리스트</div>
       <div className="pafilist_main">
@@ -124,29 +243,46 @@ const Paflist = () => {
           <span style={{ marginLeft: "11.4375rem" }}>Time</span>
         </div>
         {dummydata.map((list, index) => (
-          <div className="pafilist_main_list" key={index}>
-            <input type="checkbox"></input>
-            <span style={{ marginLeft: "1rem", width: "8.8125rem" }}>
-              <span style={{ fontWeight: "bold" }}>{index + 1}</span>{" "}
-              {list.nickname}님의 매입신청서
-            </span>
-            <span style={{ marginLeft: "5rem", width: "4.9125rem" }}>
-              {list.time}
-            </span>
-            <span
-              style={{
-                fontSize: "0.75rem",
-                width: "2.875rem",
-                marginLeft: "28.875rem",
-              }}
-            >
-              더보기
-            </span>
-            <img
-              className="paflist_main_moreimg"
-              src="/img/admin/more.png"
-              alt="morepng"
-            ></img>
+          <div key={index}>
+            <div className="pafilist_main_list">
+              <input type="checkbox"></input>
+              <span style={{ marginLeft: "1rem", width: "8.8125rem" }}>
+                <span style={{ fontWeight: "bold" }}>{index + 1}</span>{" "}
+                {list.nickname}님의 매입신청서
+              </span>
+              <span
+                style={{
+                  marginLeft: "5rem",
+                  width: "4.9125rem",
+                  marginRight: "28.875rem",
+                }}
+              >
+                {list.time}
+              </span>
+              <div
+                className="center"
+                style={{ cursor: "pointer" }}
+                onClick={(e) => {
+                  openModal();
+                  Listnumhandler(index);
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "0.75rem",
+                    width: "2.875rem",
+                    textAlign: "left",
+                  }}
+                >
+                  더보기
+                </div>
+                <img
+                  className="paflist_main_moreimg"
+                  src="/img/admin/more.png"
+                  alt="morepng"
+                ></img>
+              </div>
+            </div>
           </div>
         ))}
       </div>
