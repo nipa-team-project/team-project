@@ -10,7 +10,7 @@ const MenuLinks = () => {
         <NavLink to="/main/goods">구매하기</NavLink>
       </li>
       <li className="header_links_menu_list">
-        <NavLink to="/">매입신청서</NavLink>
+        <NavLink to="/PurchaseForm">매입신청서</NavLink>
       </li>
       <li className="header_links_menu_list">
         <NavLink to="/main/rating">노트북 등급</NavLink>

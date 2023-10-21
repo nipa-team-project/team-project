@@ -19,6 +19,9 @@ const Result = React.lazy(() => import("./result/pages/Result"));
 const Process = React.lazy(() => import("./result/pages/Process"));
 const Login = React.lazy(() => import("./login/pages/login"));
 const Signup = React.lazy(() => import("./signup/pages/Signup"));
+const PurchaseForm = React.lazy(() =>
+  import("./purchaseform/pages/PurchaseForm")
+);
 
 function App() {
   return (
@@ -41,6 +44,7 @@ function App() {
             <Route path="/process" element={<Process />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" exact element={<Signup />} />
+            <Route path="/purchaseform" exact element={<PurchaseForm />} />
           </Routes>
         </Suspense>
       </main>
