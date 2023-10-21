@@ -11,7 +11,6 @@
 }
 .filter-modal {
   width: 15.25rem;
-  height: 23.25rem;
   padding: 1.625rem 1.4375rem;
 }
 .filter-modal_title {
@@ -82,4 +81,10 @@
   border-radius: 4px;
   margin-top: 1.875rem;
   cursor: pointer;
+}
+@media (max-width: 768px) {
+  .filter {
+    font-weight: 400;
+    font-size: 0.75rem;
+  }
 }

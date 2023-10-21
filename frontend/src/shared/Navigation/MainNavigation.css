@@ -19,8 +19,10 @@
   margin-left: 4rem;
 }
 .header_auth {
-  margin-left: 17.625rem;
   margin-right: 0;
+  width: 28.75rem;
+  display: flex;
+  justify-content: right;
 }
 .header_menu_links {
   width: 25.5rem;
@@ -31,7 +33,6 @@
   padding: 0 0;
 }
 .header_auth_links {
-  width: 11.125rem;
   list-style: none;
   padding: 0 0;
 }
@@ -50,10 +51,7 @@
     display: none;
   }
   .header_auth {
-    margin-left: 0;
     margin-right: 2.6vw;
-  }
-  .header_auth_links {
-    width: 8.0625rem;
+    width: 12.5rem;
   }
 }

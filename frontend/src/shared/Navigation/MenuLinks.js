@@ -7,7 +7,7 @@ const MenuLinks = () => {
   return (
     <React.Fragment>
       <li className="header_links_menu_list">
-        <NavLink to="/">구매하기</NavLink>
+        <NavLink to="/main/goods">구매하기</NavLink>
       </li>
       <li className="header_links_menu_list">
         <NavLink to="/">매입신청서</NavLink>
@@ -16,7 +16,7 @@ const MenuLinks = () => {
         <NavLink to="/main/rating">노트북 등급</NavLink>
       </li>
       <li className="header_links_menu_list">
-        <NavLink to="/">등급제</NavLink>
+        <NavLink to="/main/ratingsystem">등급제</NavLink>
       </li>
     </React.Fragment>
   );
