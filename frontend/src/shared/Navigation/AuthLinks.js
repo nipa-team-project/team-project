@@ -13,6 +13,7 @@ const AuthLinks = (props) => {
             <NavLink to="/">회원가입</NavLink>
           </li>
           <span className="auth_vector"></span>
+          {/* 수정된 부분: */}
           <li className="header_links_auth_list">
             <NavLink to="/result" onClick={props.logintrue}>
               로그인

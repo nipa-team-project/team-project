@@ -17,6 +17,7 @@ const Ratingsystem = React.lazy(() =>
 const Loading = React.lazy(() => import("./result/pages/Loading"));
 const Result = React.lazy(() => import("./result/pages/Result"));
 const Process = React.lazy(() => import("./result/pages/Process"));
+const Login = React.lazy(() => import("./login/pages/login"));
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/loading" element={<Loading />} />
             <Route path="/result" element={<Result />} />
             <Route path="/process" element={<Process />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Suspense>
       </main>
