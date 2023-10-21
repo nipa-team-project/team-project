@@ -14,7 +14,7 @@ const AuthLinks = (props) => {
           </li>
           <span className="auth_vector"></span>
           <li className="header_links_auth_list">
-            <NavLink to="/main" onClick={props.logintrue}>
+            <NavLink to="/result" onClick={props.logintrue}>
               로그인
             </NavLink>
           </li>
