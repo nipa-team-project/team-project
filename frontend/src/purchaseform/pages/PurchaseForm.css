@@ -28,7 +28,7 @@
     font-size: 1rem;
     margin-top: 0.625rem;
     margin-left: 6.875rem;
-    margin-bottom: 48px;
+    margin-bottom: 3rem;
     width: 28rem;
     text-align: left;
     font-weight: 400;
@@ -230,7 +230,7 @@
 
 .bottom-btn {
     margin-top: 2.15625rem;
-    margin-left: 397px;
+    margin-left: 24.8125rem;
     display: flex;
     justify-content: center;
 }
@@ -238,7 +238,7 @@
 .reset_btn {
     width: 10rem;
     height: 2.5rem;
-    margin-right: 8px;
+    margin-right: 0.5rem;
     border-radius: 0.25rem;
     border: 0.03125rem solid #759CFF;
     background-color: #FAFBFF;
@@ -282,14 +282,14 @@
 
     .rectangle {
         width: 100%;
-        height: 130px;
+        height: 8.125rem;
     }
 
     .text-section {
-        font-size: 20px;
-        margin-top: -110px;
-        margin-right: 55px;
-        margin-bottom: 4px;
+        font-size: 1.25rem;
+        margin-top: -6.875rem;
+        margin-right: 3.4375rem;
+        margin-bottom: 0.25rem;
     }
 
     .text-section2 {
@@ -298,43 +298,43 @@
 
     .text-section3 {
         display: block;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .go_ratingsystem {
         position: absolute;
-        font-size: 12px;
-        width: 76px;
-        height: 17px;
-        margin-top: -36px;
-        margin-left: 135px;
-        padding: 7.5px 20px 7.5px 20px;
-        border-radius: 8px;
+        font-size: 0.75rem;
+        width: 4.75rem;
+        height: 1.0625rem;
+        margin-top: -2.25rem;
+        margin-left: 8.4375rem;
+        padding: 0.46875rem 1.25rem 0.46875rem 1.25rem;
+        border-radius: 0.5rem;
     }
 
     .main_text {
-        margin-top: 24px;
-        font-size: 16px;
+        margin-top: 1.5rem;
+        font-size: 1rem;
     }
 
     .main_text2 {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .purchase-form {
-        margin-top: 24px;
-        margin-bottom: 164px;
+        margin-top: 1.5rem;
+        margin-bottom: 10.25rem;
     }
 
     .purchase-label {
-        margin-left: 11px;
-        margin-bottom: 8px;
+        margin-left: 0.6875rem;
+        margin-bottom: 0.5rem;
     }
 
     .purchase-input {
-        width: 336px;
-        width: calc(100% - 55px);
-        margin-bottom: 8px;
+        width: 21rem;
+        width: calc(100% - 3.4375rem);
+        margin-bottom: 0.5rem;
     }
 
     .bottom-btn {
@@ -342,17 +342,17 @@
         align-items: center;
         margin: 0 auto;
         justify-content: center;
-        margin-top: 170px;
+        margin-top: 10.625rem;
     }
 
     .reset_btn {
-        width: 180.49px;
+        width: 11.280625rem;
         height: 2.5rem;
-        margin-right: 1px;
+        margin-right: 0.0625rem;
     }
 
     .next-button {
-        width: 180.49px;
+        width: 11.280625rem;
         height: 2.5rem;
         border-radius: 0.25rem;
         border: 0.03125rem solid;
@@ -362,7 +362,7 @@
     }
 
     .purchase-input::placeholder {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .instruction-image {
@@ -370,37 +370,37 @@
     }
 
     .img_box {
-        width: 180px;
-        height: 107.47px;
+        width: 11.25rem;
+        height: 6.716875rem;
         margin-top: 0;
 
     }
 
     .ins-image {
         display: block;
-        width: 123px;
-        height: 90px;
+        width: 7.6875rem;
+        height: 5.625rem;
 
     }
 
     .button-img {
-        margin-left: 140px;
-        margin-top: 75px;
+        margin-left: 8.75rem;
+        margin-top: 4.6875rem;
 
     }
 
     .mobile2 .purchase-label {
-        margin-top: 24px;
+        margin-top: 1.5rem;
     }
 
     .img-grid {
-        gap: 7.5px;
+        gap: 0.46875rem;
     }
 
     .rank_btn {
-        width: 180.49px;
+        width: 11.280625rem;
         height: 2.5rem;
-        margin-left: 8px;
+        margin-left: 0.5rem;
     }
 
     .ReactModal__Content {
@@ -416,10 +416,10 @@
     }
 
     .drop-zone {
-        width: 280.5px;
-        height: 170px;
-        margin-top: 18px;
-        margin-bottom: 30px;
+        width: 17.53125rem;
+        height: 10.625rem;
+        margin-top: 1.125rem;
+        margin-bottom: 1.875rem;
     }
 
     .modal-btns {
@@ -430,6 +430,6 @@
     }
 
     .here-drag {
-        margin-top: 48px;
+        margin-top: 3rem;
     }
 }

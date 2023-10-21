@@ -252,8 +252,8 @@ const PurchaseForm = () => {
               backgroundColor: "rgba(0, 0, 0, 0.5)",
             },
             content: {
-              width: isMobile ? "320px" : "45rem",
-              height: isMobile ? "334px" : `${modalHeight}rem`,
+              width: isMobile ? "20rem" : "45rem",
+              height: isMobile ? "20.875rem" : `${modalHeight}rem`,
               margin: "auto",
               border: "0.0625rem",
               borderRadius: "0.625rem",
@@ -296,11 +296,11 @@ const PurchaseForm = () => {
                     src={tempImage}
                     alt="Preview"
                     style={{
-                      width: isMobile ? "298px" : "22.1875rem",
-                      height: isMobile ? "176px" : "13.125rem",
+                      width: isMobile ? "18.625rem" : "22.1875rem",
+                      height: isMobile ? "11rem" : "13.125rem",
                       objectFit: "cover",
-                      marginLeft: isMobile ? "10px" : "11.25rem",
-                      marginTop: isMobile ? "10px" : "2.25rem",
+                      marginLeft: isMobile ? "0.625rem" : "11.25rem",
+                      marginTop: isMobile ? "0.625rem" : "2.25rem",
                       position: "absolute",
                       top: 0,
                       left: 0,
