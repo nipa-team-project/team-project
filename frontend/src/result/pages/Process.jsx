@@ -32,13 +32,8 @@ const Process = (props) => {
       <div className={styles.process_container}>
         {imageNames.map((imageName, index) => (
           // 이미지 파일 이름을 사용하여 이미지 태그를 동적으로 생성
-          <div>
-            <img
-              key={index}
-              src={`/img/process/${imageName}`}
-              alt={`StepImage ${index + 1}`}
-              className={`${index >= 2 ? styles.grayscale : ""} ${styles.step_img}`}
-            />
+          <div key={imageName}>
+            <img src={`/img/process/${imageName}`} alt={`StepImage ${index + 1}`} className={`${index >= 2 ? styles.grayscale : ""} ${styles.step_img}`} />
             {index === imageNames.length - 1 ? null : (
               <img src="/img/process/arrow.png" alt={`StepArrow`} className={`${index >= 2 ? styles.grayscale : ""} ${styles.arrow}`} />
             )}

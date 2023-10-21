@@ -5,9 +5,9 @@ import "./App.css";
 
 import MainNavigation from "./shared/Navigation/MainNavigation";
 const Main = React.lazy(() => import("./main/pages/Main"));
-const Loading = React.lazy(() => import("./main/pages/Loading"));
-const Result = React.lazy(() => import("./main/pages/Result"));
-const Process = React.lazy(() => import("./main/pages/Process"));
+const Loading = React.lazy(() => import("./result/pages/Loading"));
+const Result = React.lazy(() => import("./result/pages/Result"));
+const Process = React.lazy(() => import("./result/pages/Process"));
 
 function App() {
   return (
