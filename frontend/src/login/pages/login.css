@@ -1,4 +1,4 @@
-div {
+.login-page {
     text-align: center;
     font-family: "Pretendard-Regular";
 }
@@ -6,7 +6,7 @@ div {
 .welcome {
     width: 24.25rem;
     height: 15.3125rem;
-    margin-top: 92px;
+    margin-top: 5.75rem;
 }
 
 .text_welcome {
@@ -15,34 +15,40 @@ div {
     font-weight: 700;
 }
 
-form {
+.login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 2.5rem;
 }
 
-input {
+.login-input {
     width: 30.625rem;
     height: 2.8rem;
     border-radius: 0.5rem;
-    border: 1px solid #4F80FF;
+    border: 0.0625rem solid #4F80FF;
     padding-left: 1rem;
     font-family: "Pretendard-Regular";
 }
 
+
 .error-input {
     border: 0.0625rem solid red;
     color: red;
+    width: 30.625rem;
+    height: 2.8rem;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+
 }
 
-.error {
+.error-message {
     color: red;
     margin-right: 19.375rem;
     font-size: 0.75rem;
 }
 
-button {
+.login-button {
     margin-top: 1rem;
     width: 31.875rem;
     height: 3.5rem;
@@ -52,9 +58,6 @@ button {
     color: white;
     font-size: 1rem;
     font-family: "Pretendard-Regular";
-}
-
-button:hover {
     cursor: pointer;
 }
 
@@ -87,8 +90,8 @@ button:hover {
     align-items: center;
     text-align: center;
     margin: 0 1.125rem;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
 }
 
 .icons {
@@ -108,32 +111,36 @@ button:hover {
     color: #4F80FF
 }
 
-
 @media (max-width: 768px) {
     .welcome {
-        width: 232px;
-        height: 147px;
-        margin-top: 84px;
+        width: 14.5rem;
+        height: 9.1875rem;
+        margin-top: 5.25rem;
     }
 
     .text_welcome {
-        font-size: 24px;
+        font-size: 1.5rem;
     }
 
-    input {
-        width: 350px;
-        height: 44px;
-        margin-bottom: -8px;
-
+    .login-input {
+        width: 21.875rem;
+        height: 2.75rem;
+        margin-bottom: -0.5rem;
     }
 
-    button {
-        width: 370px;
+    .error-input {
+        border: 0.0625rem solid red;
+        color: red;
+        width: 21.875rem;
+        height: 2.75rem;
     }
 
-    .error {
+    .login-button {
+        width: 23.125rem;
+    }
+
+    .error-message {
         white-space: nowrap;
-        margin-left: 135px;
+        margin-left: 8.875rem;
     }
-
 }

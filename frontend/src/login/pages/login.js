@@ -48,24 +48,25 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login-page">
       <img className="welcome" src="/img/loginimg/Welcome.png" alt="Welcome" />
       <p className="text_welcome">환영합니다!</p>
-      <form>
+      <form className="login-form">
         <input
           type="text"
           value={userid}
           onChange={(e) => setUserid(e.target.value)}
+          className="login-input"
         />
         <br />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className={error ? "error-input" : ""}
+          className={error ? "error-input" : "login-input"}
         />
-        {error && <p className="error">{error}</p>}
-        <button type="button" onClick={handleLogin}>
+        {error && <p className="error-message">{error}</p>}
+        <button type="button" onClick={handleLogin} className="login-button">
           로그인하기
         </button>
         <div className="nosignup">
