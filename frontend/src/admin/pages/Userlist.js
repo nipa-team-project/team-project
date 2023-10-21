@@ -110,7 +110,9 @@ const Userlist = () => {
   const handleItemSelect = (item) => {
     if (isSelected(item)) {
       // 이미 선택된 항목인 경우, 선택 취소
-      setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item));
+      setSelectedItems(
+        selectedItems.filter((selectedItem) => selectedItem !== item)
+      );
     } else {
       // 선택되지 않은 항목인 경우, 선택
       setSelectedItems([...selectedItems, item]);
@@ -131,7 +133,8 @@ const Userlist = () => {
           <input
             type="checkbox"
             onChange={handleSelectAll} // 전체 선택 상태 변경 핸들러 연결
-            checked={isAllSelected()}></input>
+            checked={isAllSelected()}
+          ></input>
           <span style={{ marginLeft: "1rem" }}>Name</span>
           <span style={{ marginLeft: "11.8125rem" }}>E-mail</span>
           <span style={{ marginLeft: "13.5625rem " }}>Join Date</span>
@@ -141,11 +144,15 @@ const Userlist = () => {
             <input
               type="checkbox"
               checked={isSelected(list)} // 항목의 선택 상태 확인
-              onChange={() => handleItemSelect(list)}></input>
+              onChange={() => handleItemSelect(list)}
+            ></input>
             <span style={{ marginLeft: "1rem", width: "13.1875rem" }}>
-              <span style={{ fontWeight: "bold" }}>{index + 1}</span> {list.nickname}
+              <span style={{ fontWeight: "bold" }}>{index + 1}</span>{" "}
+              {list.nickname}
             </span>
-            <span style={{ marginLeft: "1rem", width: "16.125rem" }}>{list.email}</span>
+            <span style={{ marginLeft: "1rem", width: "16.125rem" }}>
+              {list.email}
+            </span>
             <span style={{ width: "79px" }}>{list.time}</span>
             <span
               style={{
@@ -154,37 +161,67 @@ const Userlist = () => {
                 marginLeft: "12.3125rem",
                 cursor: "pointer",
               }}
-              onClick={() => openModal(list)}>
+              onClick={() => openModal(list)}
+            >
               더보기
             </span>
-            <img className="paflist_main_moreimg" src="/img/admin/more.png" alt="morepng"></img>
+            <img
+              className="paflist_main_moreimg"
+              src="/img/admin/more.png"
+              alt="morepng"
+            ></img>
           </div>
         ))}
       </div>
       {selectedItem && (
         <div id="backdrop-hook">
-          <Modal show={isModalOpen} onCancel={closeModal} className="userlist_modal">
+          <Modal
+            show={isModalOpen}
+            onCancel={closeModal}
+            className="userlist_modal"
+          >
             <div className="modal_context">
               <div style={{ display: "flex", flexDirection: "space-between" }}>
                 <h1 className="userlist_modalTitle">유저 상세정보</h1>
-                <img src="/img/admin/Cancel.png" alt="cancel" className="modal_cancel" onClick={closeModal} />
+                <img
+                  src="/img/admin/Cancel.png"
+                  alt="cancel"
+                  className="modal_cancel"
+                  onClick={closeModal}
+                />
               </div>
               <div style={{ marginTop: "16px" }}>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">아이디</span>
-                  <input type="text" className="userlist_input" defaultValue={selectedItem.id}></input>
+                  <input
+                    type="text"
+                    className="userlist_input"
+                    defaultValue={selectedItem.id}
+                  ></input>
                 </div>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">이름</span>
-                  <input type="text" className="userlist_input" defaultValue={selectedItem.nickname}></input>
+                  <input
+                    type="text"
+                    className="userlist_input"
+                    defaultValue={selectedItem.nickname}
+                  ></input>
                 </div>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">이메일</span>
-                  <input type="text" className="userlist_input" defaultValue={selectedItem.email}></input>
+                  <input
+                    type="text"
+                    className="userlist_input"
+                    defaultValue={selectedItem.email}
+                  ></input>
                 </div>
                 <div className="userlist_inputContainer">
                   <span className="userlist_label">휴대전화</span>
-                  <input type="text" className="userlist_input" defaultValue={selectedItem.phoneNumer}></input>
+                  <input
+                    type="text"
+                    className="userlist_input"
+                    defaultValue={selectedItem.phoneNumer}
+                  ></input>
                 </div>
               </div>
             </div>
@@ -192,7 +229,12 @@ const Userlist = () => {
         </div>
       )}
       <div className="paflist_page">
-        <Page itemlen={itemlen} searchParams={searchParams} setSearchParams={setSearchParams} searchparamshandler={searchparamshandler}></Page>
+        <Page
+          itemlen={itemlen}
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+          searchparamshandler={searchparamshandler}
+        ></Page>
       </div>
     </React.Fragment>
   );
