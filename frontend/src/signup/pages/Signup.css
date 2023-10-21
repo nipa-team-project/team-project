@@ -1,165 +1,181 @@
-div {
+.signup-text {
+    margin-top: 9.4375rem;
     text-align: center;
     font-family: "Pretendard-Regular";
 }
 
-h1 {
-    margin-top: 151px;
-}
-
-form {
-    margin-top: 43px;
+.signup-form {
+    margin-top: 2.6875rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.input_id {
-    width: 527px;
-    margin-right: 8px;
+.id-input {
+    width: 32.9375rem;
+    height: 2.875rem;
+    margin-right: 0.5rem;
+    border-radius: 0.3125rem;
+    border: 0.0625rem solid #4F80FF;
+    padding-left: 1rem;
+    font-family: "Pretendard-Regular";
+    margin-bottom: 2.1875rem;
+    margin-top: 0.25rem;
 }
 
 .double_check {
-    width: 187px;
-    height: 50px;
-    border-radius: 5px;
+    width: 11.6875rem;
+    height: 3.125rem;
+    border-radius: 0.3125rem;
     color: white;
     background-color: #4F80FF;
     border: 0.0625rem solid #4F80FF;
-    font-size: 16px;
+    font-size: 1rem;
+    margin-top: -2rem;
+    font-family: "Pretendard-Regular";
+    cursor: pointer;
+
 }
 
-input {
-    width: 722px;
-    height: 46px;
-    border-radius: 5px;
-    border: 1px solid #4F80FF;
+.id-content {
+    display: flex;
+    align-items: center;
+}
+
+.signup-input {
+    width: 45.125rem;
+    height: 2.875rem;
+    border-radius: 0.3125rem;
+    border: 0.0625rem solid #4F80FF;
     padding-left: 1rem;
     font-family: "Pretendard-Regular";
-    margin-bottom: 35px;
-    margin-top: 4px;
+    margin-bottom: 2.1875rem;
+    margin-top: 0.25rem;
+    display: flex
 }
 
-.buttons {
-    margin-top: 2px;
+.signup-bottom {
+    margin-top: 0.125rem;
+    display: flex;
+    justify-content: center;
 }
 
-label {
-    width: 100px;
-    font-size: 16px;
-    text-align: left;
-    display: inline-block;
-    margin-right: 640px;
+.signup-label {
     font-family: "Pretendard-Regular";
-
 }
 
 .reset_button {
-    width: 160px;
-    height: 40px;
-    margin-right: 4px;
-    border-radius: 5px;
+    width: 10rem;
+    height: 2.5rem;
+    margin-right: 0.25rem;
+    border-radius: 0.3125rem;
     color: #4F80FF;
     background-color: white;
     border: 0.0625rem solid #4F80FF;
-    font-size: 14px;
-
+    font-size: 0.875rem;
+    font-family: "Pretendard-Regular";
+    cursor: pointer;
 }
 
 .signup_button,
-.next_button {
-    width: 160px;
-    height: 40px;
-    margin-left: 4px;
-    border-radius: 5px;
+.signup-next {
+    width: 10rem;
+    height: 2.5rem;
+    margin-left: 0.25rem;
+    border-radius: 0.3125rem;
     color: white;
     background-color: #4F80FF;
     border: 0.0625rem solid #4F80FF;
-    font-size: 14px;
-
+    font-size: 0.875rem;
+    font-family: "Pretendard-Regular";
+    cursor: pointer;
 }
 
 .password_mismatch {
     color: red;
-    margin-top: -31px;
-    margin-bottom: 24px;
-    margin-right: 505px;
-    font-size: 12px;
+    margin-top: -1.9375rem;
+    margin-bottom: 1.5rem;
+    margin-right: 31.5625rem;
+    font-size: 0.75rem;
 }
 
 .isuserid_available {
     color: #759CFF;
-    margin-top: -31px;
-    margin-bottom: 24px;
-    margin-right: 617px;
-    font-size: 12px;
+    margin-top: -1.9375rem;
+    margin-bottom: 1.5rem;
+    margin-right: 38.5625rem;
+    font-size: 0.75rem;
 }
 
 .invalid_email {
     color: red;
-    margin-top: -31px;
-    margin-bottom: 24px;
-    margin-right: 515px;
-    font-size: 12px;
+    margin-top: -1.9375rem;
+    margin-bottom: 1.5rem;
+    margin-right: 32.1875rem;
+    font-size: 0.75rem;
 }
 
-button {
-    cursor: pointer;
+.id-input::placeholder {
+    color: #B3B3B3;
+    padding: 0.875rem;
+
 }
 
-::placeholder {
-    color: #B3B3B3
+.signup-input::placeholder {
+    color: #B3B3B3;
+    padding: 0.875rem;
 }
+
 
 @media (max-width: 768px) {
-    h1 {
-        margin-top: 93px;
-        font-size: 24px;
+    .signup-text {
+        margin-top: 5.8125rem;
+        font-size: 1.5rem;
     }
 
-    form {
-        margin-top: 24px;
+    .signup-form {
+        margin-top: 1.5rem;
     }
 
-    .input_id {
-        width: 238.35px;
+    .id-input {
+        width: 14.896875rem;
     }
 
-    input {
-        width: 350px;
+    .signup-input {
+        width: 21.875rem;
         margin-right: 0;
-        margin-top: 4px;
-        margin-bottom: 35px;
+        margin-top: 0.25rem;
+        margin-bottom: 2.1875rem;
     }
 
-    label {
-        margin-right: 268px;
+    .signup-label {
+        margin-right: 16.75rem;
     }
 
     .password_mismatch {
-        margin-right: 131px;
+        margin-right: 8.1875rem;
     }
 
     .isuserid_available {
-        margin-right: 245px;
+        margin-right: 15.3125rem;
     }
 
     .invalid_email {
-        margin-right: 145px;
+        margin-right: 9.0625rem;
     }
 
     .double_check {
-        width: 102px;
-        height: 50px;
+        width: 6.375rem;
+        height: 3.125rem;
     }
 
     .reset_button,
     .signup_button,
-    .next_button {
-        width: 180.49px;
+    .signup-next {
+        width: 11.280625rem;
     }
 
-    .buttons {
-        margin-top: 248px;
+    .signup-bottom {
+        margin-top: 15.5rem;
     }
 }
