@@ -45,7 +45,7 @@ const Process = (props) => {
       </div>
 
       <div className={styles.button_group}>
-        <Button active={false} className={styles.prev_btn}>
+        <Button active={false} className={styles.prev_btn} onClick={() => navigate("/purchaseform")}>
           이전으로
         </Button>
         <Button active={true} className={styles.prev_btn} onClick={() => navigate("/main/rating")}>
