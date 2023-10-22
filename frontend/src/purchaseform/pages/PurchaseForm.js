@@ -37,18 +37,14 @@ const PurchaseForm = () => {
     handleResize();
 
     window.addEventListener("resize", handleResize);
+    window.scrollTo(0, 0); // 페이지 렌더링 시 맨 위로 스크롤
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  const differentImages = [
-    "/img/purchaseimg/front.png",
-    "/img/purchaseimg/back.png",
-    "/img/purchaseimg/keyboard.png",
-    "/img/purchaseimg/monitor.png",
-  ];
+  const differentImages = ["/img/purchaseimg/front.png", "/img/purchaseimg/back.png", "/img/purchaseimg/keyboard.png", "/img/purchaseimg/monitor.png"];
 
   const mobileImages = [
     "/img/purchaseimg/mobilefront.png",
@@ -132,11 +128,7 @@ const PurchaseForm = () => {
 
   return (
     <div className="purchase-container">
-      <img
-        className="rectangle"
-        src="/img/purchaseimg/rectangle.png"
-        alt="rectangle"
-      />
+      <img className="rectangle" src="/img/purchaseimg/rectangle.png" alt="rectangle" />
 
       <div className="purchase-overlay">
         <div className="text-section">내 노트북의 등급은?</div>
@@ -145,9 +137,7 @@ const PurchaseForm = () => {
           <br /> 등급을 결정해주는 똑똑한 AI와 함께 편리한 판매를 경험해보세요.
         </div>
 
-        <div className="text-section3">
-          똑똑한 AI와 함께 편리한 판매를 경험해보세요.
-        </div>
+        <div className="text-section3">똑똑한 AI와 함께 편리한 판매를 경험해보세요.</div>
 
         <Link className="go_ratingsystem" to="/">
           등급제 보러가기
@@ -160,8 +150,7 @@ const PurchaseForm = () => {
         className="mobile1"
         style={{
           display: isMobile && mobilePage !== 1 ? "none" : "block",
-        }}
-      >
+        }}>
         <form className="purchase-form">
           <label className="purchase-label">기기명</label>
           <input
@@ -199,8 +188,7 @@ const PurchaseForm = () => {
         className="mobile2"
         style={{
           display: isMobile && mobilePage !== 2 ? "none" : "block",
-        }}
-      >
+        }}>
         <label className="purchase-label">노트북 사진</label>
         <div className="img-grid">
           {/* 이미지를 업로드할 4칸 */}
@@ -213,31 +201,16 @@ const PurchaseForm = () => {
                 backgroundSize: "contain",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-              }}
-            >
-              {image ? null : (
-                <img
-                  className="instruction-image"
-                  src={differentImages[index]}
-                  alt={`Instruction ${index + 1}`}
-                />
-              )}
+              }}>
+              {image ? null : <img className="instruction-image" src={differentImages[index]} alt={`Instruction ${index + 1}`} />}
 
-              {image ? null : (
-                <img
-                  className="ins-image"
-                  src={mobileImages[index]}
-                  alt={`Instruction ${index + 1}`}
-                />
-              )}
+              {image ? null : <img className="ins-image" src={mobileImages[index]} alt={`Instruction ${index + 1}`} />}
 
               <img
                 className="button-img"
                 src="/img/purchaseimg/button.png"
                 alt="button-img"
-                onClick={() =>
-                  openModal(index, getAttachmentTypeByIndex(index))
-                }
+                onClick={() => openModal(index, getAttachmentTypeByIndex(index))}
               />
             </div>
           ))}
@@ -260,25 +233,15 @@ const PurchaseForm = () => {
               display: "flex",
               flexDirection: "column",
             },
-          }}
-        >
+          }}>
           <div className="modal-head">
             <p className="title-text">{attachmentType} 사진 첨부하기</p>
-            <img
-              className="close-btn"
-              src="/img/purchaseimg/x.png"
-              alt="close"
-              onClick={closeModal}
-            ></img>
+            <img className="close-btn" src="/img/purchaseimg/x.png" alt="close" onClick={closeModal}></img>
           </div>
 
           {uploadedFileName && (
             <div className="uploaded-file">
-              <img
-                src="/img/purchaseimg/fileicon.png"
-                alt="Icon"
-                className="file-icon"
-              />
+              <img src="/img/purchaseimg/fileicon.png" alt="Icon" className="file-icon" />
               {uploadedFileName}
             </div>
           )}
@@ -311,17 +274,11 @@ const PurchaseForm = () => {
             )}
           </Dropzone>
           <div className="modal-btns">
-            <button
-              className={`cancel-btn ${tempImage ? "uploaded" : ""}`}
-              onClick={closeModal}
-            >
+            <button className={`cancel-btn ${tempImage ? "uploaded" : ""}`} onClick={closeModal}>
               취소
             </button>
 
-            <button
-              className={`upload-btn ${tempImage ? "uploaded" : ""}`}
-              onClick={handleImageUpload}
-            >
+            <button className={`upload-btn ${tempImage ? "uploaded" : ""}`} onClick={handleImageUpload}>
               업로드
             </button>
           </div>
@@ -342,21 +299,17 @@ const PurchaseForm = () => {
             border: "none",
             color: "#ffffff",
           }}
-          onClick={nextpage}
-        >
+          onClick={nextpage}>
           {mobilePage === 1 ? "다음으로" : "다음 단계"}
         </button>
 
         <button
-          className={`rank_btn ${
-            selectedImages.some((image) => image !== null) ? "" : "disabled"
-          }`}
+          className={`rank_btn ${selectedImages.some((image) => image !== null) ? "" : "disabled"}`}
           onClick={handleAIProcessing}
           disabled={!selectedImages.some((image) => image !== null)}
           style={{
             display: isMobile ? (mobilePage === 2 ? "block" : "none") : "block",
-          }}
-        >
+          }}>
           AI 등급 측정하기
         </button>
       </div>

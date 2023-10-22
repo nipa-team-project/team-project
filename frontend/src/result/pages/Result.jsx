@@ -51,7 +51,7 @@ const Result = () => {
         <ProgressBar category="monitor" damaged={30} />
       </div>
       <div className={styles.button_group}>
-        <Button active={false} className={styles.prev_btn}>
+        <Button active={false} className={styles.prev_btn} onClick={() => navigate("/purchaseform")}>
           이전으로
         </Button>
         <Button active={true} className={styles.prev_btn} onClick={openModal}>
