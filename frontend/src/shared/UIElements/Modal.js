@@ -14,14 +14,8 @@ const Modal = (props) => {
       {props.detail && (
         <div className="backdrop_double" onClick={props.onCancel} />
       )}
-      <CSSTransition
-        in={props.show}
-        mountOnEnter
-        unmountOnExit
-        timeout={200}
-        classNames="modal"
-      >
-        <div>
+      <CSSTransition in={props.show} mountOnEnter unmountOnExit>
+        <>
           <Card className={`modal ${props.className}`}>{props.children}</Card>
           {props.detail && (
             <div className="slide_modal_container ">
@@ -77,7 +71,7 @@ const Modal = (props) => {
               />
             </div>
           )}
-        </div>
+        </>
       </CSSTransition>
     </React.Fragment>
   );
