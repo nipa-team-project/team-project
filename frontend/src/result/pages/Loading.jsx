@@ -24,7 +24,7 @@ const Center = styled.div`
     width: 377px;
     height: 289.61px;
     top: 252px;
-    left: 596px;
+    // left: 596px;
   }
 
   .description {
@@ -39,9 +39,9 @@ const Center = styled.div`
       line-height: 144%;
       text-align: center;
     }
-    position: absolute;
+    position: relative;
     top: 638px;
-    left: 586px;
+    // left: 586px;
 
     font-size: 24px;
     font-style: normal;
@@ -65,7 +65,8 @@ const Center = styled.div`
     display: flex;
     justify-content: space-between;
     top: 600px;
-    left: 694px;
+    // left: 694px;
+    right: 98px;
     text-align: center;
   }
 
@@ -100,7 +101,8 @@ const Div = styled.div`
       left: 72.12px;
     }
     position: absolute;
-    left: 402px;
+    // left: 402px;
+    right: 94.94px;
     top: 174px;
     width: 99.07px;
     height: 99.07px;
@@ -116,7 +118,8 @@ const Div = styled.div`
     }
     position: absolute;
     top: 240px;
-    left: 314px;
+    // left: 314px;
+    right: 148.17px;
     width: 133.83px;
     height: 133.83px;
   }
@@ -132,7 +135,8 @@ const Div = styled.div`
     }
     position: absolute;
     top: 462px;
-    left: 327px;
+    // left: 327px;
+    right: 75.64px;
     transform: rotate(-23.53deg);
     width: 175.13px;
     height: 82.15px;
@@ -143,8 +147,8 @@ const Div = styled.div`
       display: none;
     }
     position: absolute;
-    left: 995px;
-    top: 590px;
+    left: 399px;
+    top: 530px;
     width: 86px;
     height: 86px;
   }
@@ -159,8 +163,8 @@ const Div = styled.div`
       transform: rotate(-19.72deg);
     }
     position: absolute;
-    top: 200px;
-    left: 808.58px;
+    top: 182px;
+    left: 212.58px;
     width: 197.23px;
     height: 60.16px;
     transform: rotate(-19.72deg);
@@ -178,8 +182,8 @@ const Div = styled.div`
     width: 193.4px;
     height: 155.21px;
     position: absolute;
-    top: 282px;
-    left: 902px;
+    top: 265px;
+    left: 305px;
     right: 308.06px;
     transform: rotate(30.85deg);
   }
@@ -188,18 +192,10 @@ const Div = styled.div`
 const Loading = () => {
   const [loading, setLoading] = useState(true);
   return (
-    <React.Fragment>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <Div>
-        <img
-          src="/img/loading/BlueStar.png"
-          alt="BlueStar"
-          className="b_star1"
-        />
-        <img
-          src="/img/loading/PinkStar.png"
-          alt="PinkStar"
-          className="p_star"
-        />
+        <img src="/img/loading/BlueStar.png" alt="BlueStar" className="b_star1" />
+        <img src="/img/loading/PinkStar.png" alt="PinkStar" className="p_star" />
         <img src="/img/loading/AI.png" alt="AI" className="ai" />
       </Div>
 
@@ -230,11 +226,10 @@ const Loading = () => {
         )}
 
         <div className="description">
-          <span className="theme_color">AI</span>가{" "}
-          <span className="theme_color">등급을 측정중</span>입니다.
+          <span className="theme_color">AI</span>가 <span className="theme_color">등급을 측정중</span>입니다.
         </div>
       </Center>
-    </React.Fragment>
+    </div>
   );
 };
 
