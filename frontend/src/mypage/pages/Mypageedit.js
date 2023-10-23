@@ -8,6 +8,7 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_EMAIL,
   VALIDATOR_PHONE,
+  VALIDATOR_PASSWORD,
 } from "../../shared/util/validator";
 
 const Mypageedit = () => {
@@ -128,7 +129,7 @@ const Mypageedit = () => {
               className="mypage-auth_content_input"
               style={{ borderColor: !errid ? "#FF4848" : "" }}
               onChange={(e) => {
-                check(e, VALIDATOR_REQUIRE(), setErrId);
+                check(e, VALIDATOR_MINLENGTH(4), setErrId);
                 setInputList({ ...inputlist, id: e.target.value });
               }}
               placeholder="아이디를 입력해주세요."
@@ -137,7 +138,7 @@ const Mypageedit = () => {
               className="mypage-auth_content_err"
               style={{ color: !errid ? "#FF4848" : "" }}
             >
-              {!errid && "아이디를 입력해주세요."}
+              {!errid && "아이디를 4글자 이상 입력해주세요."}
             </span>
           </div>
 
@@ -148,7 +149,7 @@ const Mypageedit = () => {
               className="mypage-auth_content_input"
               style={{ borderColor: !errpw ? "#FF4848" : "" }}
               onChange={(e) => {
-                check(e, VALIDATOR_MINLENGTH(6), setErrPw);
+                check(e, VALIDATOR_PASSWORD(), setErrPw);
                 setInputList({ ...inputlist, pw: e.target.value });
               }}
               placeholder="비밀번호를 입력해주세요."
@@ -157,7 +158,8 @@ const Mypageedit = () => {
               className="mypage-auth_content_err"
               style={{ color: !errpw ? "#FF4848" : "" }}
             >
-              {!errpw && "6자 이상 입력해주세요."}
+              {!errpw &&
+                "비밀번호를 영문대/소문자,숫자,특수문자 중 2가지 이상 조합하여 8~16자 사이로 입력해주세요."}
             </span>
           </div>
 
@@ -273,6 +275,7 @@ const Mypageedit = () => {
                 : "none"
               : "block",
             marginLeft: "0.5rem",
+            marginBottom: "11.5rem",
             background: "#4F80FF",
             border: "none",
             color: "#ffffff",

@@ -12,7 +12,7 @@
   width: 45.125rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.3125rem; 
+  margin-bottom: 1.3125rem;
 }
 .mypage-auth_content_name {
   height: 1.4375rem;
@@ -49,7 +49,7 @@
 }
 .mypage-auth_btncontain {
   display: flex;
-  margin-top: 7rem;
+  margin-top: 5.1875rem;
 }
 .mypage-auth_content_btn {
   margin-left: 0.5rem;

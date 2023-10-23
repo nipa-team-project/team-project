@@ -139,6 +139,40 @@ const Paflist = () => {
     setSearchParams(searchParams);
   };
 
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const isAllSelected = () => {
+    return selectedItems.length === dummydata.length;
+  };
+
+  const handleSelectAll = () => {
+    // 전체 체크박스 상태를 반전시킴
+    // 만약 전체 체크박스가 선택되어 있다면 해제하고,
+    // 선택되어 있지 않다면 선택함
+    if (isAllSelected()) {
+      // 모든 항목의 체크를 해제
+      setSelectedItems([]);
+    } else {
+      // 모든 항목을 선택
+      setSelectedItems([...dummydata]);
+    }
+  };
+
+  const handleItemSelect = (item) => {
+    if (isSelected(item)) {
+      // 이미 선택된 항목인 경우, 선택 취소
+      setSelectedItems(
+        selectedItems.filter((selectedItem) => selectedItem !== item)
+      );
+    } else {
+      // 선택되지 않은 항목인 경우, 선택
+      setSelectedItems([...selectedItems, item]);
+    }
+  };
+
+  const isSelected = (item) => {
+    return selectedItems.includes(item);
+  };
   return (
     <React.Fragment>
       <Modal
@@ -238,14 +272,22 @@ const Paflist = () => {
       <div className="paflist_title">매입신청서 리스트</div>
       <div className="pafilist_main">
         <div className="pafilist_main_listtop">
-          <input type="checkbox"></input>
+          <input
+            type="checkbox"
+            onChange={handleSelectAll} // 전체 선택 상태 변경 핸들러 연결
+            checked={isAllSelected()}
+          ></input>
           <span style={{ marginLeft: "1rem" }}>Name</span>
           <span style={{ marginLeft: "11.4375rem" }}>Time</span>
         </div>
         {dummydata.map((list, index) => (
           <div key={index}>
             <div className="pafilist_main_list">
-              <input type="checkbox"></input>
+              <input
+                type="checkbox"
+                checked={isSelected(list)} // 항목의 선택 상태 확인
+                onChange={() => handleItemSelect(list)}
+              ></input>
               <span style={{ marginLeft: "1rem", width: "8.8125rem" }}>
                 <span style={{ fontWeight: "bold" }}>{index + 1}</span>{" "}
                 {list.nickname}님의 매입신청서
