@@ -11,22 +11,29 @@ const Admin = React.lazy(() => import("./admin/pages/Admin"));
 const Goods = React.lazy(() => import("./goods/pages/Goods"));
 const Goodsview = React.lazy(() => import("./goods/pages/Goodsview"));
 const Rating = React.lazy(() => import("./rating/pages/Rating"));
-const Ratingsystem = React.lazy(() => import("./ratingsystem/pages/Ratingsystem"));
+const Ratingsystem = React.lazy(() =>
+  import("./ratingsystem/pages/Ratingsystem")
+);
 const Loading = React.lazy(() => import("./result/pages/Loading"));
 const Result = React.lazy(() => {
-  return Promise.all([import("./result/pages/Result"), new Promise((resolve) => setTimeout(resolve, 6000))]).then(([moduleExports]) => moduleExports);
+  return Promise.all([
+    import("./result/pages/Result"),
+    new Promise((resolve) => setTimeout(resolve, 6000)),
+  ]).then(([moduleExports]) => moduleExports);
 });
 const Process = React.lazy(() => import("./result/pages/Process"));
 const Login = React.lazy(() => import("./login/pages/login"));
 const Signup = React.lazy(() => import("./signup/pages/Signup"));
-const PurchaseForm = React.lazy(() => import("./purchaseform/pages/PurchaseForm"));
+const PurchaseForm = React.lazy(() =>
+  import("./purchaseform/pages/PurchaseForm")
+);
 
 function App() {
   return (
     <BrowserRouter>
       <MainNavigation />
       <main>
-        <Suspense fallback={<Loading />}>
+        <Suspense>
           {/* <Navigate exact from="/" to="/result" /> */}
           <Routes>
             <Route path="/" element={<Navigate to="/main" />} />
@@ -38,7 +45,14 @@ function App() {
             <Route path="/mypage" exact element={<Mypage />} />
             <Route path="/main/ratingsystem" exact element={<Ratingsystem />} />
             <Route path="/loading" element={<Loading />} />
-            <Route path="/result" element={<Result />} />
+            <Route
+              path="/result"
+              element={
+                <Suspense fallback={<Loading />}>
+                  <Result />
+                </Suspense>
+              }
+            />
             <Route path="/process" element={<Process />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" exact element={<Signup />} />
