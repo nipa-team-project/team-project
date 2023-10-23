@@ -15,6 +15,9 @@ const Signup = () => {
   const [isUseridAvailable, setIsUseridAvailable] = useState(null);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
+  const [useridErrorMessage, setUseridErrorMessage] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [error, setError] = useState(false);
 
   const [isMobile, setIsMobile] = useState(false);
   const [mobilePage, setMobilePage] = useState(1);
@@ -63,7 +66,6 @@ const Signup = () => {
           return result;
         }
       );
-
       setFormData((prevData) => ({
         ...prevData,
         [name]: formattedValue,
@@ -75,6 +77,21 @@ const Signup = () => {
       }));
     }
 
+    if (name === "password") {
+      const isPasswordValid = validatePassword(value);
+      setFormData({ ...formData, [name]: value });
+
+      if (!isPasswordValid) {
+        setError(true);
+        setPasswordError(
+          "영문 대/소문자, 숫자, 특수문자 중 2가지 이상 조합하여 8~16자를 입력하세요."
+        );
+      } else {
+        setError(false);
+        setPasswordError("");
+      }
+    }
+
     if (name === "confirmPassword" && value && formData.password) {
       setPasswordMismatch(formData.password !== value);
     }
@@ -84,12 +101,50 @@ const Signup = () => {
     }
   };
 
-  const handleCheckAvailability = () => {
-    const isAvailable = !formData.userid.includes("admin");
-    setIsUseridAvailable(isAvailable);
+  const validatePassword = (password) => {
+    // 비밀번호 유효성 검사 규칙
+    const lowercase = /[a-z]/.test(password);
+    const uppercase = /[A-Z]/.test(password);
+    const numeric = /[0-9]/.test(password);
+    const special = /[@$!%*?&]/.test(password);
+    const length = password.length >= 8 && password.length <= 16;
+
+    let conditionsMet = 0;
+
+    if (lowercase) conditionsMet++;
+    if (uppercase) conditionsMet++;
+    if (numeric) conditionsMet++;
+    if (special) conditionsMet++;
+
+    // 조건이 2개 이상 충족되고 길이가 8에서 16 사이인 경우 유효
+    return conditionsMet >= 2 && length;
   };
 
-  const handleSubmit = () => {};
+  const handleCheckAvailability = () => {
+    if (formData.userid.length < 4) {
+      setUseridErrorMessage("4글자 이상 입력하세요.");
+      return;
+    }
+
+    const isAvailable = !formData.userid.includes("admin");
+    setIsUseridAvailable(isAvailable);
+
+    if (isAvailable) {
+      setUseridErrorMessage("");
+    }
+  };
+
+  const handleSubmit = () => {
+    if (
+      formData.userid.length < 4 ||
+      !validatePassword(formData.password) ||
+      passwordMismatch ||
+      invalidEmail
+    ) {
+      // alert("모두 작성하세요.");
+      return;
+    }
+  };
 
   const handleReset = () => {
     setFormData(initialFormData);
@@ -124,6 +179,9 @@ const Signup = () => {
               중복확인
             </button>
           </div>
+          {useridErrorMessage && (
+            <p className="isuserid_available">{useridErrorMessage}</p>
+          )}
 
           {isUseridAvailable !== null && (
             <p className="isuserid_available">
@@ -135,13 +193,16 @@ const Signup = () => {
 
           <label className="signup-label">비밀번호 </label>
           <input
-            className="signup-input"
+            className={`signup-input ${error ? "error-border" : ""}`}
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             placeholder="비밀번호를 입력해주세요."
           />
+          {passwordError && (
+            <p className="password_mismatch">{passwordError}</p>
+          )}
 
           <label className="signup-label">비밀번호 확인 </label>
           <input

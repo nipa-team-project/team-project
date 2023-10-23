@@ -91,12 +91,21 @@
     cursor: pointer;
 }
 
+.id-input,
+.signup-input:focus {
+    outline: none;
+    /* 포커스 효과 제거 */
+}
+
 .password_mismatch {
     color: red;
     margin-top: -1.9375rem;
     margin-bottom: 1.5rem;
-    margin-right: 31.5625rem;
     font-size: 0.75rem;
+}
+
+.error-border {
+    border: 0.0625rem solid red;
 }
 
 .isuserid_available {
@@ -152,9 +161,7 @@
         margin-right: 16.75rem;
     }
 
-    .password_mismatch {
-        margin-right: 8.1875rem;
-    }
+    .password_mismatch {}
 
     .isuserid_available {
         margin-right: 15.3125rem;
