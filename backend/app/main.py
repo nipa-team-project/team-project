@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from routers import account_router
+
 
 app = FastAPI()
 
-@app.get('/')
-async def first():
-    return
+
+app.include_router(account_router.router)
+
