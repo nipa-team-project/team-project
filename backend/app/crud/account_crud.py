@@ -15,8 +15,8 @@ def verify_password(plain_password, hashed_password):
 
 
 def create_account(db: Session, account: AccountCreate):
-    db_account = Account(id=account.id, password=get_password_hash(account.password),
-                         nickname=account.nickname, email=account.email,
-                         phonenumber=account.email)
+    db_account = Account(id=account.id,platform_type= account.platform_type,
+                         admin=account.admin, password=get_password_hash(account.password), nickname=account.nickname, email=account.email,
+                         phonenumber=account.phonenumber )
     db.add(db_account)
     db.commit()
