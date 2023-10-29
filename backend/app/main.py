@@ -4,8 +4,6 @@ from fastapi import FastAPI
 from routers import account_router
 from core.config import conf
 
-app = FastAPI()
-
 
 def create_app():
     c = conf()

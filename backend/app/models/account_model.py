@@ -8,8 +8,8 @@ class Account(Base):
 
     account_id = Column(BIGINT, primary_key=True, autoincrement=True)
     id = Column(String(30), unique=True, nullable=False)
-    platform_type = Column(String(1), nullable=False)
-    admin = Column(BOOLEAN, nullable=False)
+    platform_type = Column(String(1), nullable=False) # R, K, N
+    admin = Column(BOOLEAN, nullable=False) # true, false
     password = Column(String(255), nullable=False)
     nickname = Column(String(16), nullable=False)
     email = Column(String(255), unique=True, nullable=False)
