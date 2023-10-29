@@ -21,12 +21,22 @@ class Config:
 class LaptopBase(BaseModel):
     title: str
     price: int
+    price_time_sale: int
+    purchase_limit: str
     os: str
     screen_size: str
     business_usage: str
     internet_lecture_usage: str
-    gamming_usage: str
+    gaming_usage: str
     hardware: str
+    hashtag: str
+    purchase_limit: str
+    delivery_fee: str
+    product_code: int
+    own_product_code: str
+    manufacturing_company: str
+    brand: str
+    stock: str
 
 class LaptopCreate(LaptopBase):
     pass

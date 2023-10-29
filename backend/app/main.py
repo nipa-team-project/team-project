@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from routers import laptop_info_list
 from core.config import conf
 
-
 app = FastAPI()
 
 
