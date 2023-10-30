@@ -10,8 +10,11 @@ import {
   VALIDATOR_PHONE,
   VALIDATOR_PASSWORD,
 } from "../../shared/util/validator";
+import { useHttpClient } from "../../shared/hooks/http-hook"; //api호출 훅 불러오기
 
 const Mypageedit = () => {
+  const { isLoading, error, sendRequest, clearError } = useHttpClient(); //api호출 훅 불러오기
+
   const navigate = useNavigate();
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -104,7 +107,25 @@ const Mypageedit = () => {
       Object.values(authlist).every((value) => value === true) &&
       Object.values(inputlist).every((value) => value !== "")
     ) {
-      navigate("/");
+      // navigate("/");
+      const mypageedit = async () => {
+        try {
+          const responseData = await sendRequest(
+            `${process.env.REACT_APP_BACKEND_URL}/test`,
+            "POST",
+            JSON.stringify({
+              password: inputlist.pw,
+              nickname: inputlist.name,
+              email: inputlist.email,
+              phonenumber: inputlist.phone,
+            }),
+            {
+              "Content-Type": "application/json",
+            }
+          );
+        } catch (err) {}
+      };
+      mypageedit();
     }
   }, [authlist]);
 
