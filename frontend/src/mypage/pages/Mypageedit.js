@@ -108,6 +108,8 @@ const Mypageedit = () => {
       Object.values(inputlist).every((value) => value !== "")
     ) {
       // navigate("/");
+
+      //api호출 훅 실행
       const mypageedit = async () => {
         try {
           const responseData = await sendRequest(
