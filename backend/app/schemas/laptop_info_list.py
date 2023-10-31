@@ -1,28 +1,22 @@
 from pydantic import BaseModel
-from typing import List
-from datetime import datetime
+from typing import Optional, List
 
+# 순환참조 문제: 인터프립터 언어 특징상 LaptopBase에서 image를 참조해야 하므로 Imageclass를 먼저 선언
 class ImageBase(BaseModel):
+    laptop_info_list_id: int
     path: str
 
-class ImageCreate(ImageBase):
-    pass
 
 class Image(ImageBase):
     laptop_info_image_id: int
-    laptop_info_list_id: int
-    create_date: datetime
-    update_date: datetime
 
-
-class Config:
+    class Config:
         orm_mode = True
 
 class LaptopBase(BaseModel):
-    title: str
+    title: Optional[str] = None
     price: int
     price_time_sale: int
-    purchase_limit: str
     os: str
     screen_size: str
     business_usage: str
@@ -37,15 +31,14 @@ class LaptopBase(BaseModel):
     manufacturing_company: str
     brand: str
     stock: str
+    laptop_info_list_image: List[Image] = []
 
-class LaptopCreate(LaptopBase):
-    pass
 
 class Laptop(LaptopBase):
     laptop_info_list_id: int
-    create_date: datetime
-    update_date: datetime
-    images: List[Image] = []
 
     class Config:
-        from_attributes = True
+        orm_mode = True
+
+
+

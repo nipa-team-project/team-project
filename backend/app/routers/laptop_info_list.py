@@ -1,41 +1,61 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException,Response
 from sqlalchemy.orm import Session
+
 from crud import laptop_info_list as crud
 from schemas import laptop_info_list as schemas
-from db.database import db
 import logging
+from db.database import db
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-# @router.post("/laptop_info_list/", response_model=schemas.Laptop)
-# def create_laptop(laptop: schemas.LaptopCreate, db: Session = Depends(db.session)):
-#     return crud.create_laptop(db=db, laptop=laptop)
+# @router.get("/purchase/goods/", response_model=List[schemas.Laptop])
+# def read_laptops(skip: int = 0, limit: int = 10, db: Session = Depends(db.session)):
+#     laptops = crud.get_laptops(db, skip=skip, limit=limit)
+#     return laptops
 
+# @router.get("/purchase/goods/", response_model=List[schemas.Laptop])
+# def read_laptops(skip: int = 0, limit: int = 10, db: Session = Depends(db.session)):
+#     try:
+#         laptops = crud.get_laptops(db, skip=skip, limit=limit)
+#         if laptops is None:
+#             raise ValueError
+#         return Response(content=laptops, status_code=200)
+#     except ValueError:
+#         raise HTTPException(status_code=404, detail="Laptops not found")
+#     except Exception:
+#         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @router.get("/purchase/goods/", response_model=List[schemas.Laptop])
-def read_laptops(skip: int = 0, limit: int = 100, db: Session = Depends(db.session)):
+def read_laptops(skip: int = 0, limit: int = 10, db: Session = Depends(db.session)):
     try:
         laptops = crud.get_laptops(db, skip=skip, limit=limit)
+        if laptops is None or len(laptops) == 0:
+            raise ValueError
         return laptops
-    except Exception as e:
-        print(logger.error(e))
-        raise HTTPException(status_code=500, detail="An error occurred.")
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Laptops not found")
+    except Exception:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
-# @router.get("/purchase/goods/details/{laptop_id}", response_model=schemas.Laptop)
-# def read_laptop(laptop_id: int, db: Session = Depends(db.session)):
-#     db_laptop = crud.get_laptop(db, laptop_id=laptop_id)
-#     if db_laptop is None:
-#         raise HTTPException(status_code=404, detail="Laptop not found")
-#     return db_laptop
+# @router.post("/purchase/{laptop_id}/goods/details/", response_model=List[schemas.Image])
+# def get_laptop_images(laptop_id: int, db: Session = Depends(db.session)):
+#     images = crud.get_laptop(db, laptop_id=laptop_id)
+#     return images
 
-@router.post("/purchase/goods/details/{laptop_id}/", response_model=List[schemas.Image])
-def read_images(laptop_id: int, db: Session = Depends(db.session)):
-    # 데이터베이스에서 laptop_id에 해당하는 Laptop을 조회합니다.
-    db_laptop = crud.get_laptop(db, laptop_id=laptop_id)
-    if db_laptop is None:
-        raise HTTPException(status_code=404, detail="Laptop not found")
-    return db_laptop.images
+
+@router.post("/purchase/{laptop_id}/goods/details/", response_model=List[schemas.Image])
+def get_laptop_images(laptop_id: int, db: Session = Depends(db.session)):
+    try:
+        images = crud.get_laptop(db, laptop_id=laptop_id)
+        if images is None or len(images) == 0:
+            raise ValueError
+        return images
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Images not found for the given laptop ID")
+    except Exception:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+
