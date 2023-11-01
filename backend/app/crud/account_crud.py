@@ -32,7 +32,6 @@ def get_account(db: Session, id: str):
 
 def update_account(db: Session, token: str, account: AccountUpdate):
     decode_token_id = int(util.decode_token(token))
-    print(decode_token_id)
     db.execute(
         update(Account).where(Account.account_id == decode_token_id).values(password=get_password_hash(account.password),
                                                                nickname=account.nickname, email=account.email, phonenumber=account.phonenumber, update_date=datetime.now())
