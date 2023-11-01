@@ -1,2 +1,3 @@
-core/config.py
-core/util.py
+config.py
+util.py
+redis_config.py

@@ -10,10 +10,10 @@ def create_app():
     app = FastAPI()
     conf_dict = asdict(c)
     database.db.init_app(app, **conf_dict)
-    app.include_router(account_router.router)
-
     return app
 
-
 app = create_app()
+
+app.include_router(account_router.router)
+
 

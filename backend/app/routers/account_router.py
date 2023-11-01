@@ -36,15 +36,16 @@ async def account_login(form_data: OAuth2PasswordRequestForm = Depends(),
         )
 
     rd = redis_config()
+    two_weeks = 1209600
     refresh_token = util.create_refresh_token(account.account_id)
-    rd.set(refresh_token, account.account_id)
+    rd.setex(refresh_token, two_weeks, account.account_id)
 
     return {"access_token": util.create_access_token(account.account_id),
             "refresh_token": refresh_token}
 
 
 @router.post("/accounts/refresh-token", status_code=status.HTTP_200_OK)
-async def account_refresh_token_checking(refresh_token_key: str):
+async def account_refresh_token_check(refresh_token_key: str):
     rd = redis_config()
     check = rd.get(refresh_token_key)
 
@@ -52,6 +53,12 @@ async def account_refresh_token_checking(refresh_token_key: str):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     return {"access_token": util.create_access_token(int(check))}
+
+
+@router.post("/accounts/logout", status_code=status.HTTP_200_OK)
+async def account_logout(refresh_token_key: str):
+    rd = redis_config()
+    rd.delete(refresh_token_key)
 
 
 
@@ -90,14 +97,14 @@ async def get_sns_account(
     return {"account": user_info}
 
 
-@router.get("/accounts/duplicate/",)
+@router.get("/accounts/duplicate", status_code=status.HTTP_200_OK)
 async def account_id_check(id: str, session: Session = Depends(db.session)):
     check = account_crud.get_account(session, id)
-    print(check)
 
     if check:
         raise HTTPException(status_code=400)
 
-    raise HTTPException(status_code=200)
 
-
+@router.patch("/accounts", status_code=status.HTTP_200_OK)
+async def account_info_update(token: str, account: account_schema.AccountUpdate, session: Session = Depends(db.session)):
+    account_crud.update_account(db=session, token=token, account=account)
