@@ -153,7 +153,7 @@ const PurchaseForm = () => {
           똑똑한 AI와 함께 편리한 판매를 경험해보세요.
         </div>
 
-        <Link className="go_ratingsystem" to="/">
+        <Link className="go_ratingsystem" to="/main/ratingsystem">
           등급제 보러가기
         </Link>
       </div>
