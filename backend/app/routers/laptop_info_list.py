@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 #         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @router.get("/purchase/goods/", response_model=List[schemas.Laptop])
-def read_laptops(skip: int = 0, limit: int = 10, db: Session = Depends(db.session)):
+def read_laptops(skip: int = 0, limit: int = 6, db: Session = Depends(db.session)):
     try:
         laptops = crud.get_laptops(db, skip=skip, limit=limit)
         if laptops is None or len(laptops) == 0:
@@ -59,3 +59,29 @@ def get_laptop_images(laptop_id: int, db: Session = Depends(db.session)):
     except Exception:
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
+
+@router.get("/purchase/goods/asc/{rating}", response_model=List[schemas.Laptop])
+def read_laptops(rating: str = "", skip: int = 0, limit: int = 6,  db: Session = Depends(db.session)):
+    try:
+        laptops = crud.get_laptops_asc(db, skip=skip, limit=limit, rating = rating)
+        if laptops is None or len(laptops) == 0:
+            raise ValueError
+        return laptops
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Laptops not found")
+    except Exception:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+
+
+
+@router.get("/purchase/goods/desc/{rating}", response_model=List[schemas.Laptop])
+def read_laptops(rating: str = "", skip: int = 0, limit: int = 6,  db: Session = Depends(db.session)):
+    try:
+        laptops = crud.get_laptops_desc(db, skip=skip, limit=limit, rating = rating)
+        if laptops is None or len(laptops) == 0:
+            raise ValueError
+        return laptops
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Laptops not found")
+    except Exception:
+        raise HTTPException(status_code=500, detail="Internal Server Error")

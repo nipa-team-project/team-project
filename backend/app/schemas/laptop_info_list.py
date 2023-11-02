@@ -31,6 +31,7 @@ class LaptopBase(BaseModel):
     manufacturing_company: str
     brand: str
     stock: str
+    rank: str
     laptop_info_list_image: List[Image] = []
 
 
