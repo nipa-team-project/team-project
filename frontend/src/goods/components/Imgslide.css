@@ -13,8 +13,8 @@
 .imgslide_img {
   width: 6.5rem;
   height: 3.875rem;
-  /* border: solid 1px #759cff;
-  border-radius: 5px; */
+  border: solid 1px #759cff;
+  border-radius: 5px;
 }
 @media (max-width: 768px) {
   .imgslide {

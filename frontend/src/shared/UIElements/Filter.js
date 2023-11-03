@@ -56,16 +56,6 @@ const Filter = (props) => {
 
   const [filter, setFilter] = useState({
     //filter 내용 초기값 지정
-    date: `${
-      searchParams.get("date") === null
-        ? "all"
-        : datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
-    }`,
-    name: `${
-      searchParams.get("name") === null
-        ? "all"
-        : namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
-    }`,
     rating: `${
       searchParams.get("rating") === null
         ? "all"
@@ -75,13 +65,24 @@ const Filter = (props) => {
       ? {
           price: `${
             searchParams.get("price") === null
-              ? "all"
+              ? "ascending"
               : datearray[
                   parseInt(datearray.indexOf(searchParams.get("price")))
                 ]
           }`,
         }
-      : {}),
+      : {
+          date: `${
+            searchParams.get("date") === null
+              ? "descending"
+              : datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
+          }`,
+          name: `${
+            searchParams.get("name") === null
+              ? "ascending"
+              : namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
+          }`,
+        }),
   });
   const filtersave = () => {
     //저장하기 클릭 시 filter에 따른 쿼리 생성
@@ -116,16 +117,6 @@ const Filter = (props) => {
     }
 
     setFilter({
-      date: `${
-        searchParams.get("date") === null
-          ? "all"
-          : datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
-      }`,
-      name: `${
-        searchParams.get("name") === null
-          ? "all"
-          : namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
-      }`,
       rating: `${
         searchParams.get("rating") === null
           ? "all"
@@ -143,7 +134,22 @@ const Filter = (props) => {
                   ]
             }`,
           }
-        : {}),
+        : {
+            date: `${
+              searchParams.get("date") === null
+                ? "all"
+                : datearray[
+                    parseInt(datearray.indexOf(searchParams.get("date")))
+                  ]
+            }`,
+            name: `${
+              searchParams.get("name") === null
+                ? "all"
+                : namearray[
+                    parseInt(namearray.indexOf(searchParams.get("name")))
+                  ]
+            }`,
+          }),
     });
   };
 
@@ -184,50 +190,57 @@ const Filter = (props) => {
             </div>
           </>
         )}
-        <div className={pricecheck ? "filter-modal_name" : "filter-modal_date"}>
-          날짜
-        </div>
-        <div style={{ display: "flex" }}>
-          {[
-            ["전체", "all"],
-            ["오름차순", "ascending"],
-            ["내림차순", "descending"],
-          ].map((menu, index) => (
+        {!pricecheck && (
+          <>
             <div
-              key={index}
-              className={`filter-modal_menu center ${
-                dateIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
-              }`}
-              onClick={() => {
-                setDateIndex(index);
-                setFilter((prev) => ({ ...prev, date: `${menu[1]}` }));
-              }}
+              className={pricecheck ? "filter-modal_name" : "filter-modal_date"}
             >
-              {menu[0]}
+              날짜
             </div>
-          ))}
-        </div>
-        <div className="filter-modal_name">이름</div>
-        <div style={{ display: "flex" }}>
-          {[
-            ["전체", "all"],
-            ["오름차순", "ascending"],
-            ["내림차순", "descending"],
-          ].map((menu, index) => (
-            <div
-              key={index}
-              className={`filter-modal_menu center ${
-                nameIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
-              }`}
-              onClick={() => {
-                setNameIndex(index);
-                setFilter((prev) => ({ ...prev, name: `${menu[1]}` }));
-              }}
-            >
-              {menu[0]}
+            <div style={{ display: "flex" }}>
+              {[
+                ["전체", "all"],
+                ["오름차순", "ascending"],
+                ["내림차순", "descending"],
+              ].map((menu, index) => (
+                <div
+                  key={index}
+                  className={`filter-modal_menu center ${
+                    dateIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
+                  }`}
+                  onClick={() => {
+                    setDateIndex(index);
+                    setFilter((prev) => ({ ...prev, date: `${menu[1]}` }));
+                  }}
+                >
+                  {menu[0]}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+            <div className="filter-modal_name">이름</div>
+            <div style={{ display: "flex" }}>
+              {[
+                ["전체", "all"],
+                ["오름차순", "ascending"],
+                ["내림차순", "descending"],
+              ].map((menu, index) => (
+                <div
+                  key={index}
+                  className={`filter-modal_menu center ${
+                    nameIndex === index ? " filter-modal_menu_active" : "" //선택된 메뉴 css 변경
+                  }`}
+                  onClick={() => {
+                    setNameIndex(index);
+                    setFilter((prev) => ({ ...prev, name: `${menu[1]}` }));
+                  }}
+                >
+                  {menu[0]}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
         <div className="filter-modal_name">등급</div>
         <div style={{ display: "flex", flexWrap: "wrap", width: "14rem" }}>
           {[
