@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import Goods from "./Goods";
 import Goodsview from "./Goodsview";
-import { useHttpClient } from "../../shared/hooks/http-hook"; //api호출 훅 불러오기
+import { useHttpClient } from "../components/Goods-http-hook"; //api호출 훅 불러오기
 
 const Goodsroute = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -12,23 +12,35 @@ const Goodsroute = () => {
     setSearchParams(searchParams);
   };
 
-  const { isLoading, error, sendRequest, clearError, setIsLoading } =
-    useHttpClient();
+  const { isLoading, sendRequest, setIsLoading } = useHttpClient();
   const [loadedGoods, setLoadedGoods] = useState([]);
-  const [page, setPage] = useState(0);
+  const [totalcount, setTotalcount] = useState(100);
+  const [error, setError] = useState();
+  const currentPath = window.location.pathname;
   useEffect(() => {
+    setError();
     const fetchgoods = async (event) => {
       try {
-        const responseData = await sendRequest(
-          `http://127.0.0.1:8000/purchase/goods/?skip=${
-            searchParams.get("page") ? 6 * (searchParams.get("page") - 1) : 0
+        const { responseData, total_count } = await sendRequest(
+          `http://127.0.0.1:8000/purchase/goods/${
+            searchParams.get("price") ? searchParams.get("price") : "asc"
+          }?${
+            searchParams.get("page") ? `page=${searchParams.get("page")}` : ""
+          }${
+            searchParams.get("rating") && searchParams.get("rating") != ""
+              ? `&rating=${searchParams.get("rating")}`
+              : ""
           }`
         );
-
+        setTotalcount(total_count);
         setLoadedGoods(responseData);
-      } catch (err) {}
+      } catch (err) {
+        setError(err);
+      }
     };
-    fetchgoods();
+    if (currentPath === "/main/goods") {
+      fetchgoods();
+    }
   }, [searchParams]);
 
   return (
@@ -44,14 +56,21 @@ const Goodsroute = () => {
               searchParams={searchParams}
               setSearchParams={setSearchParams}
               searchparamshandler={searchparamshandler}
+              totalcount={totalcount}
+              error={error}
             />
           }
         />
+
         <Route
           path="/detail/:goodsNo"
           exact
           element={
-            <Goodsview isLoading={isLoading} loadedGoods={loadedGoods} />
+            <Goodsview
+              isLoading={isLoading}
+              loadedGoods={loadedGoods}
+              searchParams={searchParams}
+            />
           }
         />
       </Routes>

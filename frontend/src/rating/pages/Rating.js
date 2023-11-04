@@ -174,6 +174,7 @@ const Rating = () => {
           searchParams={searchParams}
           setSearchParams={setSearchParams}
           searchparamshandler={searchparamshandler}
+          itemcount={9}
         ></Page>
       </div>
     </React.Fragment>

@@ -26,28 +26,28 @@ const Filter = (props) => {
     filtercancle();
   };
 
-  const pricearray = ["all", "ascending", "descending"]; //쿼리에 따라 name 메뉴 체크
+  const pricearray = ["all", "asc", "desc"]; //쿼리에 따라 name 메뉴 체크
   const [priceIndex, setPriceIndex] = useState(
     searchParams.get("price") === null
       ? 0
       : parseInt(pricearray.indexOf(searchParams.get("price")))
   );
 
-  const datearray = ["all", "ascending", "descending"]; //쿼리에 따라 date 메뉴 체크
+  const datearray = ["all", "asc", "desc"]; //쿼리에 따라 date 메뉴 체크
   const [dateIndex, setDateIndex] = useState(
     searchParams.get("date") === null
       ? 0
       : parseInt(datearray.indexOf(searchParams.get("date")))
   );
 
-  const namearray = ["all", "ascending", "descending"]; //쿼리에 따라 name 메뉴 체크
+  const namearray = ["all", "asc", "desc"]; //쿼리에 따라 name 메뉴 체크
   const [nameIndex, setNameIndex] = useState(
     searchParams.get("name") === null
       ? 0
       : parseInt(namearray.indexOf(searchParams.get("name")))
   );
 
-  const ratingarray = ["all", "ss", "s", "a", "b", "c"]; //쿼리에 따라 name 메뉴 체크
+  const ratingarray = ["", "ss", "s", "a", "b", "c"]; //쿼리에 따라 name 메뉴 체크
   const [ratingIndex, setRatingIndex] = useState(
     searchParams.get("rating") === null
       ? 0
@@ -58,14 +58,14 @@ const Filter = (props) => {
     //filter 내용 초기값 지정
     rating: `${
       searchParams.get("rating") === null
-        ? "all"
+        ? ""
         : ratingarray[parseInt(ratingarray.indexOf(searchParams.get("rating")))]
     }`,
     ...(pricecheck
       ? {
           price: `${
             searchParams.get("price") === null
-              ? "ascending"
+              ? "asc"
               : datearray[
                   parseInt(datearray.indexOf(searchParams.get("price")))
                 ]
@@ -74,12 +74,12 @@ const Filter = (props) => {
       : {
           date: `${
             searchParams.get("date") === null
-              ? "descending"
+              ? "desc"
               : datearray[parseInt(datearray.indexOf(searchParams.get("date")))]
           }`,
           name: `${
             searchParams.get("name") === null
-              ? "ascending"
+              ? "asc"
               : namearray[parseInt(namearray.indexOf(searchParams.get("name")))]
           }`,
         }),
@@ -88,6 +88,7 @@ const Filter = (props) => {
     //저장하기 클릭 시 filter에 따른 쿼리 생성
     for (const key in filter) {
       searchparamshandler(`${key}`, `${filter[key]}`);
+      searchparamshandler(`page`, 1);
     }
   };
   const filtercancle = () => {
@@ -119,7 +120,7 @@ const Filter = (props) => {
     setFilter({
       rating: `${
         searchParams.get("rating") === null
-          ? "all"
+          ? ""
           : ratingarray[
               parseInt(ratingarray.indexOf(searchParams.get("rating")))
             ]
@@ -128,7 +129,7 @@ const Filter = (props) => {
         ? {
             price: `${
               searchParams.get("price") === null
-                ? "all"
+                ? "asc"
                 : datearray[
                     parseInt(datearray.indexOf(searchParams.get("price")))
                   ]
@@ -170,9 +171,9 @@ const Filter = (props) => {
             <div className="filter-modal_date">가격</div>
             <div style={{ display: "flex" }}>
               {[
-                ["전체", "all"],
-                ["오름차순", "ascending"],
-                ["내림차순", "descending"],
+                ["전체", "asc"],
+                ["오름차순", "asc"],
+                ["내림차순", "desc"],
               ].map((menu, index) => (
                 <div
                   key={index}
@@ -200,8 +201,8 @@ const Filter = (props) => {
             <div style={{ display: "flex" }}>
               {[
                 ["전체", "all"],
-                ["오름차순", "ascending"],
-                ["내림차순", "descending"],
+                ["오름차순", "asc"],
+                ["내림차순", "desc"],
               ].map((menu, index) => (
                 <div
                   key={index}
@@ -221,8 +222,8 @@ const Filter = (props) => {
             <div style={{ display: "flex" }}>
               {[
                 ["전체", "all"],
-                ["오름차순", "ascending"],
-                ["내림차순", "descending"],
+                ["오름차순", "asc"],
+                ["내림차순", "desc"],
               ].map((menu, index) => (
                 <div
                   key={index}
@@ -244,7 +245,7 @@ const Filter = (props) => {
         <div className="filter-modal_name">등급</div>
         <div style={{ display: "flex", flexWrap: "wrap", width: "14rem" }}>
           {[
-            ["전체", "all"],
+            ["전체", ""],
             ["SS", "ss"],
             ["S", "s"],
             ["A", "a"],
