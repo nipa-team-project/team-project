@@ -17,7 +17,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["X-Total-Count"]  # 사용자 정의 헤더 이름을 여기에 넣음
+    expose_headers=["total_count"]  # 사용자 정의 헤더 이름을 여기에 넣음
 )
 
 
