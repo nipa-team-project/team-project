@@ -17,7 +17,7 @@ class Config:
 
 @dataclass
 class LocalConfig(Config):
-    DB_URL: str = "mysql+pymysql://root:191212@127.0.0.1:3306/refurlab?charset=utf8mb4"
+    DB_URL: str = "mysql+pymysql://root:pcy0304$@127.0.0.1:3306/refurlab?charset=utf8mb4"
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
 
