@@ -14,10 +14,8 @@ def get_account(db: Session, id: str, name: str, page: int = 1):
         query
         .order_by(models.Account.account_id)
         .offset(skip)
-        .filter(models.Account.id == id, models.Account.admin == True, models.Account.nickname.like(f"%{name}%"))
+        # .filter(models.Account.id == id, models.Account.admin == True, models.Account.nickname.like(f"%{name}%"))
+        .filter(models.Account.id == id, models.Account.nickname.like(f"%{name}%"))
         .all(),
         data_count
     )
-
-
-
