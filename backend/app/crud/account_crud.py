@@ -1,5 +1,5 @@
 from passlib.context import CryptContext
-from sqlalchemy import update
+from sqlalchemy import update, select
 from datetime import datetime
 from sqlalchemy.orm import Session
 from schemas.account_schema import AccountCreate,AccountUpdate
@@ -37,3 +37,9 @@ def update_account(db: Session, token: str, account: AccountUpdate):
                                                                nickname=account.nickname, email=account.email, phonenumber=account.phonenumber, update_date=datetime.now())
     )
     db.commit()
+
+
+def get_account_info(db: Session, token: str):
+    token_id = int(util.decode_token(token))
+
+    return db.query(Account).filter(Account.account_id == token_id).first()
