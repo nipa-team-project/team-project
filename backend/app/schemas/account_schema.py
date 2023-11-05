@@ -11,7 +11,6 @@ class AccountCreate(BaseModel):
     nickname: str
     email: EmailStr
     phonenumber: str = Field(title='휴대전화', pattern='^010-([0-9]{4})-([0-9]{4})$')
-    create_date: datetime
 
     class Config:
         orm_mode: True
@@ -33,4 +32,3 @@ class AccountUpdate(BaseModel):
     nickname: str
     email: EmailStr
     phonenumber: str = Field(title='휴대전화', pattern='^010-([0-9]{4})-([0-9]{4})$')
-    update_date: datetime
