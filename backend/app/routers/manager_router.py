@@ -46,9 +46,3 @@ def read_laptop_info_list(page: int = 1, name: str = None, db: Session = Depends
         raise HTTPException(status_code=404, detail="No laptop info found")
 
     return {"laptop_info_list": laptop_info_list, "data_count": data_count}
-
-
-    if not laptop_info_list:
-        raise HTTPException(status_code=404, detail="No admin accounts found")
-
-    return {"accounts": laptop_info_list, "data_count": data_count}
