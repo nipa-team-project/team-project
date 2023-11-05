@@ -1,6 +1,8 @@
 # models 파일은 데이터베이스 테이블과 매칭되는 모델
-from sqlalchemy import Column, BIGINT, String, BOOLEAN, DATETIME, func
+from sqlalchemy import Column, BIGINT, String, BOOLEAN, DateTime
+from datetime import datetime
 from db.database import Base
+import pytz
 
 
 class Account(Base):
@@ -14,5 +16,5 @@ class Account(Base):
     nickname = Column(String(16), nullable=False)
     email = Column(String(255), unique=True, nullable=False)
     phonenumber = Column(String(255), unique=True, nullable=False)
-    create_date = Column(DATETIME, nullable=False, default=func.utc_timestamp())
-    update_date = Column(DATETIME)
+    create_date = Column(DateTime, nullable=True, default=datetime.now(pytz.timezone("Asia/Seoul")))
+    update_date = Column(DateTime, nullable=True)
