@@ -17,7 +17,7 @@ ALGORITHM = "HS256"
 def encode_token(account: Union[str, int], expire: timedelta):
     if account:
         data = {
-            'sub': account,
+            'sub': str(account),
             'iat': datetime.utcnow(),
             'exp': datetime.utcnow() + expire
         }
@@ -28,7 +28,7 @@ def encode_token(account: Union[str, int], expire: timedelta):
 
 def decode_token(token: str):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithm=ALGORITHM)
+        payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
         return payload["sub"]
     except ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
