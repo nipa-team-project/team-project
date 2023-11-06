@@ -55,7 +55,12 @@ const Mypageedit = () => {
     const loadmydata = async () => {
       try {
         const responseData = await sendRequest(
-          `http://127.0.0.1:8000/accounts?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk5MTcwNDQ3LCJleHAiOjE2OTkxNzQwNDd9.n5fZZlMnw_03Xh1W6xt9sSnzarszroHXw7nKh-Vs1A4`
+          `http://127.0.0.1:8000/accounts`,
+          "GET",
+          null,
+          {
+            token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk5MTg2NTg3LCJleHAiOjE2OTkxOTAxODd9.FnU4sl_rhmjrTpARChzqc9I7PbQapQBcv_K5425w0Sw`, // 헤더에 토큰 추가
+          }
         );
 
         await setGetData(responseData.response);
@@ -136,7 +141,7 @@ const Mypageedit = () => {
       const mypageedit = async () => {
         try {
           const responseData = await sendRequest(
-            `http://127.0.0.1:8000/accounts?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk5MTcwNDQ3LCJleHAiOjE2OTkxNzQwNDd9.n5fZZlMnw_03Xh1W6xt9sSnzarszroHXw7nKh-Vs1A4`,
+            `http://127.0.0.1:8000/accounts?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk5MTg2NTg3LCJleHAiOjE2OTkxOTAxODd9.FnU4sl_rhmjrTpARChzqc9I7PbQapQBcv_K5425w0Sw`,
             "PATCH",
             JSON.stringify({
               password: inputlist.pw,
@@ -147,6 +152,7 @@ const Mypageedit = () => {
             }),
             {
               "Content-Type": "application/json",
+              token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk5MTg2NTg3LCJleHAiOjE2OTkxOTAxODd9.FnU4sl_rhmjrTpARChzqc9I7PbQapQBcv_K5425w0Sw`,
             }
           );
         } catch (err) {}
