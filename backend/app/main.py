@@ -2,9 +2,10 @@ from dataclasses import asdict
 from db import database
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import account_router
+from routers import account_router, laptop_info_list
 from core.config import conf
 from routers import laptop_info_list
+
 
 def create_app():
     c = conf()
@@ -21,9 +22,11 @@ def create_app():
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["total_count"],
     )
-
+   
     return app
+
 
 app = create_app()
 

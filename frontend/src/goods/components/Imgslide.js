@@ -32,6 +32,9 @@ const Imgslide = (props) => {
               src={image}
               className="imgslide_img"
               alt="imgslideimg"
+              onClick={() => {
+                props.setMainImg(image);
+              }}
             ></img>
           )
       )}

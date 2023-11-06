@@ -6,7 +6,7 @@ const Page = (props) => {
   const searchParams = props.searchParams;
   const setSearchParams = props.setSearchParams;
   const searchparamshandler = props.searchparamshandler;
-  const page = Math.ceil(props.itemlen / 9); //데이터 총 개수에 따라 페이지 계산
+  const page = Math.ceil(props.itemlen / props.itemcount); //데이터 총 개수에 따라 페이지 계산
   const pagearray = [];
   for (let i = 1; i < page + 1; i++) {
     pagearray.push(i);

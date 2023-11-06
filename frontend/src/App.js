@@ -11,6 +11,7 @@ import MainNavigation from "./shared/Navigation/MainNavigation";
 const Main = React.lazy(() => import("./main/pages/Main"));
 const Mypage = React.lazy(() => import("./mypage/pages/Mypage"));
 const Admin = React.lazy(() => import("./admin/pages/Admin"));
+const Goodsroute = React.lazy(() => import("./goods/pages/Goodsroute"));
 const Goods = React.lazy(() => import("./goods/pages/Goods"));
 const Goodsview = React.lazy(() => import("./goods/pages/Goodsview"));
 const Rating = React.lazy(() => import("./rating/pages/Rating"));
@@ -48,13 +49,12 @@ function App() {
                 element={accessToken ? <Rating /> : <Navigate to="/login" />}
               />
               <Route
-                path="/main/goods"
-                element={accessToken ? <Goods /> : <Navigate to="/login" />}
+                path="/main/goods/*"
+                element={
+                  accessToken ? <Goodsroute /> : <Navigate to="/login" />
+                }
               />
-              <Route
-                path="/main/goods/:goodsNo"
-                element={accessToken ? <Goodsview /> : <Navigate to="/login" />}
-              />
+
               <Route
                 path="/admin/*"
                 element={accessToken ? <Admin /> : <Navigate to="/login" />}
