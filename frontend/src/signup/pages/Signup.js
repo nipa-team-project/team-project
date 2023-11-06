@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useHttpClient } from "../../shared/hooks/http-hook"; //api호출
+import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 
 const Signup = () => {
+  const { isLoading, sendRequest, clearError, setIsLoading } = useHttpClient();
+  const navigate = useNavigate();
+
   const initialFormData = {
-    userid: "",
+    id: "",
     password: "",
     confirmPassword: "",
     name: "",
     email: "",
     phoneNumber: "",
+    platformType: "", // 추가: 플랫폼 타입
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const [isUseridAvailable, setIsUseridAvailable] = useState(null);
-  const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const [isidAvailable, setIsidAvailable] = useState(null);
+  const [passwordMismatch, setPasswordMismatch] = useState(true);
   const [invalidEmail, setInvalidEmail] = useState(false);
-  const [useridErrorMessage, setUseridErrorMessage] = useState("");
+  const [idErrorMessage, setidErrorMessage] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [error, setError] = useState(false);
 
@@ -92,12 +98,16 @@ const Signup = () => {
       }
     }
 
-    if (name === "confirmPassword" && value && formData.password) {
-      setPasswordMismatch(formData.password !== value);
+    if (name === "confirmPassword") {
+      setPasswordMismatch(value !== formData.password); // 비밀번호 확인과 일치 여부 확인
+    } else if (name === "password" && formData.confirmPassword) {
+      setPasswordMismatch(formData.confirmPassword !== value);
+    } else {
+      setPasswordMismatch(false);
     }
 
-    if (name === "userid") {
-      setIsUseridAvailable(null);
+    if (name === "id") {
+      setIsidAvailable(null);
     }
   };
 
@@ -120,36 +130,88 @@ const Signup = () => {
     return conditionsMet >= 2 && length;
   };
 
-  const handleCheckAvailability = () => {
-    if (formData.userid.length < 4) {
-      setUseridErrorMessage("4글자 이상 입력하세요.");
+  const handleCheckAvailability = async () => {
+    if (formData.id.length < 4) {
+      setidErrorMessage("4글자 이상 입력하세요.");
+      setIsidAvailable(null);
       return;
+    } else {
+      setidErrorMessage(""); // Reset the error message
     }
 
-    const isAvailable = !formData.userid.includes("admin");
-    setIsUseridAvailable(isAvailable);
+    try {
+      const response = await sendRequest(
+        `http://127.0.0.1:8000/accounts/duplicate?id=${formData.id}`
+      );
 
-    if (isAvailable) {
-      setUseridErrorMessage("");
+      if (response && response.status === 200) {
+        if (response.data.isidAvailable) {
+          setidErrorMessage("사용 가능한 아이디입니다.");
+        } else {
+          setidErrorMessage("이미 사용중인 아이디입니다.");
+        }
+      } else if (response && response.status === 400) {
+        setidErrorMessage("사용 가능한 아이디입니다.");
+      } else {
+        console.error("사용 가능한 아이디:", response);
+
+        setIsidAvailable(true);
+      }
+    } catch (error) {
+      setIsidAvailable();
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (
-      formData.userid.length < 4 ||
-      !validatePassword(formData.password) ||
+      formData.id.length < 4 ||
+      // !isidAvailable || // 이 줄이 변경된 부분
+      isidAvailable === false || // 변경된 부분
+      !validatePassword(formData.password) || // 비밀번호 규칙 확인
       passwordMismatch ||
-      invalidEmail
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ||
+      !/^010-([0-9]{4})-([0-9]{4})$/.test(formData.phoneNumber) ||
+      formData.name.trim() === "" ||
+      formData.phoneNumber.trim() === ""
     ) {
-      // alert("모두 작성하세요.");
+      alert("모두 올바르게 작성하세요.");
       return;
+    }
+
+    try {
+      const formDataToSend = {
+        id: formData.id,
+        platform_type: "R",
+        admin: false,
+        password: formData.password,
+        nickname: formData.name,
+        email: formData.email,
+        phonenumber: formData.phoneNumber,
+        create_date: new Date().toISOString(),
+      };
+
+      const responseData = await sendRequest(
+        "http://127.0.0.1:8000/accounts",
+        "POST",
+        JSON.stringify(formDataToSend),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+
+      console.log("성공");
+      // 성공적으로 회원가입한 경우의 로직
+      navigate("/login");
+    } catch (err) {
+      // 오류 처리
+      console.log("실패");
     }
   };
 
   const handleReset = () => {
     setFormData(initialFormData);
     setPasswordMismatch(false);
-    setIsUseridAvailable(null);
+    setIsidAvailable(null);
   };
 
   return (
@@ -165,8 +227,8 @@ const Signup = () => {
           <div className="id-content">
             <input
               type="text"
-              name="userid"
-              value={formData.userid}
+              name="id"
+              value={formData.id}
               onChange={handleChange}
               className="id-input"
               placeholder="아이디를 입력해주세요."
@@ -179,13 +241,17 @@ const Signup = () => {
               중복확인
             </button>
           </div>
-          {useridErrorMessage && (
-            <p className="isuserid_available">{useridErrorMessage}</p>
+          {idErrorMessage && (
+            <p className="isuserid_available">{idErrorMessage}</p>
           )}
 
-          {isUseridAvailable !== null && (
-            <p className="isuserid_available">
-              {isUseridAvailable
+          {isidAvailable !== null && (
+            <p
+              className={`isuserid_available ${
+                isidAvailable ? "available" : "used"
+              }`}
+            >
+              {isidAvailable
                 ? "사용 가능한 아이디입니다."
                 : "이미 사용 중인 아이디입니다."}
             </p>
@@ -206,7 +272,9 @@ const Signup = () => {
 
           <label className="signup-label">비밀번호 확인 </label>
           <input
-            className="signup-input"
+            className={`signup-input ${
+              formData.confirmPassword && passwordMismatch ? "error-border" : ""
+            }`}
             type="password"
             name="confirmPassword"
             value={formData.confirmPassword}

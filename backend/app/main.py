@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import account_router
 from core.config import conf
+from routers import laptop_info_list
 
 def create_app():
     c = conf()
@@ -11,11 +12,12 @@ def create_app():
     conf_dict = asdict(c)
     database.db.init_app(app, **conf_dict)
     app.include_router(account_router.router)
+    app.include_router(laptop_info_list.router)
 
     # CORS 미들웨어 추가
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["http://localhost:3000"],
+        allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -26,5 +28,6 @@ def create_app():
 app = create_app()
 
 app.include_router(account_router.router)
+app.include_router(laptop_info_list.router)
 
 

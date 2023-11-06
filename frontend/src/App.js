@@ -1,5 +1,8 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Provider } from "react-redux";
+
+import store from "../src/redux/store";
 
 import "./App.css";
 
@@ -29,38 +32,66 @@ const PurchaseForm = React.lazy(() =>
 );
 
 function App() {
+  const accessToken = localStorage.getItem("accessToken");
   return (
-    <BrowserRouter>
-      <MainNavigation />
-      <main>
-        <Suspense>
-          {/* <Navigate exact from="/" to="/result" /> */}
-          <Routes>
-            <Route path="/" element={<Navigate to="/main" />} />
-            <Route path="/main" exact element={<Main />} />
-            <Route path="/main/rating" exact element={<Rating />} />
-            <Route path="/main/goods" exact element={<Goods />} />
-            <Route path="/main/goods/:goodsNo" exact element={<Goodsview />} />
-            <Route path="/admin/*" exact element={<Admin />} />
-            <Route path="/mypage" exact element={<Mypage />} />
-            <Route path="/main/ratingsystem" exact element={<Ratingsystem />} />
-            <Route path="/loading" element={<Loading />} />
-            <Route
-              path="/result"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <Result />
-                </Suspense>
-              }
-            />
-            <Route path="/process" element={<Process />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" exact element={<Signup />} />
-            <Route path="/purchaseform" exact element={<PurchaseForm />} />
-          </Routes>
-        </Suspense>
-      </main>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainNavigation />
+        <main>
+          <Suspense>
+            {/* <Navigate exact from="/" to="/result" /> */}
+            <Routes>
+              <Route path="/" element={<Navigate to="/main" />} />
+              <Route path="/main" exact element={<Main />} />
+              <Route
+                path="/main/rating"
+                element={accessToken ? <Rating /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/main/goods"
+                element={accessToken ? <Goods /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/main/goods/:goodsNo"
+                element={accessToken ? <Goodsview /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/admin/*"
+                element={accessToken ? <Admin /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/mypage"
+                element={accessToken ? <Mypage /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/main/ratingsystem"
+                element={
+                  accessToken ? <Ratingsystem /> : <Navigate to="/login" />
+                }
+              />
+              <Route path="/loading" element={<Loading />} />
+              <Route
+                path="/result"
+                element={
+                  <Suspense fallback={<Loading />}>
+                    <Result />
+                  </Suspense>
+                }
+              />
+              <Route path="/process" element={<Process />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" exact element={<Signup />} />
+              <Route
+                path="/purchaseform"
+                element={
+                  accessToken ? <PurchaseForm /> : <Navigate to="/login" />
+                }
+              />
+            </Routes>
+          </Suspense>
+        </main>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

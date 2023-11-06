@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook"; //api호출 훅 불러오기
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/actions/userActions";
 
 import "./login.css";
 
@@ -32,6 +34,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     if (!id || !password) {
@@ -51,9 +54,34 @@ const Login = () => {
       );
 
       const { access_token, refresh_token } = responseData;
+      // 토큰 갱신을 위한 타이머 설정 함수
+      const checkTokenExpiration = () => {
+        const expirationTime = localStorage.getItem("accessTokenExpiration");
+        if (expirationTime) {
+          const now = new Date();
+          const expiration = new Date(expirationTime);
+          const timeUntilExpiration = expiration - now;
+
+          // 만료 시간 5분 전에 갱신
+          const refreshTime = 5 * 60 * 1000;
+          if (timeUntilExpiration < refreshTime) {
+            // 만료 5분 전이면 토큰 갱신
+            refreshAccessToken();
+          }
+        }
+      };
+
+      const expires_in = 3600;
+
+      const expirationTime = Date.now() + expires_in * 1000;
+
+      dispatch({ type: "LOGIN_USER" });
+
+      localStorage.setItem("isLoggedIn", "true");
 
       localStorage.setItem("accessToken", access_token);
       localStorage.setItem("refreshToken", refresh_token);
+      localStorage.setItem("accessTokenExpiration", expirationTime);
 
       console.log(responseData.access_token);
 
@@ -61,6 +89,51 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setError("잘못된 비밀번호입니다. 다시 확인해주세요.");
+    }
+  };
+
+  const refreshAccessToken = async (refreshTokenKey) => {
+    try {
+      if (!refreshTokenKey) {
+        console.error("refreshTokenKey가 비어있거나 전달되지 않았습니다.");
+        return;
+      }
+
+      const accessToken = localStorage.getItem("accessToken");
+      const expirationTime = localStorage.getItem("accessTokenExpiration");
+
+      if (!accessToken || !expirationTime) {
+        console.error("저장된 액세스 토큰 또는 만료 시간이 없습니다.");
+        return;
+      }
+
+      // 만료 시간이 현재 시간보다 이전이라면 토큰을 갱신
+      const isTokenExpired = new Date(expirationTime) < new Date();
+
+      if (isTokenExpired) {
+        const url = new URL("http://127.0.0.1:8000/accounts/refresh-token");
+        url.searchParams.append("refresh_token_key", refreshTokenKey);
+
+        const responseData = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (responseData.ok) {
+          const data = await responseData.json();
+          const newAccessToken = data.access_token;
+
+          localStorage.setItem("accessToken", newAccessToken);
+          console.log("토큰 재발급 성공!", newAccessToken);
+        } else {
+          console.error("토큰 재발급 요청에 실패했습니다.");
+          console.error("응답 상태:", responseData.status);
+        }
+      }
+    } catch (error) {
+      console.error("토큰 재발급 요청 중 오류가 발생했습니다.", error);
     }
   };
 

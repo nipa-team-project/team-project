@@ -112,8 +112,12 @@
     color: #759CFF;
     margin-top: -1.9375rem;
     margin-bottom: 1.5rem;
-    margin-right: 38.5625rem;
+    /* margin-right: 36.5625rem; */
     font-size: 0.75rem;
+}
+
+.isuserid_available.used {
+    color: red;
 }
 
 .invalid_email {
