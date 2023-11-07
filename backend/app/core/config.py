@@ -17,13 +17,14 @@ class Config:
 
 @dataclass
 class LocalConfig(Config):
-    DB_URL: str = "mysql+pymysql://admin@database-1.us-east-2.rds.amazonaws.com:12345678@database-1.cm8mgghq9mfj.us-east-2.rds.amazonaws.com:3306/database-1?charset=utf8mb4"
+    DB_URL: str = "mysql+pymysql://root:191212@127.0.0.1:3306/refurlab?charset=utf8mb4"
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
 
 
 @dataclass
 class ProdConfig(Config):
+    DB_URL: str = "mysql+pymysql://admin:12345678@database-1.crlvpusjnidl.ap-northeast-2.rds.amazonaws.com:3306/mydb?charset=utf8mb4"
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
 
@@ -34,5 +35,4 @@ def conf():
     :return:
     """
     config = dict(prod=ProdConfig(), local=LocalConfig())
-    return config.get(environ.get("API_ENV", "local"))
-
+    return config.get(environ.get("API_ENV", "prod"))
