@@ -29,8 +29,13 @@
     border: 0.0625rem solid #4F80FF;
     padding-left: 1rem;
     font-family: "Pretendard-Regular";
+    outline: none;
+    /* 포커스 테두리 삭제 */
 }
 
+.login-input :focus {
+    outline: none;
+}
 
 .error-input {
     border: 0.0625rem solid red;
