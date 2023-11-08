@@ -14,8 +14,8 @@ class LaptopImage(Base):
     update_date = Column(DateTime, nullable=True)
 
     # FK
-    laptop_sell_info_id = Column(BIGINT, ForeignKey("laptop.laptop_id"), nullable=False)
+   # laptop_sell_info_id = Column(BIGINT, ForeignKey("laptop.laptop_id"), nullable=False)
 
     # 관계 매핑
-    laptops = relationship("Laptop", back_populates="laptop_images")
+    #laptops = relationship("Laptop", back_populates="laptop_images")
 

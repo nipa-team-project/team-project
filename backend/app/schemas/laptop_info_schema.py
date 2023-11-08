@@ -1,6 +1,4 @@
 from pydantic import BaseModel
-from fastapi import UploadFile
-from typing import List
 
 
 class LaptopSellFormCreate(BaseModel):
@@ -8,8 +6,9 @@ class LaptopSellFormCreate(BaseModel):
     serial_number: str
     product_details: str
     step: int
-    file: List[UploadFile]
 
+    class Config:
+        orm_mode: True
 
 
 
