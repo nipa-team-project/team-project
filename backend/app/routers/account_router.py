@@ -1,6 +1,6 @@
 import secrets
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Header
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import Optional
@@ -106,5 +106,20 @@ async def account_id_check(id: str, session: Session = Depends(db.session)):
 
 
 @router.patch("/accounts", status_code=status.HTTP_200_OK)
-async def account_info_update(token: str, account: account_schema.AccountUpdate, session: Session = Depends(db.session)):
+async def account_info_update(account: account_schema.AccountUpdate, session: Session = Depends(db.session), token: str = Header(None)):
     account_crud.update_account(db=session, token=token, account=account)
+
+
+@router.get("/accounts", status_code=status.HTTP_200_OK)
+async def account_info_get(session: Session = Depends(db.session), token: str = Header(None)):
+    result = account_crud.get_account_info(db=session, token=token)
+    print(result)
+
+    if result:
+        account_info = {
+            "id": result.id,
+            "nickname": result.nickname,
+            "email": result.email,
+            "phonenumber": result.phonenumber
+         }
+        return {"response": account_info}
