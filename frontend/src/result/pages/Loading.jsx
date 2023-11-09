@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import theme from "../../shared/util/Theme";
 

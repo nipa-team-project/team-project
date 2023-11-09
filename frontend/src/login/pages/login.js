@@ -36,6 +36,12 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      // Enter 키를 누르면 handleLogin 함수 호출
+      handleLogin();
+    }
+  };
   const handleLogin = async () => {
     if (!id || !password) {
       setError("아이디와 비밀번호를 모두 입력해주세요.");
@@ -154,6 +160,7 @@ const Login = () => {
           value={id}
           onChange={(e) => setID(e.target.value)}
           className="login-input"
+          onKeyPress={handleKeyPress}
         />
         <br />
         <input
@@ -161,9 +168,15 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className={error ? "error-input" : "login-input"}
+          onKeyPress={handleKeyPress}
         />
         {error && <p className="error-message">{error}</p>}
-        <button type="button" onClick={handleLogin} className="login-button">
+        <button
+          type="button"
+          onKeyPress={handleKeyPress}
+          className="login-button"
+          onClick={handleLogin}
+        >
           로그인하기
         </button>
         <div className="nosignup">

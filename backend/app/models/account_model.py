@@ -6,6 +6,7 @@ from db.database import Base
 import pytz
 
 
+
 class Account(Base):
     __tablename__ = "account"
 

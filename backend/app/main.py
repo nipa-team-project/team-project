@@ -6,6 +6,8 @@ from routers import account_router, laptop_router,laptop_info_list, laptop_sell_
 from core.config import conf
 from routers import laptop_info_list
 
+app = FastAPI()
+
 
 def create_app():
     c = conf()

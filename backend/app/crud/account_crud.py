@@ -2,7 +2,7 @@ from passlib.context import CryptContext
 from sqlalchemy import update
 from datetime import datetime
 from sqlalchemy.orm import Session
-from schemas.account_schema import AccountCreate,AccountUpdate
+from schemas.account_schema import AccountCreate, AccountUpdate
 from models.account_model import Account
 from core import util
 import pytz
@@ -35,13 +35,15 @@ def get_account(db: Session, id: str):
 def update_account(db: Session, token: str, account: AccountUpdate):
     decode_token_id = int(util.decode_token(token))
     db.execute(
-        update(Account).where(Account.account_id == decode_token_id).values(password=get_password_hash(account.password),
-                                                                            nickname=account.nickname, email=account.email, phonenumber=account.phonenumber, update_date=datetime.now(pytz.timezone("Asia/Seoul")))
+        update(Account).where(Account.account_id == decode_token_id).values(password=get_password_hash(account.password), nickname=account.nickname,
+                                                                            email=account.email, phonenumber=account.phonenumber,
+                                                               update_date=datetime.now(pytz.timezone("Asia/Seoul")))
     )
     db.commit()
 
 
 def get_account_info(db: Session, token: str):
     token_id = int(util.decode_token(token))
-
     return db.query(Account).filter(Account.account_id == token_id).first()
+
+
