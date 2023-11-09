@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Process.module.css";
 import PageTitle from "../../shared/Pagetitle/Pagetitle";
 import LaptopRankCard from "../../shared/Laptop/LaptopRankCard";
@@ -14,6 +14,9 @@ const Process = (props) => {
 
   const imageNames = ["Step1.png", "Step2.png", "Step3.png", "Step4.png", "Step5.png"];
 
+  const location = useLocation();
+  const { totalRank, frontImage } = location.state;
+
   return (
     <div className={styles.container}>
       <PageTitle title={"진행 상황"} className={styles.title}>
@@ -21,7 +24,7 @@ const Process = (props) => {
       </PageTitle>
 
       <div className={styles.modelContainer}>
-        <LaptopRankCard img={`/img/process/laptop.png`} rank="rank_A" className={styles.rankcard} />
+        <LaptopRankCard img={frontImage} rank={`rank_${totalRank}`} className={styles.rankcard} imgStyle={{ width: "290px", height: "174px" }} />
         <p className={styles.model_title}>맥북 에어</p>
         <p className={styles.model_description}>
           모델명: NT950XBE-X716A <br /> 등록일: 2023. 09. 08

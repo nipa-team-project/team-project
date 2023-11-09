@@ -14,8 +14,11 @@ const Container = styled.div`
       height: 145px;
     }
     position: absolute;
+    width: 411.65px;
+    height: 314.67px;
     top: 50%;
     left: 50%;
+    border-radius: 10.78px;
     transform: translate(-50%, -50%);
   }
 
