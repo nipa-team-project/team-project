@@ -9,7 +9,6 @@ class Config:
     """
     기본 Configuration
     """
-
     BASE_DIR = base_dir
 
     DB_POOL_RECYCLE: int = 900
@@ -25,6 +24,7 @@ class LocalConfig(Config):
 
 @dataclass
 class ProdConfig(Config):
+    DB_URL: str = "mysql+pymysql://admin:12345678@database-1.crlvpusjnidl.ap-northeast-2.rds.amazonaws.com:3306/mydb?charset=utf8mb4"
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
 
@@ -35,4 +35,4 @@ def conf():
     :return:
     """
     config = dict(prod=ProdConfig(), local=LocalConfig())
-    return config.get(environ.get("API_ENV", "local"))
+    return config.get(environ.get("API_ENV", "prod"))
