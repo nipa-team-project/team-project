@@ -13,7 +13,12 @@ logger = logging.getLogger(__name__)
 
 # ex) http://localhost:8000/purchase/goods/desc?page=1&rating=s
 @router.get("/purchase/goods/desc", response_model=List[schemas.Laptop])
-def read_laptops(page: int = 1, rating: str = None, db: Session = Depends(db.session), response: Response = None):
+def read_laptops(
+    page: int = 1,
+    rating: str = None,
+    db: Session = Depends(db.session),
+    response: Response = None,
+):
     try:
         laptops, total_count = crud.get_laptops_desc(db, page=page, rating=rating)
         if laptops is None or len(laptops) == 0:
@@ -30,7 +35,12 @@ def read_laptops(page: int = 1, rating: str = None, db: Session = Depends(db.ses
 
 # ex) http://localhost:8000/purchase/goods/asc?page=1&rating=s
 @router.get("/purchase/goods/asc", response_model=List[schemas.Laptop])
-def read_laptops(page: int = 1, rating: str = None, db: Session = Depends(db.session), response: Response = None):
+def read_laptops(
+    page: int = 1,
+    rating: str = None,
+    db: Session = Depends(db.session),
+    response: Response = None,
+):
     try:
         laptops, total_count = crud.get_laptops_asc(db, page=page, rating=rating)
         if laptops is None or len(laptops) == 0:
