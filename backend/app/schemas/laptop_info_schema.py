@@ -9,3 +9,6 @@ class LaptopSellFormCreate(BaseModel):
 
     class Config:
         orm_mode: True
+
+
+

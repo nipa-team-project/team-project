@@ -5,9 +5,12 @@ from models.laptop_sell_image_model import LaptopSellImage
 from core.s3 import s3_connection
 from io import BytesIO
 from core import util
+from typing import List
+from fastapi import UploadFile, Body
 
 
-async def laptop_sell_info_input(db: Session, sell_info: LaptopSellFormCreate, token: str):
+async def laptop_sell_info_input(sell_info: LaptopSellFormCreate, files: List[UploadFile],
+                                 db: Session, token: str):
     account_id = int(util.decode_token(token))
     db_sell = LaptopSellInfo(device_name=sell_info.device_name, serial_number=sell_info.serial_number,
                              product_details=sell_info.product_details, step=sell_info.product_details,
@@ -24,7 +27,7 @@ async def laptop_sell_info_input(db: Session, sell_info: LaptopSellFormCreate, t
     # 처음에 등록하고
     # 이미지 값 차곡차곡 쌓아서 넣어주기 (FK)
     try:
-        for i in sell_info.file:
+        for i in files.file:
             file_data = await i.read()
             bucket_name = 'refurlab'
             s3_file_name = i.filename

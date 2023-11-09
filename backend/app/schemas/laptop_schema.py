@@ -10,3 +10,5 @@ class LaptopInput(BaseModel):
 
     class Config:
         orm_mode: True
+
+

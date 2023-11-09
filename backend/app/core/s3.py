@@ -13,3 +13,5 @@ def s3_connection():
     else:
         print("s3 bucket connected!")
         return client_s3
+
+

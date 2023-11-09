@@ -2,7 +2,6 @@
 from sqlalchemy import Column, BIGINT, String
 from sqlalchemy.orm import relationship
 from db.database import Base
-from models.laptop_sell_info_model import LaptopSellInfo
 
 
 class Laptop(Base):
@@ -15,4 +14,6 @@ class Laptop(Base):
     hardware = Column(String(100), nullable=False)
     brand = Column(String(30), nullable=False)
 
-    laptop_images = relationship("LaptopImage", back_populates="laptops")
+    # laptop_images = relationship("LaptopImage", back_populates="laptops")
+
+

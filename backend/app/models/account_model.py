@@ -6,6 +6,7 @@ from db.database import Base
 import pytz
 
 
+
 class Account(Base):
     __tablename__ = 'account'
 
@@ -19,5 +20,5 @@ class Account(Base):
     phonenumber = Column(String(255), unique=True, nullable=False)
     create_date = Column(DateTime, nullable=True, default=datetime.now(pytz.timezone("Asia/Seoul")))
     update_date = Column(DateTime, nullable=True)
-    
+
     # laptop_sell_infos = relationship("LaptopSellInfo", back_populates="accounts")

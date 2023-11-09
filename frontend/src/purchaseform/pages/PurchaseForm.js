@@ -3,8 +3,11 @@ import Dropzone from "react-dropzone";
 import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import "./PurchaseForm.css";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const PurchaseForm = () => {
+  const { isLoading, sendRequest, clearError } = useHttpClient(); // useHttpClient 훅 사용
+
   const navigate = useNavigate();
   const [deviceName, setDeviceName] = useState("");
   const [modelName, setModelName] = useState("");
@@ -125,13 +128,36 @@ const PurchaseForm = () => {
     setSelectedImages(Array(4).fill(null));
   };
 
-  const handleAIProcessing = () => {
+  const handleAIProcessing = async () => {
     // 업로드된 이미지만 필터링
     const uploadedImages = selectedImages.filter((image) => image !== null);
-    // 업로드된 이미지만 AI에 전달하고 측정
-    console.log("AI 측정 결과:", uploadedImages);
 
-    navigate("/result");
+    const data = {
+      device_name: deviceName,
+      serial_number: modelName,
+      product_details: productDetails,
+      step: 2,
+      file: uploadedImages,
+    };
+
+    const accessToken = localStorage.getItem("accessToken"); // 로컬 스토리지에서 액세스 토큰 가져오기
+
+    try {
+      const responseData = await sendRequest(
+        "http://127.0.0.1:8000/sell",
+        "POST",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // 가져온 액세스 토큰 사용
+          },
+        }
+      );
+
+      navigate("/result");
+    } catch (error) {
+      console.log("Error while sending data to the server:", error);
+    }
   };
 
   return (

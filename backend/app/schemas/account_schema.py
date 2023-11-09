@@ -34,5 +34,3 @@ class AccountUpdate(BaseModel):
     email: EmailStr
     phonenumber: str = Field(title='휴대전화', pattern='^010-([0-9]{4})-([0-9]{4})$')
     update_date: datetime
-
-
