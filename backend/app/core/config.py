@@ -9,6 +9,7 @@ class Config:
     """
     기본 Configuration
     """
+
     BASE_DIR = base_dir
 
     DB_POOL_RECYCLE: int = 900

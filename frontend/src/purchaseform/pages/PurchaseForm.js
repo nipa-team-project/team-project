@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import { Link, useNavigate } from "react-router-dom";
 import "./PurchaseForm.css";
 import { useHttpClient } from "../../shared/hooks/http-hook";
+import Loading from "../../result/pages/Loading";
 
 const PurchaseForm = () => {
   const { isLoading, sendRequest, clearError } = useHttpClient(); // useHttpClient 훅 사용
@@ -129,38 +130,70 @@ const PurchaseForm = () => {
   };
 
   const handleAIProcessing = async () => {
+    function dataURItoBlob(dataURI) {
+      // Split the data URI to get the metadata and the data part
+      const splitDataURI = dataURI.split(",");
+      const byteString = atob(splitDataURI[1]);
+
+      // Extract MIME type from the metadata
+      const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+
+      // Convert to byte array
+      const arrayBuffer = new ArrayBuffer(byteString.length);
+      const intArray = new Uint8Array(arrayBuffer);
+      for (let i = 0; i < byteString.length; i++) {
+        intArray[i] = byteString.charCodeAt(i);
+      }
+
+      // Create Blob object
+      return new Blob([arrayBuffer], { type: mimeString });
+    }
+    const time = new Date().toISOString();
+
     // 업로드된 이미지만 필터링
     const uploadedImages = selectedImages.filter((image) => image !== null);
+    const formData = new FormData();
+    formData.append("device_name", deviceName);
+    formData.append("serial_number", modelName);
+    formData.append("product_details", productDetails);
+    formData.append("step", 2);
+    formData.append("create_date", time);
 
-    const data = {
-      device_name: deviceName,
-      serial_number: modelName,
-      product_details: productDetails,
-      step: 2,
-      file: uploadedImages,
-    };
+    const images = selectedImages.filter((image) => image !== null);
 
-    const accessToken = localStorage.getItem("accessToken"); // 로컬 스토리지에서 액세스 토큰 가져오기
+    images.forEach((image, index) => {
+      if (index === 0) {
+        formData.append("files", dataURItoBlob(images[1]), `file_0.jpg`);
+      } else if (index === 1) {
+        formData.append("files", dataURItoBlob(images[0]), `file_1.jpg`);
+      } else {
+        formData.append("files", dataURItoBlob(image), `file_${index}.jpg`);
+      }
+    });
 
     try {
-      const responseData = await sendRequest(
-        "http://127.0.0.1:8000/sell",
+      const accessToken = localStorage.getItem("accessToken");
+      const response = await sendRequest(
+        "http://localhost:8000/sell",
         "POST",
-        data,
+        formData,
         {
-          headers: {
-            Authorization: `Bearer ${accessToken}`, // 가져온 액세스 토큰 사용
-          },
+          token: accessToken, // 가져온 액세스 토큰 사용
         }
       );
 
-      navigate("/result");
+      navigate(
+        `/result?sell_id=${response.sell_id}&front_image=${response.front_image}&back=${response.serving_datas.back}&front=${response.serving_datas.front}&keyboard=${response.serving_datas.keyboard}&monitor=${response.serving_datas.monitor}`
+      );
+
+      console.log(response);
     } catch (error) {
-      console.log("Error while sending data to the server:", error);
+      console.error("Error while sending data to the server:", error);
     }
   };
-
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="purchase-container">
       <img
         className="rectangle"
