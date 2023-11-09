@@ -8,6 +8,7 @@ from typing import List, Annotated
 from fastapi import UploadFile, Form
 from serving import image_serving
 
+
 async def laptop_sell_info_input(device_name: Annotated[str, Form()], serial_number: Annotated[str, Form()], product_details: Annotated[str, Form()], step: Annotated[int,Form()],
                                  files: List[UploadFile], db: Session, token: str):
     account_id = int(util.decode_token(token))
@@ -28,7 +29,6 @@ async def laptop_sell_info_input(device_name: Annotated[str, Form()], serial_num
     location = 'ap-northeast-2'
     bucket_name = 'refurlab'
 
-    front_url = ""
     try:
         for i in files:
             file_data = await i.read()
@@ -53,6 +53,7 @@ async def laptop_sell_info_input(device_name: Annotated[str, Form()], serial_num
         print(e)
 
 
-# def laptop_sell_input(db: Session, sell_info: LaptopSellFormCreate):
-#
-#     # Laptop에 값들이 저장되어 있잖아요. -> sell_info에서 받아온 값의 아디를 찾으면되겠다.
+# laptop_id로 get 요청
+def latop_sell_info_get(sell_info_id: str, db: Session):
+    return db.query(LaptopSellInfo).filter(LaptopSellInfo.laptop_sell_info_id == sell_info_id).first()
+
