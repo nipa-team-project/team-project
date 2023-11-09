@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from db.database import Base
 
 
-class Laptop(Base):
+class Laptop2(Base):
     __tablename__ = 'laptop'
 
     laptop_id = Column(BIGINT, primary_key=True, autoincrement=True)
