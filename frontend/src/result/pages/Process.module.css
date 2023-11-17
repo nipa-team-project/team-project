@@ -20,8 +20,18 @@
 
     }
 
+    width: 292px;
+    height: 223px;
+
+
+}
+
+.laptop_img {
+
     width: 290px;
     height: 174px;
+
+
 }
 
 .modelContainer {
@@ -81,15 +91,32 @@
 .process_container {
     display: flex;
     margin-top: 40px;
-    height: 158px;
     max-width: 100%;
+
     flex-wrap: wrap;
     margin-left: 10px;
     justify-content: center;
     /* 수평 가운데 정렬 */
     align-items: center;
     /* 수직 가운데 정렬 */
-    height: 100%;
+    height: 158px;
+}
+
+.next {
+    display: flex;
+}
+
+.stepContainer {
+    width: 110px;
+    height: 158px;
+    display: flex;
+    flex-direction: column;
+    /* Assuming you want a column layout */
+    align-items: center;
+    /* Horizontally center items */
+    text-align: center;
+
+
 
 }
 
@@ -101,11 +128,25 @@
 
     }
 
-    margin-top: 27px;
 
 
 
 
+
+}
+
+.active {
+    margin-top: 18px;
+    margin-bottom: 15px;
+}
+
+.step_dec {
+    font-size: 16px;
+    line-height: 23.04px;
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    color: #333333;
+    text-align: center;
 }
 
 .arrow {
@@ -114,13 +155,14 @@
 
     }
 
-    margin: 50% 8px;
+    margin: 50% 12px;
 
 
 }
 
 .grayscale {
     filter: grayscale(100%);
+    color: #999999;
 }
 
 .button_group {

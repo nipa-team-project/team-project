@@ -50,6 +50,7 @@ const Result = () => {
   };
 
   const average = calculateAverage(laptopState);
+
   let totalRank;
 
   if (average < 10) {
@@ -85,14 +86,26 @@ const Result = () => {
     window.scrollTo(0, 0); // 페이지 렌더링 시 맨 위로 스크롤
   }, []);
 
+  function getParticle(deviceName) {
+    const lastChar = deviceName.charAt(deviceName.length - 1);
+
+    // 받침 여부 판별
+    const hasFinalConsonant = (lastChar.charCodeAt(0) - 0xac00) % 28 > 0;
+
+    return hasFinalConsonant ? "은" : "는";
+  }
+
+  const particle = getParticle(params.get("device_name"));
+
   return (
     <div className={styles.container}>
       <PageTitle title={"노트북 등급"} className={styles.title}>
         과연 내 노트북의 등급은?
       </PageTitle>
-      <LaptopRankCard img={params.get("front_image")} rank={totalRank} className={styles.rankcard} />
+      <LaptopRankCard img={params.get("front_image")} rank={totalRank} className={styles.rankcard} customImgStyle={{ width: "409px", height: "245px" }} />
       <div className={styles.result_description}>
-        맥북 에어는 <span className={styles.rank}>{totalRank}등급</span>입니다!
+        {params.get("device_name")}
+        {particle} <span className={styles.rank}>{totalRank}등급</span>입니다!
       </div>
       <div className={styles.progress}>
         <ProgressBar category="front" damaged={laptopState.front} />
@@ -144,7 +157,7 @@ const Result = () => {
               <div className={styles.modal_button}>
                 <Button
                   active={true}
-                  onClick={() => navigate("/process", { state: { totalRank, frontImage: params.get("front_image") } })}
+                  onClick={() => navigate("/process", { state: { totalRank, frontImage: params.get("front_image"), id: params.get("sell_id") } })}
                   className={styles.process_btn}>
                   진행 상황 확인하기
                 </Button>
