@@ -171,6 +171,13 @@ const PurchaseForm = () => {
       }
     });
 
+    //uploadedImages.forEach((image, index) => {
+    //const file = dataURItoBlob(image); // 데이터 URI를 Blob으로 변환
+    //formData.append("files", file, `uploaded_${index}_${new Date().getTime()}.jpg`);
+    // 여기서 'uploaded_${index}_${new Date().getTime()}.jpg'는 파일 이름을 나타내는 자리 표시자입니다.
+    // 이미지의 실제 파일 이름으로 변경해야 합니다.
+    //});
+
     try {
       const accessToken = localStorage.getItem("accessToken");
       const response = await sendRequest(
