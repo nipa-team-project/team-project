@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import theme from "../../shared/util/Theme";
 
@@ -191,6 +191,11 @@ const Div = styled.div`
 
 const Loading = () => {
   const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+   
+    window.scrollTo(0, 0); // 페이지 렌더링 시 맨 위로 스크롤
+  }, []);
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <Div>

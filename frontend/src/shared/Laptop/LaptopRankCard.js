@@ -14,8 +14,10 @@ const Container = styled.div`
       height: 145px;
     }
     position: absolute;
+
     top: 50%;
     left: 50%;
+    border-radius: 10.78px;
     transform: translate(-50%, -50%);
   }
 
@@ -34,7 +36,12 @@ const Container = styled.div`
 const LaptopRankCard = (props) => {
   return (
     <Container className={`${props.className}`}>
-      <img src={props.img} alt={props.alt} className="laptop_img" />
+      <img
+        src={props.img}
+        alt={props.alt}
+        className="laptop_img"
+        style={props.customImgStyle}
+      />
       <img
         src={`/img/result/${props.rank}.png`}
         alt={`rank ${props.rank}`}
