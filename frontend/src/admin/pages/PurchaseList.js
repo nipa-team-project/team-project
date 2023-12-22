@@ -4,6 +4,7 @@ import Page from "../../shared/UIElements/Page";
 import Modal from "../../shared/UIElements/Modal";
 
 import "./NotebookList.css";
+import "./Userlist.css";
 
 const dummydata = [
   {
@@ -135,7 +136,7 @@ const dummydata = [
 
 const itemlen = 100;
 
-const NotebookList = () => {
+const PurchaseList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [detailModalOpen, setDetailModalOpen] = useState(false);
@@ -177,18 +178,24 @@ const NotebookList = () => {
   return (
     <React.Fragment>
       <input className="paflist_search" placeholder="내용 검색하기"></input>
-      <div className="paflist_title">노트북 리스트</div>
+      <div className="paflist_title">노트북 판매 리스트</div>
       <div className="notebooklist_main">
         {dummydata.map((list, index) => (
-          <div className="notebooklist_container" key={index} onClick={() => openModal(list)}>
-            <img src={list.notebook_img} alt="notebook_img" className="notebooklist_img" />
+          <div>
+            <div className="notebooklist_container" key={index} onClick={() => openModal(list)}>
+              <img src={list.notebook_img} alt="notebook_img" className="notebooklist_img" />
+            </div>
+            <div>
+              <p>상품코드 : 014938234</p>
+              <span>이름 : Teddy </span>
+            </div>
           </div>
         ))}
       </div>
       {selectedItem && (
         <div id="backdrop-hook">
-          <Modal show={isModalOpen} onCancel={closeModal} className="notebooklist_modal">
-            <div className="modal_context">
+          <Modal show={isModalOpen} onCancel={closeModal} className="purchaselist_modal">
+            <div className="modal_context modal_scrollable">
               <div style={{ display: "flex", flexDirection: "space-between" }}>
                 <h1 className="userlist_modalTitle">노트북 상세정보</h1>
                 <img src="/img/admin/Cancel.png" alt="cancel" className="modal_cancel" onClick={closeModal} />
@@ -197,14 +204,6 @@ const NotebookList = () => {
                 <div className="notebook_rank_container">
                   <img src="/img/admin/notebook.png" alt="notebook" className="notebook_img" />
                   <img src={`/img/admin/rank_${selectedItem.level}.png`} alt={`rank ${selectedItem.level}`} className="level_img" />
-                </div>
-                <div className="des_container">
-                  <p className="notebook_title">{selectedItem.name}</p>
-                  <p className="notebook_tag">
-                    모델명: {selectedItem.model}
-                    <br /> 등록일: {selectedItem.register}
-                  </p>
-                  <p className="notebook_description">{selectedItem.description}</p>
                 </div>
               </div>
               <div className="slide_container">
@@ -222,6 +221,76 @@ const NotebookList = () => {
                   <img src={selectedItem.monitor} alt="monitor" className="aspect_laptop" />
                 </div>
                 <img src="/img/admin/Right_arrow.png" alt="left_arrow" className="modal_arrow" />
+              </div>
+              <div style={{ marginTop: "16px", marginBottom: "35%" }}>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">제목</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">정가</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">타임세일가</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">OS</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">화면 크기</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">업무용</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">인강용</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">게임용</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">하드웨어</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">짧은 설명</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">구매제한</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">배송비</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">상품코드</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">자체상품코드</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">브랜드</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">제조사</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
+                <div className="userlist_inputContainer">
+                  <span className="userlist_label">상품재고</span>
+                  <input type="text" className="userlist_input"></input>
+                </div>
               </div>
             </div>
           </Modal>
@@ -251,4 +320,4 @@ const NotebookList = () => {
   );
 };
 
-export default NotebookList;
+export default PurchaseList;

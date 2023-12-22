@@ -12,8 +12,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "SS",
   },
   {
@@ -21,8 +20,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "S",
   },
   {
@@ -30,8 +28,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "A",
   },
   {
@@ -39,8 +36,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "B",
   },
   {
@@ -48,8 +44,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "C",
   },
   {
@@ -57,8 +52,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "SS",
   },
   {
@@ -66,8 +60,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "S",
   },
   {
@@ -75,8 +68,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "A",
   },
   {
@@ -84,8 +76,7 @@ const dummydata = [
     name: "맥북 에어",
     model: "NT950XBE-X716A",
     date: "2023.09. 08",
-    description:
-      "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
+    description: "모서리 부분 파손이 살짝 있음. 화면 상태는 기스 없이 깔끔한 편. ",
     rank: "B",
   },
 ];
@@ -101,24 +92,17 @@ const Rating = () => {
   };
 
   const menuarray = ["recent", "soldout", "interior"]; //쿼리에 따라 menu 체크
-  const [menuindex, setMenuIndex] = useState(
-    searchParams.get("situation") === null
-      ? 0
-      : parseInt(menuarray.indexOf(searchParams.get("situation")))
-  );
+  const [menuindex, setMenuIndex] = useState(searchParams.get("situation") === null ? 0 : parseInt(menuarray.indexOf(searchParams.get("situation"))));
 
   return (
     <React.Fragment>
       <div className="rating">
-        <Pagetitle title="노트북 등급">
-          나의 노트북을 모아볼 수 있습니다.
-        </Pagetitle>
+        <Pagetitle title="노트북 등급">나의 노트북을 모아볼 수 있습니다.</Pagetitle>
         <div className="rating_sort">
           <div className="rating_sort_menucontain">
             {[
               ["최근 등급 측정 노트북", "recent"],
               ["판매한 노트북", "soldout"],
-              ["내부 등급 측정 노트북", "interior"],
             ].map((menu, index) => (
               <div
                 key={index}
@@ -128,8 +112,7 @@ const Rating = () => {
                 onClick={() => {
                   setMenuIndex(index);
                   searchparamshandler("situation", menu[1]); //메뉴 선택시 쿼리도 생성
-                }}
-              >
+                }}>
                 {menu[0]}
               </div>
             ))}
@@ -143,11 +126,7 @@ const Rating = () => {
           {dummydata.map((notebook, index) => (
             <div className="rating_notebook " key={index}>
               <div className="rating_notebook_imgbox center">
-                <img
-                  className="rating_notebook_img"
-                  src={`${notebook.img}`}
-                  alt="notebookimage"
-                ></img>
+                <img className="rating_notebook_img" src={`${notebook.img}`} alt="notebookimage"></img>
               </div>
 
               <div>
@@ -157,25 +136,13 @@ const Rating = () => {
                   <br />
                   등록일: {notebook.date}
                 </div>
-                <div className="rating_notebook_des">
-                  {notebook.description}
-                </div>
-                <img
-                  className="rating_notebook_rank"
-                  src={`/img/rating/${notebook.rank}.png`}
-                  alt="rankimage"
-                ></img>
+                <div className="rating_notebook_des">{notebook.description}</div>
+                <img className="rating_notebook_rank" src={`/img/rating/${notebook.rank}.png`} alt="rankimage"></img>
               </div>
             </div>
           ))}
         </div>
-        <Page
-          itemlen={itemlen}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-          searchparamshandler={searchparamshandler}
-          itemcount={9}
-        ></Page>
+        <Page itemlen={itemlen} searchParams={searchParams} setSearchParams={setSearchParams} searchparamshandler={searchparamshandler} itemcount={9}></Page>
       </div>
     </React.Fragment>
   );

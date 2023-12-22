@@ -22,15 +22,9 @@ const Goodsroute = () => {
     const fetchgoods = async (event) => {
       try {
         const { responseData, total_count } = await sendRequest(
-          `http://127.0.0.1:8000/purchase/goods/${
-            searchParams.get("price") ? searchParams.get("price") : "asc"
-          }?${
+          `http://127.0.0.1:8000/purchase/goods/${searchParams.get("price") ? searchParams.get("price") : "asc"}?${
             searchParams.get("page") ? `page=${searchParams.get("page")}` : ""
-          }${
-            searchParams.get("rating") && searchParams.get("rating") != ""
-              ? `&rating=${searchParams.get("rating")}`
-              : ""
-          }`
+          }${searchParams.get("rating") && searchParams.get("rating") != "" ? `&rating=${searchParams.get("rating")}` : ""}`
         );
         setTotalcount(total_count);
         setLoadedGoods(responseData);
@@ -62,17 +56,7 @@ const Goodsroute = () => {
           }
         />
 
-        <Route
-          path="/detail/:goodsNo"
-          exact
-          element={
-            <Goodsview
-              isLoading={isLoading}
-              loadedGoods={loadedGoods}
-              searchParams={searchParams}
-            />
-          }
-        />
+        <Route path="/detail/:goodsNo" exact element={<Goodsview isLoading={isLoading} loadedGoods={loadedGoods} searchParams={searchParams} />} />
       </Routes>
     </React.Fragment>
   );

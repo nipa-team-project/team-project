@@ -6,6 +6,7 @@ import Adminnav from "../components/Adminnav";
 import Userlist from "./Userlist";
 import Paflist from "./Paflist";
 import NotebookList from "./NotebookList";
+import PurchaseList from "./PurchaseList";
 
 const Admin = () => {
   return (
@@ -18,6 +19,7 @@ const Admin = () => {
             <Route path="/userlist" exact element={<Userlist />} />
             <Route path="/paflist" exact element={<Paflist />} />
             <Route path="/notebooklist" exact element={<NotebookList />} />
+            <Route path="/purchaselist" exact element={<PurchaseList />} />
           </Routes>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./PurchaseForm.css";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import Loading from "../../result/pages/Loading";
+import AWS from "aws-sdk";
 
 const PurchaseForm = () => {
   const { isLoading, sendRequest, clearError } = useHttpClient(); // useHttpClient 훅 사용
@@ -23,6 +24,9 @@ const PurchaseForm = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [mobilePage, setMobilePage] = useState(1);
+
+  const bucket = "refurlab-bucket";
+  const region = "ap-northeast-2";
 
   const nextpage = () => {
     if (mobilePage === 1) {
@@ -57,6 +61,11 @@ const PurchaseForm = () => {
     "/img/purchaseimg/mobilekeyboard.png",
     "/img/purchaseimg/mobilemonitor.png",
   ];
+
+  AWS.config.update({
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  });
 
   Modal.setAppElement("#root");
 
@@ -156,27 +165,73 @@ const PurchaseForm = () => {
 
     const images = selectedImages.filter((image) => image !== null);
 
+    const imgList = new FormData();
+
     images.forEach((image, index) => {
       if (index === 0) {
-        formData.append("files", dataURItoBlob(images[1]), `file_0.jpg`);
+        imgList.append("files", dataURItoBlob(images[1]), `file_0.jpg`);
       } else if (index === 1) {
-        formData.append("files", dataURItoBlob(images[0]), `file_1.jpg`);
+        imgList.append("files", dataURItoBlob(images[0]), `file_1.jpg`);
       } else {
-        formData.append("files", dataURItoBlob(image), `file_${index}.jpg`);
+        imgList.append("files", dataURItoBlob(image), `file_${index}.jpg`);
       }
     });
 
+    //api에 보내기
+
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const response = await sendRequest("http://localhost:8000/sell", "POST", formData, {
-        token: accessToken, // 가져온 액세스 토큰 사용
+
+      for (const pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
+
+      //   function logFileInfo(file) {
+      //     return file.type;
+      //   }
+
+      // formData에 추가된 파일 목록 출력
+
+      const uploadPromises = imgList.getAll("files").map((file, index) => {
+        console.log("file size : ", file.size);
+        return new AWS.S3.ManagedUpload({
+          params: {
+            Bucket: bucket,
+            Key: `${accessToken}/file_${index}.jpg`,
+            Body: file, // 실제 파일 내용을 Body로 사용
+            ContentType: "image/jpeg",
+          },
+        }).promise();
       });
 
-      navigate(
-        `/result?sell_id=${response.sell_id}&device_name=${deviceName}&front_image=${response.front_image}&back=${response.serving_datas.back}&front=${response.serving_datas.front}&keyboard=${response.serving_datas.keyboard}&monitor=${response.serving_datas.monitor}`
-      );
+      Promise.all(uploadPromises)
+        .then((results) => {
+          console.log("All uploads successful!");
+          results.forEach((result, index) => {
+            if (result && result.Location) {
+              const s3ObjectUrl = result.Location;
+              console.log(`URL for file_${index}.jpg: ${s3ObjectUrl}`);
+              formData.append("files", s3ObjectUrl);
+            } else {
+              console.error(`Upload failed for file_${index}.jpg`);
+            }
+          });
+        })
+        .catch((err) => {
+          console.error("이미지 업로드 실패", err);
+        });
 
-      console.log(response);
+      console.log("------------------------");
+
+      //   const response = await sendRequest("http://localhost:8000/sell", "POST", formData, {
+      //     token: accessToken, // 가져온 액세스 토큰 사용
+      //   });
+
+      //   navigate(
+      //     `/result?sell_id=${response.sell_id}&device_name=${deviceName}&front_image=${response.front_image}&back=${response.serving_datas.back}&front=${response.serving_datas.front}&keyboard=${response.serving_datas.keyboard}&monitor=${response.serving_datas.monitor}`
+      //   );
+
+      //   console.log(response);
     } catch (error) {
       console.error("Error while sending data to the server:", error);
     }
