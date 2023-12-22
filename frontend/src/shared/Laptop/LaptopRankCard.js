@@ -36,8 +36,17 @@ const Container = styled.div`
 const LaptopRankCard = (props) => {
   return (
     <Container className={`${props.className}`}>
-      <img src={props.img} alt={props.alt} className="laptop_img" style={props.customImgStyle} />
-      <img src={`/img/result/${props.rank}.png`} alt={`rank ${props.rank}`} className="rank_img" />
+      <img
+        src={props.img}
+        alt={props.alt}
+        className="laptop_img"
+        style={props.customImgStyle}
+      />
+      <img
+        src={`/img/result/${props.rank}.png`}
+        alt={`rank ${props.rank}`}
+        className="rank_img"
+      />
       {props.children}
     </Container>
   );
